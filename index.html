@@ -250,17 +250,13 @@
         <div class="sub">Расход / клики</div>
       </div>
       <div class="card kpi">
-        <div class="label">Конверсии (Ads)</div>
-        <div class="value num">15.00</div>
-      </div>
-      <div class="card kpi">
         <div class="label">Лиды <span class="tag-pill" style="margin-left:2px;">google</span></div>
-        <div class="value num">10</div>
+        <div class="value num">14</div>
         <div class="sub">Из формы сайта, без тестовых</div>
       </div>
       <div class="card kpi">
         <div class="label">Цена лида</div>
-        <div class="value num">AED 584.26</div>
+        <div class="value num">AED 417.33</div>
         <div class="sub">Расход / лиды</div>
       </div>
     </div>
@@ -325,7 +321,7 @@
   <section>
     <div class="section-head">
       <h2>Лиды из CRM</h2>
-      <span class="hint">10 лидов · google</span>
+      <span class="hint">14 лидов · google</span>
     </div>
     <div class="card table-wrap">
       <table>
@@ -342,19 +338,6 @@
     </div>
   </section>
 
-  <!-- Methodology -->
-  <section>
-    <div class="card notes">
-      <div class="ico">i</div>
-      <div>
-        <p><b>Как считаем лидов.</b> Из формы сайта выгружено 32 заявки за период. Убрано: 13 заявок с другими метками (посевы, соцсети, чат-боты, SMS) — не относятся к Google Ads; 5 тестовых/пустых заявок (имя «test», «Тестовая…»); 4 повторные заявки из одной сессии 22 августа (совпадает идентификатор визита).</p>
-        <p>Осталось <b>10 лидов</b> — все размечены как <span class="tag-pill">google</span>: 6 с прямой меткой <code>utm_source=google</code> или <code>gclid</code>/<code>gbraid</code>, ещё 4 — без меток, по договорённости отнесены к Google Ads.</p>
-        <p><b>Конверсии Google Ads (15.00) ≠ лиды (10)</b> — в Ads считаются также звонки и другие события отслеживания, которых нет в выгрузке форм. Стоит сверить отдельно.</p>
-      </div>
-    </div>
-  </section>
-
-  <footer>Черновик дашборда · данные из Google Ads Manager (1–26 авг 2026) и выгрузки CRM · перед деплоем на Railway пришли правки</footer>
 </div>
 
 <script>
@@ -370,13 +353,17 @@ const campaigns = [
   { name:'PMax - день открытых дверей', type:'Performance Max', opt:89.7, budget:1000, impr:184002, clicks:5687, ctr:3.09, cost:3379.36, conv:8.00, cpa:422.42, kind:'pmax' },
 ];
 
-/* ---------------- Leads: 10 total, all labeled "google" ---------------- */
+/* ---------------- Leads: 14 total, all labeled "google" (все органические причислены к Google Ads) ---------------- */
 const leads = [
   { date:'06 авг, 18:24', name:'Вера', program:'Лагерь', tag:'без меток' },
   { date:'07 авг, 09:42', name:'Даниил Кошелев', program:'Лагерь', tag:'programs / cpc' },
   { date:'07 авг, 13:09', name:'Екатерина', program:'Гибрид: диагностика', tag:'gclid, без utm' },
   { date:'15 авг, 14:04', name:'Инна', program:'Пятидневка', tag:'без меток' },
   { date:'20 авг, 10:20', name:'Ангелина', program:'Курсы: консультация', tag:'без меток' },
+  { date:'22 авг, 00:26', name:'Лия', program:'ДОД АВГУСТ 26', tag:'без меток' },
+  { date:'22 авг, 02:23', name:'Рыков Денис', program:'ДОД АВГУСТ 26', tag:'без меток' },
+  { date:'22 авг, 07:44', name:'Елена', program:'ДОД АВГУСТ 26', tag:'без меток' },
+  { date:'22 авг, 12:12', name:'Евгения Плохих', program:'ДОД АВГУСТ 26', tag:'без меток' },
   { date:'22 авг, 12:35', name:'Алиса', program:'Лагерь', tag:'без меток' },
   { date:'23 авг, 16:31', name:'Анна', program:'Главная: подбор программы', tag:'brand_campaign / cpc' },
   { date:'24 авг, 23:59', name:'Куванычбек', program:'ДОД АВГУСТ 26', tag:'term: day / cpc' },
@@ -386,7 +373,7 @@ const leads = [
 
 const dailyLeads = [
   { day:'06', count:1 }, { day:'07', count:2 }, { day:'15', count:1 },
-  { day:'20', count:1 }, { day:'22', count:1 }, { day:'23', count:1 },
+  { day:'20', count:1 }, { day:'22', count:5 }, { day:'23', count:1 },
   { day:'24', count:1 }, { day:'25', count:2 },
 ];
 
