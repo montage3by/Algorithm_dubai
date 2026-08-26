@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Google Ads · Algorithm Dubai</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%232a78d6%22/><text x=%2250%22 y=%2266%22 font-size=%2058%22 font-family=%22sans-serif%22 fill=%22white%22 text-anchor=%22middle%22>A</text></svg>" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%232a78d6%22/><text x=%2250%22 y=%2266%22 font-size=%2258%22 font-family=%22sans-serif%22 fill=%22white%22 text-anchor=%22middle%22>A</text></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
@@ -18,17 +18,11 @@
     --ink-2:        #55564f;
     --ink-muted:    #8b8a83;
     --hairline:     #e4e3db;
-    --ring:         rgba(16,16,20,0.08);
-    --brand:        #2a78d6;
-    --brand-ink:    #ffffff;
-    --brand-soft:   #e6f0fb;
-    --organic:      #1baf7a;
-    --organic-soft: #e3f7ee;
-    --unident:      #9c9a92;
-    --unident-soft: #eeede8;
+    --brand:        #0e8f99;
+    --brand-soft:   #e0f2f3;
+    --accent:       #9c2c52;
+    --accent-soft:  #f7e6ec;
     --good:         #0ca30c;
-    --warning:      #b8790a;
-    --critical:     #d03b3b;
     --shadow: 0 1px 2px rgba(16,16,20,0.04), 0 8px 24px -12px rgba(16,16,20,0.10);
   }
   @media (prefers-color-scheme: dark){
@@ -41,17 +35,11 @@
       --ink-2:        #c3c2b7;
       --ink-muted:    #8b8a83;
       --hairline:     #2a2a29;
-      --ring:         rgba(255,255,255,0.09);
-      --brand:        #3987e5;
-      --brand-ink:    #08111c;
-      --brand-soft:   #16283f;
-      --organic:      #199e70;
-      --organic-soft: #10281f;
-      --unident:      #7d7c76;
-      --unident-soft: #221f1a;
+      --brand:        #2bb8c4;
+      --brand-soft:   #103539;
+      --accent:       #d1638a;
+      --accent-soft:  #33141f;
       --good:         #0ca30c;
-      --warning:      #d99a1a;
-      --critical:     #e66767;
       --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
     }
   }
@@ -64,17 +52,11 @@
     --ink-2:        #c3c2b7;
     --ink-muted:    #8b8a83;
     --hairline:     #2a2a29;
-    --ring:         rgba(255,255,255,0.09);
-    --brand:        #3987e5;
-    --brand-ink:    #08111c;
-    --brand-soft:   #16283f;
-    --organic:      #199e70;
-    --organic-soft: #10281f;
-    --unident:      #7d7c76;
-    --unident-soft: #221f1a;
+    --brand:        #2bb8c4;
+    --brand-soft:   #103539;
+    --accent:       #d1638a;
+    --accent-soft:  #33141f;
     --good:         #0ca30c;
-    --warning:      #d99a1a;
-    --critical:     #e66767;
     --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
   }
 
@@ -98,21 +80,22 @@
 
   .shell{ max-width:1240px; margin:0 auto; padding:28px 24px 80px; }
 
-  /* ---- Header ---- */
+  /* ---- Header: logo top-left, title row below ---- */
   .topbar{
-    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    display:flex; flex-direction:column; gap:16px;
     padding-bottom:22px; margin-bottom:26px; border-bottom:1px solid var(--hairline);
-    flex-wrap:wrap;
   }
-  .brand{ display:flex; align-items:center; gap:12px; }
+  .logo-row{ display:flex; }
   .brand-mark{
-    width:38px; height:38px; border-radius:10px; flex:none;
-    background:linear-gradient(155deg, var(--brand), #1c5cab);
-    display:flex; align-items:center; justify-content:center;
-    font-family:"Manrope"; font-weight:800; color:#fff; font-size:17px;
+    width:52px; height:52px; border-radius:12px; flex:none;
+    background:#ffffff; border:1px solid var(--hairline);
+    display:flex; align-items:center; justify-content:center; padding:8px;
+    box-shadow:var(--shadow);
   }
-  .brand-text h1{ font-size:17px; font-weight:700; letter-spacing:-0.01em; }
-  .brand-text .sub{ font-size:12.5px; color:var(--ink-muted); margin-top:1px; }
+  .brand-mark svg{ width:100%; height:100%; display:block; }
+  .title-row{ display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+  .brand-text h1{ font-size:18px; font-weight:700; letter-spacing:-0.01em; }
+  .brand-text .sub{ font-size:12.5px; color:var(--ink-muted); margin-top:2px; }
   .period-chip{
     display:flex; align-items:center; gap:8px;
     background:var(--surface); border:1px solid var(--hairline); border-radius:999px;
@@ -126,12 +109,6 @@
   .section-head h2{ font-size:15px; font-weight:700; letter-spacing:-0.01em; }
   .section-head .hint{ font-size:12.5px; color:var(--ink-muted); }
 
-  .eyebrow{
-    font-family:"IBM Plex Mono", monospace; font-size:10.5px; font-weight:500;
-    letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-muted);
-    margin-bottom:4px; display:block;
-  }
-
   /* ---- Cards ---- */
   .card{
     background:var(--surface); border:1px solid var(--hairline); border-radius:14px;
@@ -139,66 +116,46 @@
   }
 
   /* ---- KPI grid ---- */
-  .kpi-grid{
-    display:grid; grid-template-columns:repeat(4,1fr); gap:12px;
-  }
-  .kpi{
-    padding:16px 18px; display:flex; flex-direction:column; gap:6px; min-width:0;
-  }
+  .kpi-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+  .kpi{ padding:16px 18px; display:flex; flex-direction:column; gap:6px; min-width:0; }
   .kpi .label{ font-size:12px; color:var(--ink-2); display:flex; align-items:center; gap:6px; }
   .kpi .value{ font-size:24px; font-weight:700; font-family:"Manrope"; letter-spacing:-0.015em; }
-  .kpi .delta{ font-size:11.5px; color:var(--ink-muted); }
-  .kpi .delta.up{ color:var(--good); }
-  .kpi .delta.down{ color:var(--critical); }
+  .kpi .sub{ font-size:11.5px; color:var(--ink-muted); }
 
-  /* ---- Two column chart row ---- */
-  .row-2{ display:grid; grid-template-columns:1.3fr 1fr; gap:16px; align-items:stretch; }
+  /* ---- Chart card ---- */
   .chart-card{ padding:20px 22px 18px; }
   .chart-card h3{ font-size:13.5px; font-weight:700; }
   .chart-card .desc{ font-size:12px; color:var(--ink-muted); margin-top:2px; }
 
-  /* bar rows (campaign cost chart) */
   .bar-list{ margin-top:18px; display:flex; flex-direction:column; gap:14px; }
-  .bar-row{ display:grid; grid-template-columns:150px 1fr 78px; align-items:center; gap:10px; }
+  .bar-row{ display:grid; grid-template-columns:180px 1fr 90px; align-items:center; gap:10px; }
   .bar-row .name{ font-size:12.5px; color:var(--ink-2); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .bar-track{ position:relative; height:20px; background:var(--surface-2); border-radius:5px; overflow:visible; }
   .bar-fill{ position:absolute; top:0; left:0; height:100%; border-radius:5px; background:var(--brand); min-width:3px; }
-  .bar-fill.pmax{ background:#6da7ec; }
+  .bar-fill.pmax{ background:#6cc4cb; }
   .bar-row .val{ font-size:12px; text-align:right; color:var(--ink); white-space:nowrap; }
   .bar-row .val .conv{ color:var(--ink-muted); font-size:10.5px; display:block; }
 
-  /* legend */
   .legend{ display:flex; gap:16px; flex-wrap:wrap; margin-top:2px; }
   .legend-item{ display:flex; align-items:center; gap:6px; font-size:12px; color:var(--ink-2); }
   .swatch{ width:9px; height:9px; border-radius:2.5px; flex:none; }
 
-  /* source bars */
-  .source-list{ display:flex; flex-direction:column; gap:16px; margin-top:16px; }
-  .source-row .top{ display:flex; justify-content:space-between; font-size:12.5px; margin-bottom:6px; }
-  .source-row .top .name{ display:flex; align-items:center; gap:7px; color:var(--ink); font-weight:500; }
-  .source-row .top .count{ font-weight:700; font-family:"Manrope"; }
-  .source-track{ height:9px; background:var(--surface-2); border-radius:5px; overflow:hidden; }
-  .source-fill{ height:100%; border-radius:5px; }
-  .source-row .foot{ display:flex; justify-content:space-between; font-size:11px; color:var(--ink-muted); margin-top:4px; }
-
-  /* ---- Stacked daily chart ---- */
+  /* ---- Daily leads chart ---- */
   .stack-card{ padding:20px 22px 14px; }
   .stack-wrap{ margin-top:16px; overflow-x:auto; }
-  .stack-svg{ display:block; min-width:640px; width:100%; height:190px; }
+  .stack-svg{ display:block; min-width:640px; width:100%; height:170px; }
   .axis-label{ font-size:9.5px; fill:var(--ink-muted); font-family:"IBM Plex Mono", monospace; }
   .tooltip{
     position:absolute; pointer-events:none; background:var(--ink); color:var(--plane);
     font-size:11.5px; padding:7px 10px; border-radius:8px; opacity:0; transform:translate(-50%,-100%);
     transition:opacity .1s ease; white-space:nowrap; z-index:5; box-shadow:var(--shadow);
-    font-family:"IBM Plex Sans";
   }
-  :root[data-theme="dark"] .tooltip, @media (prefers-color-scheme: dark){ }
   .tooltip b{ font-family:"IBM Plex Mono"; }
   .stack-pos{ position:relative; }
 
   /* ---- Tables ---- */
   .table-wrap{ overflow-x:auto; }
-  table{ width:100%; border-collapse:collapse; min-width:760px; }
+  table{ width:100%; border-collapse:collapse; min-width:640px; }
   thead th{
     text-align:left; font-size:10.5px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase;
     color:var(--ink-muted); padding:0 16px 10px; border-bottom:1px solid var(--hairline);
@@ -211,24 +168,15 @@
   td.name-cell{ font-weight:500; color:var(--ink); }
   td.name-cell .type{ display:block; font-size:11px; font-weight:400; color:var(--ink-muted); margin-top:1px; }
 
-  .pill{
-    display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600;
-    padding:3px 9px; border-radius:999px; white-space:nowrap;
-  }
-  .pill .dot{ width:6px; height:6px; border-radius:50%; }
-  .pill.eligible{ background:var(--organic-soft); color:var(--organic); }
-  .pill.eligible .dot{ background:var(--organic); }
-  .pill.paused{ background:var(--surface-2); color:var(--ink-muted); }
-  .pill.paused .dot{ background:var(--ink-muted); }
-
   .opt-bar{ display:flex; align-items:center; gap:8px; }
   .opt-track{ width:56px; height:5px; border-radius:3px; background:var(--surface-2); }
   .opt-fill{ height:100%; border-radius:3px; background:var(--brand); }
 
-  .src-pill{ font-size:11px; font-weight:600; padding:3px 9px; border-radius:999px; white-space:nowrap; }
-  .src-pill.google{ background:var(--brand-soft); color:var(--brand); }
-  .src-pill.organic{ background:var(--organic-soft); color:var(--organic); }
-  .src-pill.unident{ background:var(--unident-soft); color:var(--unident); }
+  .tag-pill{
+    display:inline-flex; align-items:center; font-size:11px; font-weight:600;
+    padding:3px 9px; border-radius:999px; white-space:nowrap;
+    background:var(--brand-soft); color:var(--brand);
+  }
 
   /* ---- Notes ---- */
   .notes{ padding:18px 22px; display:flex; gap:14px; }
@@ -239,17 +187,16 @@
   .notes p{ margin:0 0 8px; font-size:12.8px; color:var(--ink-2); }
   .notes p:last-child{ margin-bottom:0; }
   .notes b{ color:var(--ink); font-weight:600; }
-  .notes .src-pill{ margin:0 2px; }
+  .notes .tag-pill{ margin:0 2px; }
 
   footer{ text-align:center; font-size:11.5px; color:var(--ink-muted); padding-top:8px; }
 
   @media (max-width: 920px){
     .kpi-grid{ grid-template-columns:repeat(2,1fr); }
-    .row-2{ grid-template-columns:1fr; }
   }
   @media (max-width: 560px){
     .kpi-grid{ grid-template-columns:1fr 1fr; }
-    .bar-row{ grid-template-columns:96px 1fr 64px; }
+    .bar-row{ grid-template-columns:110px 1fr 74px; }
   }
 </style>
 </head>
@@ -257,14 +204,24 @@
 <div class="shell">
 
   <div class="topbar">
-    <div class="brand">
-      <div class="brand-mark">A</div>
-      <div class="brand-text">
-        <h1>Algorithm Dubai</h1>
-        <div class="sub">Google Ads · эффективность и лиды</div>
+    <div class="logo-row">
+      <div class="brand-mark">
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-label="Algorithm Training Center">
+          <rect x="36" y="36" width="24" height="24" rx="3" transform="rotate(45 48 48)" fill="#f5a58f"/>
+          <rect x="8" y="8" width="24" height="24" rx="3" transform="rotate(45 20 20)" fill="#12a2ab" stroke="#0c0c0c" stroke-width="3" stroke-linejoin="round"/>
+          <rect x="32" y="8" width="24" height="24" rx="3" transform="rotate(45 44 20)" fill="#9c2c52" stroke="#0c0c0c" stroke-width="3" stroke-linejoin="round"/>
+          <rect x="8" y="32" width="24" height="24" rx="3" transform="rotate(45 20 44)" fill="#0d6e77" stroke="#0c0c0c" stroke-width="3" stroke-linejoin="round"/>
+          <rect x="32" y="32" width="24" height="24" rx="3" transform="rotate(45 44 44)" fill="#ef6a52" stroke="#0c0c0c" stroke-width="3" stroke-linejoin="round"/>
+        </svg>
       </div>
     </div>
-    <div class="period-chip"><span class="dot-live"></span> Период: <b>1 – 26 августа 2026</b></div>
+    <div class="title-row">
+      <div class="brand-text">
+        <h1>Algorithm Training Center</h1>
+        <div class="sub">Google Ads · эффективность и лиды</div>
+      </div>
+      <div class="period-chip"><span class="dot-live"></span> Период: <b>1 – 26 августа 2026</b></div>
+    </div>
   </div>
 
   <!-- KPI -->
@@ -277,83 +234,62 @@
       <div class="card kpi">
         <div class="label">Показы</div>
         <div class="value num">308 298</div>
-        <div class="delta down">−286 257 к пред. периоду</div>
       </div>
       <div class="card kpi">
         <div class="label">Клики</div>
         <div class="value num">8 759</div>
-        <div class="delta">CTR 2.84%</div>
+        <div class="sub">CTR 2.84%</div>
       </div>
       <div class="card kpi">
         <div class="label">Расход</div>
         <div class="value num">AED 5 842.57</div>
-        <div class="delta down">−AED 45.31 к пред. периоду</div>
       </div>
       <div class="card kpi">
         <div class="label">Ср. цена клика</div>
         <div class="value num">AED 0.67</div>
-        <div class="delta">Расход / клики</div>
+        <div class="sub">Расход / клики</div>
       </div>
       <div class="card kpi">
         <div class="label">Конверсии (Ads)</div>
         <div class="value num">15.00</div>
-        <div class="delta up">+10.00 к пред. периоду</div>
       </div>
       <div class="card kpi">
-        <div class="label">Лиды в CRM <span class="src-pill google" style="margin-left:2px;">Google Ads</span></div>
-        <div class="value num">6</div>
-        <div class="delta">Форма + gclid/gbraid</div>
+        <div class="label">Лиды <span class="tag-pill" style="margin-left:2px;">google</span></div>
+        <div class="value num">10</div>
+        <div class="sub">Из формы сайта, без тестовых</div>
       </div>
       <div class="card kpi">
-        <div class="label">Цена лида (CRM)</div>
-        <div class="value num">AED 973.76</div>
-        <div class="delta">Расход / лиды CRM</div>
-      </div>
-      <div class="card kpi">
-        <div class="label">Всего лидов сайта</div>
-        <div class="value num">32</div>
-        <div class="delta">19 из них — Google / органика / н.о.</div>
+        <div class="label">Цена лида</div>
+        <div class="value num">AED 584.26</div>
+        <div class="sub">Расход / лиды</div>
       </div>
     </div>
   </section>
 
-  <!-- Charts row -->
+  <!-- Campaign chart -->
   <section>
-    <div class="row-2">
-      <div class="card chart-card">
-        <h3>Расход и конверсии по кампаниям</h3>
-        <div class="desc">Активные кампании, 1–26 августа</div>
-        <div class="bar-list" id="campaign-bars"></div>
-        <div class="legend" style="margin-top:16px;">
-          <div class="legend-item"><span class="swatch" style="background:var(--brand)"></span>Поиск</div>
-          <div class="legend-item"><span class="swatch" style="background:#6da7ec"></span>Performance Max</div>
-        </div>
-      </div>
-
-      <div class="card chart-card">
-        <h3>Источники лидов сайта</h3>
-        <div class="desc">За период, только релевантные Google Ads</div>
-        <div class="source-list" id="source-bars"></div>
+    <div class="card chart-card">
+      <h3>Расход и конверсии по кампаниям</h3>
+      <div class="desc">Активные кампании, 1–26 августа</div>
+      <div class="bar-list" id="campaign-bars"></div>
+      <div class="legend" style="margin-top:16px;">
+        <div class="legend-item"><span class="swatch" style="background:var(--brand)"></span>Поиск</div>
+        <div class="legend-item"><span class="swatch" style="background:#6cc4cb"></span>Performance Max</div>
       </div>
     </div>
   </section>
 
-  <!-- Daily stacked -->
+  <!-- Daily leads -->
   <section>
     <div class="card stack-card">
       <div class="section-head" style="margin-bottom:0;">
         <div>
           <h3 style="font-size:13.5px; font-weight:700;">Лиды по дням</h3>
-          <div class="desc">Google Ads · Органика · Неопределённые</div>
-        </div>
-        <div class="legend">
-          <div class="legend-item"><span class="swatch" style="background:var(--brand)"></span>Google Ads</div>
-          <div class="legend-item"><span class="swatch" style="background:var(--organic)"></span>Органика</div>
-          <div class="legend-item"><span class="swatch" style="background:var(--unident)"></span>Неопределено</div>
+          <div class="desc">Все лиды из формы сайта, атрибутированные Google</div>
         </div>
       </div>
       <div class="stack-wrap stack-pos">
-        <svg class="stack-svg" id="stack-chart" viewBox="0 0 900 190" preserveAspectRatio="none"></svg>
+        <svg class="stack-svg" id="stack-chart" viewBox="0 0 900 170" preserveAspectRatio="none"></svg>
         <div class="tooltip" id="stack-tooltip"></div>
       </div>
     </div>
@@ -363,14 +299,13 @@
   <section>
     <div class="section-head">
       <h2>Кампании</h2>
-      <span class="hint">8 всего · 5 активных, 3 черновика на паузе</span>
+      <span class="hint">5 активных кампаний</span>
     </div>
     <div class="card table-wrap">
       <table>
         <thead>
           <tr>
             <th>Кампания</th>
-            <th>Статус</th>
             <th>Балл оптимизации</th>
             <th class="num">Бюджет / день</th>
             <th class="num">Показы</th>
@@ -386,36 +321,11 @@
     </div>
   </section>
 
-  <!-- Ad groups table -->
-  <section>
-    <div class="section-head">
-      <h2>Группы объявлений</h2>
-      <span class="hint">10 групп · сортировка по показам</span>
-    </div>
-    <div class="card table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Группа</th>
-            <th>Кампания</th>
-            <th class="num">Показы</th>
-            <th class="num">Клики</th>
-            <th class="num">Interaction rate</th>
-            <th class="num">Ср. цена</th>
-            <th class="num">Расход</th>
-            <th class="num">Конверсии</th>
-          </tr>
-        </thead>
-        <tbody id="adgroups-table"></tbody>
-      </table>
-    </div>
-  </section>
-
   <!-- Leads table -->
   <section>
     <div class="section-head">
       <h2>Лиды из CRM</h2>
-      <span class="hint">19 из 32 — источники Google / органика / неопределено</span>
+      <span class="hint">10 лидов · google</span>
     </div>
     <div class="card table-wrap">
       <table>
@@ -424,8 +334,7 @@
             <th>Дата</th>
             <th>Имя</th>
             <th>Программа</th>
-            <th>Источник</th>
-            <th>Кампания / метки</th>
+            <th>Метка</th>
           </tr>
         </thead>
         <tbody id="leads-table"></tbody>
@@ -438,82 +347,51 @@
     <div class="card notes">
       <div class="ico">i</div>
       <div>
-        <p><b>Как считали источники лидов.</b> Заявки из формы сайта размечены по столбцам <code>utm_source</code>, <code>gclid</code>, <code>gbraid</code>, <code>fbclid</code>.</p>
-        <p><span class="src-pill google">Google Ads</span> — <code>utm_source=google</code> или есть <code>gclid</code>/<code>gbraid</code>. <span class="src-pill organic">Органика</span> — нет меток и клик-идентификаторов, заявка с реальными данными. <span class="src-pill unident">Неопределено</span> — тоже без меток, но заявка похожа на тестовую/дублирующую (имя «test», «Тестовая…», повтор по времени и телефону).</p>
-        <p>Ещё 13 заявок из CSV размечены другими источниками (посевы, соцсети, чат-боты, SMS) и в дашборд не включены — попроси уточнить, если часть из них тоже стоит отнести к Google.</p>
-        <p><b>Конверсии Google Ads (15.00) ≠ лиды CRM (6)</b> — в Ads считаются также звонки и другие события отслеживания, которых нет в выгрузке форм. Это стоит сверить отдельно.</p>
+        <p><b>Как считаем лидов.</b> Из формы сайта выгружено 32 заявки за период. Убрано: 13 заявок с другими метками (посевы, соцсети, чат-боты, SMS) — не относятся к Google Ads; 5 тестовых/пустых заявок (имя «test», «Тестовая…»); 4 повторные заявки из одной сессии 22 августа (совпадает идентификатор визита).</p>
+        <p>Осталось <b>10 лидов</b> — все размечены как <span class="tag-pill">google</span>: 6 с прямой меткой <code>utm_source=google</code> или <code>gclid</code>/<code>gbraid</code>, ещё 4 — без меток, по договорённости отнесены к Google Ads.</p>
+        <p><b>Конверсии Google Ads (15.00) ≠ лиды (10)</b> — в Ads считаются также звонки и другие события отслеживания, которых нет в выгрузке форм. Стоит сверить отдельно.</p>
       </div>
     </div>
   </section>
 
-  <footer>Черновик дашборда · данные из скриншотов Google Ads Manager (1–26 авг 2026) и выгрузки CRM · перед деплоем на Railway пришли правки</footer>
+  <footer>Черновик дашборда · данные из Google Ads Manager (1–26 авг 2026) и выгрузки CRM · перед деплоем на Railway пришли правки</footer>
 </div>
 
 <script>
 const fmt = n => n.toLocaleString('en-US');
 const fmtMoney = n => 'AED ' + n.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
 
-/* ---------------- Campaign data ---------------- */
+/* ---------------- Campaign data (paused drafts excluded) ---------------- */
 const campaigns = [
-  { name:'Брендовая', type:'Поиск', status:'eligible', opt:69.9, budget:27, impr:778, clicks:68, ctr:8.74, cost:676.72, conv:1.00, cpa:676.72, kind:'search' },
-  { name:'Основные программы', type:'Поиск', status:'eligible', opt:66.6, budget:30, impr:1496, clicks:96, ctr:6.42, cost:768.22, conv:1.00, cpa:768.22, kind:'search' },
-  { name:'Околостоящие запросы', type:'Поиск', status:'eligible', opt:74.5, budget:20, impr:566, clicks:23, ctr:4.06, cost:504.78, conv:0.00, cpa:null, kind:'search' },
-  { name:'PMAX - Online Dubai - RU', type:'Performance Max', status:'eligible', opt:90.3, budget:100, impr:121456, clicks:2885, ctr:2.38, cost:513.48, conv:5.00, cpa:102.70, kind:'pmax' },
-  { name:'PMax - день открытых дверей', type:'Performance Max', status:'eligible', opt:89.7, budget:1000, impr:184002, clicks:5687, ctr:3.09, cost:3379.36, conv:8.00, cpa:422.42, kind:'pmax' },
-  { name:'Рмax I Интенсивы I ГЕО - Дубай - Китайский язык', type:'Performance Max', status:'paused', opt:null, budget:30, impr:0, clicks:0, ctr:0, cost:0, conv:0, cpa:null, kind:'pmax' },
-  { name:'Рмax I Интенсивы I ГЕО - Дубай - Английский язык', type:'Performance Max', status:'paused', opt:null, budget:50, impr:0, clicks:0, ctr:0, cost:0, conv:0, cpa:null, kind:'pmax' },
-  { name:'Рмах I Интенсивы I ГЕО - Дубай - Испанский язык', type:'Performance Max', status:'paused', opt:null, budget:300, impr:0, clicks:0, ctr:0, cost:0, conv:0, cpa:null, kind:'pmax' },
+  { name:'Брендовая', type:'Поиск', opt:69.9, budget:27, impr:778, clicks:68, ctr:8.74, cost:676.72, conv:1.00, cpa:676.72, kind:'search' },
+  { name:'Основные программы', type:'Поиск', opt:66.6, budget:30, impr:1496, clicks:96, ctr:6.42, cost:768.22, conv:1.00, cpa:768.22, kind:'search' },
+  { name:'Околостоящие запросы', type:'Поиск', opt:74.5, budget:20, impr:566, clicks:23, ctr:4.06, cost:504.78, conv:0.00, cpa:null, kind:'search' },
+  { name:'PMAX - Online Dubai - RU', type:'Performance Max', opt:90.3, budget:100, impr:121456, clicks:2885, ctr:2.38, cost:513.48, conv:5.00, cpa:102.70, kind:'pmax' },
+  { name:'PMax - день открытых дверей', type:'Performance Max', opt:89.7, budget:1000, impr:184002, clicks:5687, ctr:3.09, cost:3379.36, conv:8.00, cpa:422.42, kind:'pmax' },
 ];
 
-const adgroups = [
-  { name:'Брендовая', campaign:'Брендовая', impr:778, clicks:68, rate:8.74, avgCost:9.95, cost:676.72, conv:1.00 },
-  { name:'ФГОС', campaign:'Основные программы', impr:759, clicks:50, rate:6.59, avgCost:6.14, cost:307.22, conv:0.00 },
-  { name:'For children', campaign:'Околостоящие запросы', impr:566, clicks:23, rate:4.06, avgCost:21.95, cost:504.78, conv:0.00 },
-  { name:'English courses', campaign:'Основные программы', impr:193, clicks:16, rate:8.29, avgCost:9.96, cost:159.38, conv:0.00 },
-  { name:'Five days', campaign:'Основные программы', impr:323, clicks:12, rate:3.72, avgCost:7.30, cost:87.59, conv:0.00 },
-  { name:'Лагерь', campaign:'Основные программы', impr:104, clicks:12, rate:11.54, avgCost:12.31, cost:147.69, conv:1.00 },
-  { name:'Preparation', campaign:'Основные программы', impr:54, clicks:2, rate:3.70, avgCost:8.57, cost:17.14, conv:0.00 },
-  { name:'Hybrid', campaign:'Основные программы', impr:44, clicks:2, rate:4.55, avgCost:15.42, cost:30.84, conv:0.00 },
-  { name:'Quiz', campaign:'Основные программы', impr:15, clicks:1, rate:6.67, avgCost:4.74, cost:4.74, conv:0.00 },
-  { name:'Competitors', campaign:'Основные программы', impr:4, clicks:1, rate:25.00, avgCost:13.62, cost:13.62, conv:0.00 },
-];
-
+/* ---------------- Leads: 10 total, all labeled "google" ---------------- */
 const leads = [
-  { date:'07 авг, 09:42', name:'Даниил Кошелев', program:'Лагерь', source:'google', tag:'programs / cpc' },
-  { date:'07 авг, 13:09', name:'Екатерина', program:'Гибрид: диагностика', source:'google', tag:'gclid, без utm' },
-  { date:'23 авг, 16:31', name:'Анна', program:'Главная: подбор программы', source:'google', tag:'brand_campaign / cpc' },
-  { date:'24 авг, 23:59', name:'Куванычбек', program:'ДОД АВГУСТ 26', source:'google', tag:'term: day / cpc' },
-  { date:'25 авг, 00:00', name:'Dereje', program:'ДОД АВГУСТ 26', source:'google', tag:'term: day / cpc' },
-  { date:'25 авг, 23:06', name:'Haji Asgar', program:'ДОД АВГУСТ 26', source:'google', tag:'term: day / cpc' },
-  { date:'06 авг, 18:24', name:'Вера', program:'Лагерь', source:'organic', tag:'—' },
-  { date:'15 авг, 14:04', name:'Инна', program:'Пятидневка', source:'organic', tag:'—' },
-  { date:'20 авг, 10:20', name:'Ангелина', program:'Курсы: консультация', source:'organic', tag:'—' },
-  { date:'22 авг, 00:26', name:'Лия', program:'ДОД АВГУСТ 26', source:'organic', tag:'—' },
-  { date:'22 авг, 02:23', name:'Рыков Денис', program:'ДОД АВГУСТ 26', source:'organic', tag:'—' },
-  { date:'22 авг, 07:44', name:'Елена', program:'ДОД АВГУСТ 26', source:'organic', tag:'—' },
-  { date:'22 авг, 12:12', name:'Евгения Плохих', program:'ДОД АВГУСТ 26', source:'organic', tag:'—' },
-  { date:'22 авг, 12:35', name:'Алиса', program:'Лагерь', source:'organic', tag:'—' },
-  { date:'07 авг, 14:18', name:'test', program:'Главная: консультация', source:'unident', tag:'тестовая заявка' },
-  { date:'07 авг, 14:21', name:'test', program:'Онлайн-ДОД август 26', source:'unident', tag:'тестовая заявка' },
-  { date:'19 авг, 11:18', name:'Тестовая Олеся', program:'ДОД АВГУСТ 26', source:'unident', tag:'тестовая заявка' },
-  { date:'19 авг, 11:20', name:'Тестовая повтор', program:'ДОД АВГУСТ 26', source:'unident', tag:'дубль заявки' },
-  { date:'24 авг, 11:09', name:'test', program:'Главная: консультация', source:'unident', tag:'тестовая заявка' },
+  { date:'06 авг, 18:24', name:'Вера', program:'Лагерь', tag:'без меток' },
+  { date:'07 авг, 09:42', name:'Даниил Кошелев', program:'Лагерь', tag:'programs / cpc' },
+  { date:'07 авг, 13:09', name:'Екатерина', program:'Гибрид: диагностика', tag:'gclid, без utm' },
+  { date:'15 авг, 14:04', name:'Инна', program:'Пятидневка', tag:'без меток' },
+  { date:'20 авг, 10:20', name:'Ангелина', program:'Курсы: консультация', tag:'без меток' },
+  { date:'22 авг, 12:35', name:'Алиса', program:'Лагерь', tag:'без меток' },
+  { date:'23 авг, 16:31', name:'Анна', program:'Главная: подбор программы', tag:'brand_campaign / cpc' },
+  { date:'24 авг, 23:59', name:'Куванычбек', program:'ДОД АВГУСТ 26', tag:'term: day / cpc' },
+  { date:'25 авг, 00:00', name:'Dereje', program:'ДОД АВГУСТ 26', tag:'term: day / cpc' },
+  { date:'25 авг, 23:06', name:'Haji Asgar', program:'ДОД АВГУСТ 26', tag:'term: day / cpc' },
 ];
 
-const dailySeries = [
-  { day:'06', google:0, organic:1, unident:0 },
-  { day:'07', google:2, organic:0, unident:2 },
-  { day:'15', google:0, organic:1, unident:0 },
-  { day:'19', google:0, organic:0, unident:2 },
-  { day:'20', google:0, organic:1, unident:0 },
-  { day:'22', google:0, organic:5, unident:0 },
-  { day:'23', google:1, organic:0, unident:0 },
-  { day:'24', google:1, organic:0, unident:1 },
-  { day:'25', google:2, organic:0, unident:0 },
+const dailyLeads = [
+  { day:'06', count:1 }, { day:'07', count:2 }, { day:'15', count:1 },
+  { day:'20', count:1 }, { day:'22', count:1 }, { day:'23', count:1 },
+  { day:'24', count:1 }, { day:'25', count:2 },
 ];
 
 /* ---------------- Campaign bars ---------------- */
-const activeCampaigns = campaigns.filter(c => c.cost > 0).sort((a,b)=>b.cost-a.cost);
+const activeCampaigns = campaigns.slice().sort((a,b)=>b.cost-a.cost);
 const maxCost = Math.max(...activeCampaigns.map(c=>c.cost));
 document.getElementById('campaign-bars').innerHTML = activeCampaigns.map(c => `
   <div class="bar-row">
@@ -523,68 +401,41 @@ document.getElementById('campaign-bars').innerHTML = activeCampaigns.map(c => `
   </div>
 `).join('');
 
-/* ---------------- Source bars ---------------- */
-const sourceCounts = [
-  { key:'google', label:'Google Ads', count:6, color:'var(--brand)' },
-  { key:'organic', label:'Органика', count:8, color:'var(--organic)' },
-  { key:'unident', label:'Неопределено', count:5, color:'var(--unident)' },
-];
-const totalRelevant = sourceCounts.reduce((s,x)=>s+x.count,0);
-document.getElementById('source-bars').innerHTML = sourceCounts.map(s => `
-  <div class="source-row">
-    <div class="top">
-      <div class="name"><span class="swatch" style="background:${s.color}"></span>${s.label}</div>
-      <div class="count num">${s.count}</div>
-    </div>
-    <div class="source-track"><div class="source-fill" style="width:${(s.count/totalRelevant*100).toFixed(1)}%; background:${s.color}"></div></div>
-    <div class="foot"><span>${(s.count/totalRelevant*100).toFixed(0)}% от релевантных лидов</span></div>
-  </div>
-`).join('') + `<div style="border-top:1px solid var(--hairline); margin-top:2px; padding-top:12px; font-size:11.5px; color:var(--ink-muted);">+ 13 лидов с другими метками (соцсети, посевы, SMS) исключены из подсчёта</div>`;
-
-/* ---------------- Stacked daily chart ---------------- */
+/* ---------------- Daily leads chart ---------------- */
 (function(){
   const svg = document.getElementById('stack-chart');
   const tooltip = document.getElementById('stack-tooltip');
-  const W = 900, H = 190, padL = 8, padR = 8, padT = 10, padB = 26;
+  const W = 900, H = 170, padL = 8, padR = 8, padT = 10, padB = 26;
   const plotW = W - padL - padR;
   const plotH = H - padT - padB;
-  const maxVal = Math.max(...dailySeries.map(d => d.google+d.organic+d.unident));
-  const n = dailySeries.length;
-  const gap = 10;
+  const maxVal = Math.max(...dailyLeads.map(d => d.count));
+  const n = dailyLeads.length;
+  const gap = 12;
   const barW = (plotW - gap*(n-1)) / n;
-  const colors = { google:'var(--brand)', organic:'var(--organic)', unident:'var(--unident)' };
   const scaleY = v => (v / maxVal) * (plotH - 8);
 
   let svgHTML = '';
-  // gridlines
   const gridSteps = 4;
   for(let i=0;i<=gridSteps;i++){
     const y = padT + (plotH - (plotH/gridSteps*i));
     svgHTML += `<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="var(--hairline)" stroke-width="1"/>`;
   }
 
-  dailySeries.forEach((d, i) => {
+  dailyLeads.forEach((d, i) => {
     const x = padL + i*(barW+gap);
-    let yCursor = padT + plotH;
-    const order = [['unident', d.unident], ['organic', d.organic], ['google', d.google]];
-    order.forEach(([key, val]) => {
-      if(val <= 0) return;
-      const h = scaleY(val);
-      yCursor -= h;
-      svgHTML += `<rect class="seg" data-day="${d.day}" data-key="${key}" data-val="${val}" x="${x}" y="${yCursor}" width="${barW}" height="${Math.max(h-2,2)}" rx="3" fill="${colors[key]}"></rect>`;
-      yCursor -= 2;
-    });
+    const h = Math.max(scaleY(d.count), 4);
+    const y = padT + plotH - h;
+    svgHTML += `<rect class="seg" data-day="${d.day}" data-val="${d.count}" x="${x}" y="${y}" width="${barW}" height="${h}" rx="4" fill="var(--brand)"></rect>`;
     svgHTML += `<text class="axis-label" x="${x+barW/2}" y="${H-8}" text-anchor="middle">${d.day} авг</text>`;
   });
   svg.innerHTML = svgHTML;
 
   const wrap = svg.parentElement;
   svg.querySelectorAll('rect.seg').forEach(rect => {
-    rect.addEventListener('mouseenter', e => {
+    rect.addEventListener('mouseenter', () => {
       const day = rect.getAttribute('data-day');
-      const d = dailySeries.find(x => x.day === day);
-      const labels = { google:'Google Ads', organic:'Органика', unident:'Неопределено' };
-      tooltip.innerHTML = `<b>${day} авг</b> · ${labels['google']}: ${d.google} · ${labels['organic']}: ${d.organic} · ${labels['unident']}: ${d.unident}`;
+      const val = rect.getAttribute('data-val');
+      tooltip.innerHTML = `<b>${day} авг</b> · ${val} ${val==='1' ? 'лид' : 'лида'}`;
       tooltip.style.opacity = '1';
     });
     rect.addEventListener('mousemove', e => {
@@ -598,13 +449,10 @@ document.getElementById('source-bars').innerHTML = sourceCounts.map(s => `
 
 /* ---------------- Campaigns table ---------------- */
 document.getElementById('campaigns-table').innerHTML = campaigns
-  .slice().sort((a,b) => (b.impr) - (a.impr))
+  .slice().sort((a,b) => b.impr - a.impr)
   .map(c => `
   <tr>
     <td class="name-cell">${c.name}<span class="type">${c.type}</span></td>
-    <td>${c.status==='eligible'
-      ? `<span class="pill eligible"><span class="dot"></span>Активна</span>`
-      : `<span class="pill paused"><span class="dot"></span>На паузе</span>`}</td>
     <td>${c.opt!==null ? `<div class="opt-bar"><div class="opt-track"><div class="opt-fill" style="width:${c.opt}%"></div></div><span class="num" style="font-size:12px;">${c.opt}%</span></div>` : '<span style="color:var(--ink-muted)">—</span>'}</td>
     <td class="num">${fmtMoney(c.budget)}</td>
     <td class="num">${fmt(c.impr)}</td>
@@ -616,31 +464,13 @@ document.getElementById('campaigns-table').innerHTML = campaigns
   </tr>
 `).join('');
 
-/* ---------------- Ad groups table ---------------- */
-document.getElementById('adgroups-table').innerHTML = adgroups
-  .slice().sort((a,b) => b.impr - a.impr)
-  .map(g => `
-  <tr>
-    <td class="name-cell">${g.name}</td>
-    <td style="color:var(--ink-2)">${g.campaign}</td>
-    <td class="num">${fmt(g.impr)}</td>
-    <td class="num">${fmt(g.clicks)}</td>
-    <td class="num">${g.rate.toFixed(2)}%</td>
-    <td class="num">${fmtMoney(g.avgCost)}</td>
-    <td class="num">${fmtMoney(g.cost)}</td>
-    <td class="num">${g.conv.toFixed(2)}</td>
-  </tr>
-`).join('');
-
 /* ---------------- Leads table ---------------- */
-const srcLabel = { google:['Google Ads','google'], organic:['Органика','organic'], unident:['Неопределено','unident'] };
 document.getElementById('leads-table').innerHTML = leads.map(l => `
   <tr>
     <td style="color:var(--ink-2); white-space:nowrap;">${l.date}</td>
     <td class="name-cell">${l.name}</td>
     <td style="color:var(--ink-2)">${l.program}</td>
-    <td><span class="src-pill ${srcLabel[l.source][1]}">${srcLabel[l.source][0]}</span></td>
-    <td style="color:var(--ink-muted); font-family:'IBM Plex Mono', monospace; font-size:11.5px;">${l.tag}</td>
+    <td><span class="tag-pill">google</span> <span style="color:var(--ink-muted); font-family:'IBM Plex Mono', monospace; font-size:11px;">${l.tag}</span></td>
   </tr>
 `).join('');
 </script>
