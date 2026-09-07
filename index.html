@@ -330,7 +330,6 @@
             <th>Дата</th>
             <th>Имя</th>
             <th>Программа</th>
-            <th>Метка</th>
           </tr>
         </thead>
         <tbody id="leads-table"></tbody>
@@ -485,7 +484,6 @@ document.getElementById('leads-table').innerHTML = leads.map(l => `
     <td style="color:var(--ink-2); white-space:nowrap;">${l.date}</td>
     <td class="name-cell">${l.name}</td>
     <td style="color:var(--ink-2)">${l.program}</td>
-    <td><span class="tag-pill">google</span> <span style="color:var(--ink-muted); font-family:'IBM Plex Mono', monospace; font-size:11px;">${l.tag}</span></td>
   </tr>
 `).join('');
 </script>
