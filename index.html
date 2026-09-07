@@ -220,7 +220,7 @@
         <h1>Algorithm Training Center</h1>
         <div class="sub">Google Ads · эффективность и лиды</div>
       </div>
-      <div class="period-chip"><span class="dot-live"></span> Период: <b>1 – 29 августа 2026</b></div>
+      <div class="period-chip"><span class="dot-live"></span> Период: <b>1 августа – 6 сентября 2026</b></div>
     </div>
   </div>
 
@@ -228,7 +228,7 @@
   <section>
     <div class="section-head">
       <h2>Показатели аккаунта</h2>
-      <span class="hint">Расход/показы — по 26 августа, лиды — по 29 августа · GMT+04:00</span>
+      <span class="hint">Расход/показы — по 26 августа, лиды — по 6 сентября · GMT+04:00</span>
     </div>
     <div class="kpi-grid">
       <div class="card kpi">
@@ -251,12 +251,12 @@
       </div>
       <div class="card kpi">
         <div class="label">Лиды <span class="tag-pill" style="margin-left:2px;">google</span></div>
-        <div class="value num">23</div>
+        <div class="value num">36</div>
         <div class="sub">Из формы сайта, без тестовых</div>
       </div>
       <div class="card kpi">
         <div class="label">Цена лида</div>
-        <div class="value num">AED 254.02</div>
+        <div class="value num">AED 162.29</div>
         <div class="sub">Расход / лиды</div>
       </div>
     </div>
@@ -321,7 +321,7 @@
   <section>
     <div class="section-head">
       <h2>Лиды из CRM</h2>
-      <span class="hint">23 лида · google</span>
+      <span class="hint">36 лидов · google</span>
     </div>
     <div class="card table-wrap">
       <table>
@@ -378,13 +378,29 @@ const leads = [
   { date:'28 авг, 09:58', name:'Durgesh Yadav', program:'Главная: консультация и диа', tag:'cpc, без кампании' },
   { date:'28 авг, 10:35', name:'Ruslan Garaev', program:'ДОД АВГУСТ 26', tag:'без меток' },
   { date:'29 авг, 16:51', name:'Mi Xiaomi', program:'Главная: пробный урок', tag:'cpc, без кампании' },
+  { date:'31 авг, 18:42', name:'Юрий Никольский', program:'Гибрид: диагностика', tag:'без меток' },
+  { date:'01 сен, 21:49', name:'Gozde Dallmann', program:'Главная: пробный урок', tag:'brand_campaign / cpc' },
+  { date:'02 сен, 11:13', name:'Daria', program:'Главная: консультация и диа', tag:'без меток' },
+  { date:'03 сен, 06:45', name:'Райля', program:'Главная: подбор программы', tag:'без меток' },
+  { date:'03 сен, 07:41', name:'Izolda Titova', program:'Главная: консультация и диа', tag:'gclid, без utm' },
+  { date:'03 сен, 09:22', name:'Roman', program:'Арабский язык: консультация', tag:'без меток' },
+  { date:'04 сен, 13:17', name:'Артем', program:'Главная: консультация и диа', tag:'brand_campaign / cpc' },
+  { date:'04 сен, 21:53', name:'Amit Yadav', program:'Главная: подбор программы', tag:'online / cpc' },
+  { date:'05 сен, 07:54', name:'Muusa Hirphoo', program:'Главная: пробный урок', tag:'online / cpc' },
+  { date:'05 сен, 10:13', name:'Maria', program:'Подготовка к школе', tag:'без меток' },
+  { date:'05 сен, 10:32', name:'Musxafa Qajela', program:'Главная: консультация и диа', tag:'online / cpc' },
+  { date:'05 сен, 21:29', name:'Olga Aslanidi', program:'Русский как иностранный', tag:'без меток' },
+  { date:'06 сен, 23:09', name:'Md. Azim Hossain', program:'Главная: консультация и диа', tag:'online / cpc' },
 ];
 
 const dailyLeads = [
-  { day:'06', count:1 }, { day:'07', count:2 }, { day:'15', count:1 },
-  { day:'20', count:1 }, { day:'22', count:5 }, { day:'23', count:1 },
-  { day:'24', count:1 }, { day:'25', count:2 }, { day:'26', count:2 },
-  { day:'27', count:4 }, { day:'28', count:2 }, { day:'29', count:1 },
+  { day:'06 авг', count:1 }, { day:'07 авг', count:2 }, { day:'15 авг', count:1 },
+  { day:'20 авг', count:1 }, { day:'22 авг', count:5 }, { day:'23 авг', count:1 },
+  { day:'24 авг', count:1 }, { day:'25 авг', count:2 }, { day:'26 авг', count:2 },
+  { day:'27 авг', count:4 }, { day:'28 авг', count:2 }, { day:'29 авг', count:1 },
+  { day:'31 авг', count:1 }, { day:'1 сен', count:1 }, { day:'2 сен', count:1 },
+  { day:'3 сен', count:3 }, { day:'4 сен', count:2 }, { day:'5 сен', count:4 },
+  { day:'6 сен', count:1 },
 ];
 
 /* ---------------- Campaign bars ---------------- */
@@ -423,7 +439,7 @@ document.getElementById('campaign-bars').innerHTML = activeCampaigns.map(c => `
     const h = Math.max(scaleY(d.count), 4);
     const y = padT + plotH - h;
     svgHTML += `<rect class="seg" data-day="${d.day}" data-val="${d.count}" x="${x}" y="${y}" width="${barW}" height="${h}" rx="4" fill="var(--brand)"></rect>`;
-    svgHTML += `<text class="axis-label" x="${x+barW/2}" y="${H-8}" text-anchor="middle">${d.day} авг</text>`;
+    svgHTML += `<text class="axis-label" x="${x+barW/2}" y="${H-8}" text-anchor="middle">${d.day}</text>`;
   });
   svg.innerHTML = svgHTML;
 
@@ -432,7 +448,9 @@ document.getElementById('campaign-bars').innerHTML = activeCampaigns.map(c => `
     rect.addEventListener('mouseenter', () => {
       const day = rect.getAttribute('data-day');
       const val = rect.getAttribute('data-val');
-      tooltip.innerHTML = `<b>${day} авг</b> · ${val} ${val==='1' ? 'лид' : 'лида'}`;
+      const n = parseInt(val, 10);
+      const word = (n % 10 === 1 && n % 100 !== 11) ? 'лид' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) ? 'лида' : 'лидов';
+      tooltip.innerHTML = `<b>${day}</b> · ${val} ${word}`;
       tooltip.style.opacity = '1';
     });
     rect.addEventListener('mousemove', e => {
