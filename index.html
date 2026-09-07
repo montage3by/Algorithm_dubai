@@ -133,6 +133,7 @@
   .bar-track{ position:relative; height:20px; background:var(--surface-2); border-radius:5px; overflow:visible; }
   .bar-fill{ position:absolute; top:0; left:0; height:100%; border-radius:5px; background:var(--brand); min-width:3px; }
   .bar-fill.pmax{ background:#6cc4cb; }
+  .bar-fill.display{ background:var(--accent); }
   .bar-row .val{ font-size:12px; text-align:right; color:var(--ink); white-space:nowrap; }
   .bar-row .val .conv{ color:var(--ink-muted); font-size:10.5px; display:block; }
 
@@ -228,25 +229,25 @@
   <section>
     <div class="section-head">
       <h2>Показатели аккаунта</h2>
-      <span class="hint">Расход/показы — по 26 августа, лиды — по 6 сентября · GMT+04:00</span>
+      <span class="hint">Расход/показы: 1–26 авг + 29 авг–6 сен (нет данных за 27–28 авг) · GMT+04:00</span>
     </div>
     <div class="kpi-grid">
       <div class="card kpi">
         <div class="label">Показы</div>
-        <div class="value num">308 298</div>
+        <div class="value num">361 419</div>
       </div>
       <div class="card kpi">
         <div class="label">Клики</div>
-        <div class="value num">8 759</div>
-        <div class="sub">CTR 2.84%</div>
+        <div class="value num">10 844</div>
+        <div class="sub">CTR 3.00%</div>
       </div>
       <div class="card kpi">
         <div class="label">Расход</div>
-        <div class="value num">AED 5 842.57</div>
+        <div class="value num">AED 9 566.96</div>
       </div>
       <div class="card kpi">
         <div class="label">Ср. цена клика</div>
-        <div class="value num">AED 0.67</div>
+        <div class="value num">AED 0.88</div>
         <div class="sub">Расход / клики</div>
       </div>
       <div class="card kpi">
@@ -256,7 +257,7 @@
       </div>
       <div class="card kpi">
         <div class="label">Цена лида</div>
-        <div class="value num">AED 162.29</div>
+        <div class="value num">AED 265.75</div>
         <div class="sub">Расход / лиды</div>
       </div>
     </div>
@@ -266,11 +267,12 @@
   <section>
     <div class="card chart-card">
       <h3>Расход и конверсии по кампаниям</h3>
-      <div class="desc">Активные кампании, 1–26 августа</div>
+      <div class="desc">Активные кампании, 1–26 авг + 29 авг–6 сен</div>
       <div class="bar-list" id="campaign-bars"></div>
       <div class="legend" style="margin-top:16px;">
         <div class="legend-item"><span class="swatch" style="background:var(--brand)"></span>Поиск</div>
         <div class="legend-item"><span class="swatch" style="background:#6cc4cb"></span>Performance Max</div>
+        <div class="legend-item"><span class="swatch" style="background:var(--accent)"></span>Медийная</div>
       </div>
     </div>
   </section>
@@ -295,14 +297,13 @@
   <section>
     <div class="section-head">
       <h2>Кампании</h2>
-      <span class="hint">5 активных кампаний</span>
+      <span class="hint">8 активных кампаний</span>
     </div>
     <div class="card table-wrap">
       <table>
         <thead>
           <tr>
             <th>Кампания</th>
-            <th>Балл оптимизации</th>
             <th class="num">Бюджет / день</th>
             <th class="num">Показы</th>
             <th class="num">Клики</th>
@@ -345,11 +346,14 @@ const fmtMoney = n => 'AED ' + n.toLocaleString('en-US', {minimumFractionDigits:
 
 /* ---------------- Campaign data (paused drafts excluded) ---------------- */
 const campaigns = [
-  { name:'Брендовая', type:'Поиск', opt:69.9, budget:27, impr:778, clicks:68, ctr:8.74, cost:676.72, conv:1.00, cpa:676.72, kind:'search' },
-  { name:'Основные программы', type:'Поиск', opt:66.6, budget:30, impr:1496, clicks:96, ctr:6.42, cost:768.22, conv:1.00, cpa:768.22, kind:'search' },
-  { name:'Околостоящие запросы', type:'Поиск', opt:74.5, budget:20, impr:566, clicks:23, ctr:4.06, cost:504.78, conv:0.00, cpa:null, kind:'search' },
-  { name:'PMAX - Online Dubai - RU', type:'Performance Max', opt:90.3, budget:100, impr:121456, clicks:2885, ctr:2.38, cost:513.48, conv:5.00, cpa:102.70, kind:'pmax' },
-  { name:'PMax - день открытых дверей', type:'Performance Max', opt:89.7, budget:1000, impr:184002, clicks:5687, ctr:3.09, cost:3379.36, conv:8.00, cpa:422.42, kind:'pmax' },
+  { name:'Брендовая', type:'Поиск', opt:71.3, budget:27, impr:1538, clicks:155, ctr:10.08, cost:1794.60, conv:5.00, cpa:358.92, kind:'search' },
+  { name:'Основные программы', type:'Поиск', opt:73.5, budget:30, impr:3103, clicks:176, ctr:5.67, cost:1652.34, conv:3.00, cpa:550.78, kind:'search' },
+  { name:'Околостоящие запросы', type:'Поиск', opt:74.9, budget:20, impr:760, clicks:29, ctr:3.82, cost:647.71, conv:0.00, cpa:null, kind:'search' },
+  { name:'PMAX - Online Dubai - RU', type:'Performance Max', opt:86.0, budget:100, impr:149087, clicks:3510, ctr:2.35, cost:843.63, conv:10.00, cpa:84.36, kind:'pmax' },
+  { name:'PMax - день открытых дверей', type:'Performance Max', opt:null, budget:1000, impr:190158, clicks:6007, ctr:3.16, cost:3791.23, conv:8.00, cpa:473.90, kind:'pmax' },
+  { name:'КМС - Дубай', type:'Медийная', opt:97.7, budget:null, impr:9677, clicks:743, ctr:7.68, cost:204.58, conv:2.00, cpa:102.29, kind:'display' },
+  { name:'RU language comp - search', type:'Поиск', opt:92.8, budget:null, impr:4598, clicks:80, ctr:1.74, cost:543.92, conv:0.00, cpa:null, kind:'search' },
+  { name:'RU languange - Display', type:'Медийная', opt:95.7, budget:null, impr:2498, clicks:144, ctr:5.76, cost:88.93, conv:0.00, cpa:null, kind:'display' },
 ];
 
 /* ---------------- Leads: 14 total, all labeled "google" (все органические причислены к Google Ads) ---------------- */
@@ -408,7 +412,7 @@ const maxCost = Math.max(...activeCampaigns.map(c=>c.cost));
 document.getElementById('campaign-bars').innerHTML = activeCampaigns.map(c => `
   <div class="bar-row">
     <div class="name" title="${c.name}">${c.name}</div>
-    <div class="bar-track"><div class="bar-fill ${c.kind==='pmax'?'pmax':''}" style="width:${(c.cost/maxCost*100).toFixed(1)}%"></div></div>
+    <div class="bar-track"><div class="bar-fill ${c.kind==='pmax'?'pmax':c.kind==='display'?'display':''}" style="width:${(c.cost/maxCost*100).toFixed(1)}%"></div></div>
     <div class="val num">${fmtMoney(c.cost)}<span class="conv">${c.conv.toFixed(0)} конв.</span></div>
   </div>
 `).join('');
@@ -467,8 +471,7 @@ document.getElementById('campaigns-table').innerHTML = campaigns
   .map(c => `
   <tr>
     <td class="name-cell">${c.name}<span class="type">${c.type}</span></td>
-    <td>${c.opt!==null ? `<div class="opt-bar"><div class="opt-track"><div class="opt-fill" style="width:${c.opt}%"></div></div><span class="num" style="font-size:12px;">${c.opt}%</span></div>` : '<span style="color:var(--ink-muted)">—</span>'}</td>
-    <td class="num">${fmtMoney(c.budget)}</td>
+    <td class="num">${c.budget!==null ? fmtMoney(c.budget) : '—'}</td>
     <td class="num">${fmt(c.impr)}</td>
     <td class="num">${fmt(c.clicks)}</td>
     <td class="num">${c.ctr.toFixed(2)}%</td>
