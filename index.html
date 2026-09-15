@@ -104,6 +104,26 @@
   .period-chip b{ color:var(--ink); font-weight:600; }
   .dot-live{ width:6px; height:6px; border-radius:50%; background:var(--good); flex:none; }
 
+  .period-control{
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+    background:var(--surface); border:1px solid var(--hairline); border-radius:999px;
+    padding:7px 8px 7px 14px; box-shadow:var(--shadow);
+  }
+  .period-control .plabel{ font-size:13px; color:var(--ink-2); white-space:nowrap; }
+  .period-control input[type="date"]{
+    font: inherit; font-size:12.5px; color:var(--ink); background:var(--surface-2);
+    border:1px solid var(--hairline); border-radius:999px; padding:5px 10px;
+    font-family:"IBM Plex Mono", monospace; color-scheme: inherit;
+  }
+  .period-control .dash{ color:var(--ink-muted); font-size:12px; }
+  .period-control button{
+    font: inherit; font-weight:600; font-size:12.5px; color:#fff;
+    background:var(--brand); border:none; border-radius:999px; padding:7px 14px;
+    cursor:pointer;
+  }
+  .period-control button:hover{ filter:brightness(1.06); }
+  .period-current{ font-size:11.5px; color:var(--ink-muted); width:100%; padding-left:2px; }
+
   section{ margin-bottom:36px; }
   .section-head{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom:14px; flex-wrap:wrap; }
   .section-head h2{ font-size:15px; font-weight:700; letter-spacing:-0.01em; }
@@ -221,7 +241,15 @@
         <h1>Algorithm Training Center</h1>
         <div class="sub">Google Ads · эффективность и лиды</div>
       </div>
-      <div class="period-chip"><span class="dot-live"></span> Период: <b>1 августа – 6 сентября 2026</b></div>
+      <div class="period-control">
+        <span class="dot-live"></span>
+        <span class="plabel">Период:</span>
+        <input type="date" id="range-start" />
+        <span class="dash">—</span>
+        <input type="date" id="range-end" />
+        <button id="range-apply" type="button">Показать</button>
+        <div class="period-current" id="period-current"></div>
+      </div>
     </div>
   </div>
 
@@ -229,35 +257,35 @@
   <section>
     <div class="section-head">
       <h2>Показатели аккаунта</h2>
-      <span class="hint">Расход/показы: 1–26 авг + 29 авг–6 сен (нет данных за 27–28 авг) · GMT+04:00</span>
+      <span class="hint" id="kpi-hint">GMT+04:00</span>
     </div>
     <div class="kpi-grid">
       <div class="card kpi">
         <div class="label">Показы</div>
-        <div class="value num">361 419</div>
+        <div class="value num" id="kpi-impr">—</div>
       </div>
       <div class="card kpi">
         <div class="label">Клики</div>
-        <div class="value num">10 844</div>
-        <div class="sub">CTR 3.00%</div>
+        <div class="value num" id="kpi-clicks">—</div>
+        <div class="sub">CTR <span id="kpi-ctr">—</span></div>
       </div>
       <div class="card kpi">
         <div class="label">Расход</div>
-        <div class="value num">AED 9 566.96</div>
+        <div class="value num" id="kpi-cost">—</div>
       </div>
       <div class="card kpi">
         <div class="label">Ср. цена клика</div>
-        <div class="value num">AED 0.88</div>
+        <div class="value num" id="kpi-cpc">—</div>
         <div class="sub">Расход / клики</div>
       </div>
       <div class="card kpi">
         <div class="label">Лиды <span class="tag-pill" style="margin-left:2px;">google</span></div>
-        <div class="value num">36</div>
+        <div class="value num" id="kpi-leads">—</div>
         <div class="sub">Из формы сайта, без тестовых</div>
       </div>
       <div class="card kpi">
         <div class="label">Цена лида</div>
-        <div class="value num">AED 265.75</div>
+        <div class="value num" id="kpi-cpl">—</div>
         <div class="sub">Расход / лиды</div>
       </div>
     </div>
@@ -267,7 +295,7 @@
   <section>
     <div class="card chart-card">
       <h3>Расход и конверсии по кампаниям</h3>
-      <div class="desc">Активные кампании, 1–26 авг + 29 авг–6 сен</div>
+      <div class="desc" id="campaigns-chart-desc">Активные кампании</div>
       <div class="bar-list" id="campaign-bars"></div>
       <div class="legend" style="margin-top:16px;">
         <div class="legend-item"><span class="swatch" style="background:var(--brand)"></span>Поиск</div>
@@ -297,7 +325,7 @@
   <section>
     <div class="section-head">
       <h2>Кампании</h2>
-      <span class="hint">8 активных кампаний</span>
+      <span class="hint" id="campaigns-hint">—</span>
     </div>
     <div class="card table-wrap">
       <table>
@@ -322,7 +350,7 @@
   <section>
     <div class="section-head">
       <h2>Лиды из CRM</h2>
-      <span class="hint">36 лидов · google</span>
+      <span class="hint" id="leads-hint">—</span>
     </div>
     <div class="card table-wrap">
       <table>
@@ -343,90 +371,267 @@
 <script>
 const fmt = n => n.toLocaleString('en-US');
 const fmtMoney = n => 'AED ' + n.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+const pad2 = n => String(n).padStart(2,'0');
+const toISODate = d => `${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}`;
 
-/* ---------------- Campaign data (paused drafts excluded) ---------------- */
-const campaigns = [
-  { name:'Брендовая', type:'Поиск', opt:71.3, budget:27, impr:1538, clicks:155, ctr:10.08, cost:1794.60, conv:5.00, cpa:358.92, kind:'search' },
-  { name:'Основные программы', type:'Поиск', opt:73.5, budget:30, impr:3103, clicks:176, ctr:5.67, cost:1652.34, conv:3.00, cpa:550.78, kind:'search' },
-  { name:'Околостоящие запросы', type:'Поиск', opt:74.9, budget:20, impr:760, clicks:29, ctr:3.82, cost:647.71, conv:0.00, cpa:null, kind:'search' },
-  { name:'PMAX - Online Dubai - RU', type:'Performance Max', opt:86.0, budget:100, impr:149087, clicks:3510, ctr:2.35, cost:843.63, conv:10.00, cpa:84.36, kind:'pmax' },
-  { name:'PMax - день открытых дверей', type:'Performance Max', opt:null, budget:1000, impr:190158, clicks:6007, ctr:3.16, cost:3791.23, conv:8.00, cpa:473.90, kind:'pmax' },
-  { name:'КМС - Дубай', type:'Медийная', opt:97.7, budget:null, impr:9677, clicks:743, ctr:7.68, cost:204.58, conv:2.00, cpa:102.29, kind:'display' },
-  { name:'RU language comp - search', type:'Поиск', opt:92.8, budget:null, impr:4598, clicks:80, ctr:1.74, cost:543.92, conv:0.00, cpa:null, kind:'search' },
-  { name:'RU languange - Display', type:'Медийная', opt:95.7, budget:null, impr:2498, clicks:144, ctr:5.76, cost:88.93, conv:0.00, cpa:null, kind:'display' },
+/* ---------------- Static reference data ---------------- */
+/* Данные Google Ads приходят периодами (скриншоты аккаунта), не посуточно —
+   поэтому произвольный период считается суммой ЦЕЛИКОМ входящих в него periods.
+   Дни вне periods показываются как "нет данных" в подсказке. */
+const campaignMeta = {
+  'Брендовая':                 { type:'Поиск',            kind:'search',  budget:27 },
+  'Основные программы':        { type:'Поиск',            kind:'search',  budget:30 },
+  'Околостоящие запросы':      { type:'Поиск',            kind:'search',  budget:20 },
+  'PMAX - Online Dubai - RU':  { type:'Performance Max',  kind:'pmax',    budget:100 },
+  'PMax - день открытых дверей': { type:'Performance Max', kind:'pmax',   budget:320 },
+  'КМС - Дубай':                { type:'Медийная',        kind:'display', budget:null },
+  'RU language comp - search':  { type:'Поиск',           kind:'search',  budget:100.57 },
+  'RU languange - Display':     { type:'Медийная',        kind:'display', budget:null },
+};
+
+const adPeriods = [
+  { start:'2026-08-01', end:'2026-08-26', campaigns:[
+    { name:'Брендовая', impr:778, clicks:68, cost:676.72, conv:1.00, opt:69.9 },
+    { name:'Основные программы', impr:1496, clicks:96, cost:768.22, conv:1.00, opt:66.6 },
+    { name:'Околостоящие запросы', impr:566, clicks:23, cost:504.78, conv:0.00, opt:74.5 },
+    { name:'PMAX - Online Dubai - RU', impr:121456, clicks:2885, cost:513.48, conv:5.00, opt:90.3 },
+    { name:'PMax - день открытых дверей', impr:184002, clicks:5687, cost:3379.36, conv:8.00, opt:89.7 },
+  ]},
+  { start:'2026-08-29', end:'2026-09-06', campaigns:[
+    { name:'Брендовая', impr:760, clicks:87, cost:1117.88, conv:4.00, opt:71.3 },
+    { name:'Основные программы', impr:1607, clicks:80, cost:884.12, conv:2.00, opt:73.5 },
+    { name:'Околостоящие запросы', impr:194, clicks:6, cost:142.93, conv:0.00, opt:74.9 },
+    { name:'PMAX - Online Dubai - RU', impr:27631, clicks:625, cost:330.15, conv:5.00, opt:86.0 },
+    { name:'PMax - день открытых дверей', impr:6156, clicks:320, cost:411.87, conv:0.00, opt:null },
+    { name:'КМС - Дубай', impr:9677, clicks:743, cost:204.58, conv:2.00, opt:97.7 },
+    { name:'RU language comp - search', impr:4598, clicks:80, cost:543.92, conv:0.00, opt:92.8 },
+    { name:'RU languange - Display', impr:2498, clicks:144, cost:88.93, conv:0.00, opt:95.7 },
+  ]},
+  { start:'2026-09-07', end:'2026-09-14', campaigns:[
+    { name:'Брендовая', impr:604, clicks:68, cost:653.90, conv:5.50, opt:64.7 },
+    { name:'Основные программы', impr:1015, clicks:61, cost:878.52, conv:2.50, opt:57.0 },
+    { name:'Околостоящие запросы', impr:122, clicks:7, cost:171.83, conv:0.00, opt:69.0 },
+    { name:'PMAX - Online Dubai - RU', impr:9940, clicks:215, cost:371.88, conv:4.00, opt:78.5 },
+    { name:'КМС - Дубай', impr:1603, clicks:392, cost:493.93, conv:7.00, opt:91.9 },
+    { name:'RU language comp - search', impr:2062, clicks:38, cost:120.65, conv:0.00, opt:null },
+    { name:'RU languange - Display', impr:92, clicks:16, cost:9.72, conv:0.00, opt:null },
+  ]},
 ];
 
-/* ---------------- Leads: 14 total, all labeled "google" (все органические причислены к Google Ads) ---------------- */
+/* Лиды с формы сайта: источники google/googleads/gclid + вся органика (без меток)
+   причислены к Google Ads; тестовые/дублирующие/соц.сети — исключены (см. историю правок). */
 const leads = [
-  { date:'06 авг, 18:24', name:'Вера', program:'Лагерь', tag:'без меток' },
-  { date:'07 авг, 09:42', name:'Даниил Кошелев', program:'Лагерь', tag:'programs / cpc' },
-  { date:'07 авг, 13:09', name:'Екатерина', program:'Гибрид: диагностика', tag:'gclid, без utm' },
-  { date:'15 авг, 14:04', name:'Инна', program:'Пятидневка', tag:'без меток' },
-  { date:'20 авг, 10:20', name:'Ангелина', program:'Курсы: консультация', tag:'без меток' },
-  { date:'22 авг, 00:26', name:'Лия', program:'ДОД АВГУСТ 26', tag:'без меток' },
-  { date:'22 авг, 02:23', name:'Рыков Денис', program:'ДОД АВГУСТ 26', tag:'без меток' },
-  { date:'22 авг, 07:44', name:'Елена', program:'ДОД АВГУСТ 26', tag:'без меток' },
-  { date:'22 авг, 12:12', name:'Евгения Плохих', program:'ДОД АВГУСТ 26', tag:'без меток' },
-  { date:'22 авг, 12:35', name:'Алиса', program:'Лагерь', tag:'без меток' },
-  { date:'23 авг, 16:31', name:'Анна', program:'Главная: подбор программы', tag:'brand_campaign / cpc' },
-  { date:'24 авг, 23:59', name:'Куванычбек', program:'ДОД АВГУСТ 26', tag:'term: day / cpc' },
-  { date:'25 авг, 00:00', name:'Dereje', program:'ДОД АВГУСТ 26', tag:'term: day / cpc' },
-  { date:'25 авг, 23:06', name:'Haji Asgar', program:'ДОД АВГУСТ 26', tag:'term: day / cpc' },
-  { date:'26 авг, 16:32', name:'Evgeniya Koneva', program:'Главная: консультация и диа', tag:'без меток' },
-  { date:'26 авг, 17:20', name:'Алексей Сидоров', program:'ДОД АВГУСТ 26', tag:'brand_campaign / cpc' },
-  { date:'27 авг, 00:27', name:'Jannatun Keya', program:'ДОД АВГУСТ 26', tag:'term: day / cpc' },
-  { date:'27 авг, 00:36', name:'فرات فرات', program:'ДОД АВГУСТ 26', tag:'term: day / cpc' },
-  { date:'27 авг, 04:47', name:'Kayru Bafata', program:'ДОД АВГУСТ 26', tag:'term: day / cpc' },
-  { date:'27 авг, 20:02', name:'Dhrup Sah', program:'Главная: подбор программы', tag:'cpc, без кампании' },
-  { date:'28 авг, 09:58', name:'Durgesh Yadav', program:'Главная: консультация и диа', tag:'cpc, без кампании' },
-  { date:'28 авг, 10:35', name:'Ruslan Garaev', program:'ДОД АВГУСТ 26', tag:'без меток' },
-  { date:'29 авг, 16:51', name:'Mi Xiaomi', program:'Главная: пробный урок', tag:'cpc, без кампании' },
-  { date:'31 авг, 18:42', name:'Юрий Никольский', program:'Гибрид: диагностика', tag:'без меток' },
-  { date:'01 сен, 21:49', name:'Gozde Dallmann', program:'Главная: пробный урок', tag:'brand_campaign / cpc' },
-  { date:'02 сен, 11:13', name:'Daria', program:'Главная: консультация и диа', tag:'без меток' },
-  { date:'03 сен, 06:45', name:'Райля', program:'Главная: подбор программы', tag:'без меток' },
-  { date:'03 сен, 07:41', name:'Izolda Titova', program:'Главная: консультация и диа', tag:'gclid, без utm' },
-  { date:'03 сен, 09:22', name:'Roman', program:'Арабский язык: консультация', tag:'без меток' },
-  { date:'04 сен, 13:17', name:'Артем', program:'Главная: консультация и диа', tag:'brand_campaign / cpc' },
-  { date:'04 сен, 21:53', name:'Amit Yadav', program:'Главная: подбор программы', tag:'online / cpc' },
-  { date:'05 сен, 07:54', name:'Muusa Hirphoo', program:'Главная: пробный урок', tag:'online / cpc' },
-  { date:'05 сен, 10:13', name:'Maria', program:'Подготовка к школе', tag:'без меток' },
-  { date:'05 сен, 10:32', name:'Musxafa Qajela', program:'Главная: консультация и диа', tag:'online / cpc' },
-  { date:'05 сен, 21:29', name:'Olga Aslanidi', program:'Русский как иностранный', tag:'без меток' },
-  { date:'06 сен, 23:09', name:'Md. Azim Hossain', program:'Главная: консультация и диа', tag:'online / cpc' },
+  { iso:'2026-08-06T18:24', name:'Вера', program:'Лагерь' },
+  { iso:'2026-08-07T09:42', name:'Даниил Кошелев', program:'Лагерь' },
+  { iso:'2026-08-07T13:09', name:'Екатерина', program:'Гибрид: диагностика' },
+  { iso:'2026-08-15T14:04', name:'Инна', program:'Пятидневка' },
+  { iso:'2026-08-20T10:20', name:'Ангелина', program:'Курсы: консультация' },
+  { iso:'2026-08-22T00:26', name:'Лия', program:'ДОД АВГУСТ 26' },
+  { iso:'2026-08-22T02:23', name:'Рыков Денис', program:'ДОД АВГУСТ 26' },
+  { iso:'2026-08-22T07:44', name:'Елена', program:'ДОД АВГУСТ 26' },
+  { iso:'2026-08-22T12:12', name:'Евгения Плохих', program:'ДОД АВГУСТ 26' },
+  { iso:'2026-08-22T12:35', name:'Алиса', program:'Лагерь' },
+  { iso:'2026-08-23T16:31', name:'Анна', program:'Главная: подбор программы' },
+  { iso:'2026-08-24T23:59', name:'Куванычбек', program:'ДОД АВГУСТ 26' },
+  { iso:'2026-08-25T00:00', name:'Dereje', program:'ДОД АВГУСТ 26' },
+  { iso:'2026-08-25T23:06', name:'Haji Asgar', program:'ДОД АВГУСТ 26' },
+  { iso:'2026-08-26T16:32', name:'Evgeniya Koneva', program:'Главная: консультация и диа' },
+  { iso:'2026-08-26T17:20', name:'Алексей Сидоров', program:'ДОД АВГУСТ 26' },
+  { iso:'2026-08-27T00:27', name:'Jannatun Keya', program:'ДОД АВГУСТ 26' },
+  { iso:'2026-08-27T00:36', name:'فرات فرات', program:'ДОД АВГУСТ 26' },
+  { iso:'2026-08-27T04:47', name:'Kayru Bafata', program:'ДОД АВГУСТ 26' },
+  { iso:'2026-08-27T20:02', name:'Dhrup Sah', program:'Главная: подбор программы' },
+  { iso:'2026-08-28T09:58', name:'Durgesh Yadav', program:'Главная: консультация и диа' },
+  { iso:'2026-08-28T10:35', name:'Ruslan Garaev', program:'ДОД АВГУСТ 26' },
+  { iso:'2026-08-29T16:51', name:'Mi Xiaomi', program:'Главная: пробный урок' },
+  { iso:'2026-08-31T18:42', name:'Юрий Никольский', program:'Гибрид: диагностика' },
+  { iso:'2026-09-01T21:49', name:'Gozde Dallmann', program:'Главная: пробный урок' },
+  { iso:'2026-09-02T11:13', name:'Daria', program:'Главная: консультация и диа' },
+  { iso:'2026-09-03T06:45', name:'Райля', program:'Главная: подбор программы' },
+  { iso:'2026-09-03T07:41', name:'Izolda Titova', program:'Главная: консультация и диа' },
+  { iso:'2026-09-03T09:22', name:'Roman', program:'Арабский язык: консультация' },
+  { iso:'2026-09-04T13:17', name:'Артем', program:'Главная: консультация и диа' },
+  { iso:'2026-09-04T21:53', name:'Amit Yadav', program:'Главная: подбор программы' },
+  { iso:'2026-09-05T07:54', name:'Muusa Hirphoo', program:'Главная: пробный урок' },
+  { iso:'2026-09-05T10:13', name:'Maria', program:'Подготовка к школе' },
+  { iso:'2026-09-05T10:32', name:'Musxafa Qajela', program:'Главная: консультация и диа' },
+  { iso:'2026-09-05T21:29', name:'Olga Aslanidi', program:'Русский как иностранный' },
+  { iso:'2026-09-06T23:09', name:'Md. Azim Hossain', program:'Главная: консультация и диа' },
+  { iso:'2026-09-07T10:22', name:'Ксения', program:'Гибрид: подбор программы' },
+  { iso:'2026-09-09T09:55', name:'Яна', program:'Главная: подбор программы' },
+  { iso:'2026-09-10T06:46', name:'Рогач Елена', program:'Заявка в центр: библиотека' },
+  { iso:'2026-09-11T08:24', name:'Ольга', program:'Встреча 12.09' },
+  { iso:'2026-09-11T13:29', name:'Amina Saulebek', program:'Dwight School: курсы рус. языка (оплата)' },
+  { iso:'2026-09-11T13:32', name:'Airis Saulebek', program:'Dwight School: курсы рус. языка (оплата)' },
+  { iso:'2026-09-11T19:02', name:'Venera', program:'Главная: подбор программы' },
+  { iso:'2026-09-11T20:29', name:'Ibrar Khan', program:'Главная: консультация и диа' },
+  { iso:'2026-09-12T00:17', name:'Natalia Gutierez', program:'Подготовка к школе' },
+  { iso:'2026-09-12T10:19', name:'Aleksandr', program:'Главная: пробный урок' },
+  { iso:'2026-09-12T15:20', name:'Ibrahim Al Shamsi', program:'Главная: пробный урок' },
+  { iso:'2026-09-13T13:43', name:'Ludmila Yamalova', program:'Dwight School: курсы рус. языка (оплата)' },
+  { iso:'2026-09-14T06:22', name:'Bader Yousf', program:'Главная: консультация и диа' },
+  { iso:'2026-09-14T10:59', name:'Polina Volodina', program:'Dwight School: курсы рус. языка (оплата)' },
+  { iso:'2026-09-14T12:31', name:'Happy', program:'Главная: консультация и диа' },
+  { iso:'2026-09-14T12:38', name:'B I', program:'Главная: консультация и диа' },
+  { iso:'2026-09-14T18:11', name:'Яна', program:'Шахматы: консультация' },
+  { iso:'2026-09-14T23:55', name:'Makiya', program:'Главная: подбор программы' },
 ];
 
-const dailyLeads = [
-  { day:'06 авг', count:1 }, { day:'07 авг', count:2 }, { day:'15 авг', count:1 },
-  { day:'20 авг', count:1 }, { day:'22 авг', count:5 }, { day:'23 авг', count:1 },
-  { day:'24 авг', count:1 }, { day:'25 авг', count:2 }, { day:'26 авг', count:2 },
-  { day:'27 авг', count:4 }, { day:'28 авг', count:2 }, { day:'29 авг', count:1 },
-  { day:'31 авг', count:1 }, { day:'1 сен', count:1 }, { day:'2 сен', count:1 },
-  { day:'3 сен', count:3 }, { day:'4 сен', count:2 }, { day:'5 сен', count:4 },
-  { day:'6 сен', count:1 },
-];
+/* ---------------- Date range helpers ---------------- */
+function parseISO(s){ const [y,m,d] = s.split('-').map(Number); return new Date(y, m-1, d); }
+function addDays(d,n){ const r = new Date(d); r.setDate(r.getDate()+n); return r; }
+function daysInclusive(a,b){ return Math.round((b-a)/86400000) + 1; }
 
-/* ---------------- Campaign bars ---------------- */
-const activeCampaigns = campaigns.slice().sort((a,b)=>b.cost-a.cost);
-const maxCost = Math.max(...activeCampaigns.map(c=>c.cost));
-document.getElementById('campaign-bars').innerHTML = activeCampaigns.map(c => `
-  <div class="bar-row">
-    <div class="name" title="${c.name}">${c.name}</div>
-    <div class="bar-track"><div class="bar-fill ${c.kind==='pmax'?'pmax':c.kind==='display'?'display':''}" style="width:${(c.cost/maxCost*100).toFixed(1)}%"></div></div>
-    <div class="val num">${fmtMoney(c.cost)}<span class="conv">${c.conv.toFixed(0)} конв.</span></div>
-  </div>
-`).join('');
+const MONTHS = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+function formatRangeLabel(start, end){
+  const sameMonth = start.getMonth()===end.getMonth() && start.getFullYear()===end.getFullYear();
+  if(sameMonth) return `${start.getDate()} – ${end.getDate()} ${MONTHS[end.getMonth()]} ${end.getFullYear()}`;
+  return `${start.getDate()} ${MONTHS[start.getMonth()]} – ${end.getDate()} ${MONTHS[end.getMonth()]} ${end.getFullYear()}`;
+}
 
-/* ---------------- Daily leads chart ---------------- */
-(function(){
+function findGaps(start, end){
+  const gaps = [];
+  let cursor = new Date(start);
+  const sorted = adPeriods.map(p => ({s:parseISO(p.start), e:parseISO(p.end)})).sort((a,b)=>a.s-b.s);
+  while(cursor <= end){
+    const covering = sorted.find(p => cursor >= p.s && cursor <= p.e);
+    if(covering){
+      cursor = addDays(covering.e, 1);
+    } else {
+      const gapStart = new Date(cursor);
+      const nextStart = sorted.map(p=>p.s).filter(s=>s>cursor).sort((a,b)=>a-b)[0];
+      const gapEnd = nextStart && nextStart <= end ? addDays(nextStart,-1) : new Date(end);
+      gaps.push([gapStart, gapEnd]);
+      cursor = addDays(gapEnd, 1);
+    }
+  }
+  return gaps;
+}
+
+/* ---------------- Aggregation ---------------- */
+function getAdData(start, end){
+  const included = adPeriods.filter(p => parseISO(p.start) >= start && parseISO(p.end) <= end);
+  const map = {};
+  included.forEach(p => p.campaigns.forEach(c => {
+    if(!map[c.name]) map[c.name] = { name:c.name, impr:0, clicks:0, cost:0, conv:0, opt:null };
+    const m = map[c.name];
+    m.impr += c.impr; m.clicks += c.clicks; m.cost += c.cost; m.conv += c.conv;
+    if(c.opt !== null) m.opt = c.opt;
+  }));
+  const campaigns = Object.values(map).map(m => ({
+    ...m,
+    meta: campaignMeta[m.name] || { type:'—', kind:'search', budget:null },
+    ctr: m.impr ? +(m.clicks/m.impr*100).toFixed(2) : 0,
+    cpa: m.conv > 0 ? +(m.cost/m.conv).toFixed(2) : null,
+  }));
+  const totals = campaigns.reduce((t,c) => ({
+    impr:t.impr+c.impr, clicks:t.clicks+c.clicks, cost:t.cost+c.cost,
+  }), {impr:0, clicks:0, cost:0});
+  return { campaigns, included, totals };
+}
+
+function getLeads(start, end){
+  const endOfDay = new Date(end.getFullYear(), end.getMonth(), end.getDate(), 23, 59, 59);
+  return leads.filter(l => { const d = new Date(l.iso); return d >= start && d <= endOfDay; });
+}
+
+/* ---------------- Render ---------------- */
+function render(start, end){
+  const { campaigns, totals } = getAdData(start, end);
+  const rangeLeads = getLeads(start, end);
+
+  const ctr = totals.clicks ? (totals.clicks/totals.impr*100) : 0;
+  const cpc = totals.clicks ? (totals.cost/totals.clicks) : 0;
+  const cpl = rangeLeads.length ? (totals.cost/rangeLeads.length) : 0;
+
+  document.getElementById('kpi-impr').textContent = fmt(totals.impr);
+  document.getElementById('kpi-clicks').textContent = fmt(totals.clicks);
+  document.getElementById('kpi-ctr').textContent = ctr.toFixed(2) + '%';
+  document.getElementById('kpi-cost').textContent = fmtMoney(totals.cost);
+  document.getElementById('kpi-cpc').textContent = fmtMoney(cpc);
+  document.getElementById('kpi-leads').textContent = fmt(rangeLeads.length);
+  document.getElementById('kpi-cpl').textContent = rangeLeads.length ? fmtMoney(cpl) : '—';
+
+  const label = formatRangeLabel(start, end);
+  document.getElementById('period-current').textContent = `Показано: ${label}`;
+  document.getElementById('campaigns-chart-desc').textContent = `Активные кампании, ${label}`;
+
+  const gaps = findGaps(start, end);
+  const dM = ['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
+  const fmtGap = d => `${d.getDate()} ${dM[d.getMonth()]}`;
+  document.getElementById('kpi-hint').textContent = gaps.length
+    ? `Нет данных по расходу за: ${gaps.map(([a,b]) => a.getTime()===b.getTime() ? fmtGap(a) : `${fmtGap(a)}–${fmtGap(b)}`).join(', ')} · GMT+04:00`
+    : `Расход покрывает весь период · GMT+04:00`;
+
+  /* Campaign bars */
+  const active = campaigns.filter(c => c.cost > 0).sort((a,b)=>b.cost-a.cost);
+  const maxCost = active.length ? Math.max(...active.map(c=>c.cost)) : 1;
+  document.getElementById('campaign-bars').innerHTML = active.length ? active.map(c => `
+    <div class="bar-row">
+      <div class="name" title="${c.name}">${c.name}</div>
+      <div class="bar-track"><div class="bar-fill ${c.meta.kind==='pmax'?'pmax':c.meta.kind==='display'?'display':''}" style="width:${(c.cost/maxCost*100).toFixed(1)}%"></div></div>
+      <div class="val num">${fmtMoney(c.cost)}<span class="conv">${c.conv.toFixed(2)} конв.</span></div>
+    </div>
+  `).join('') : `<div style="color:var(--ink-muted); font-size:12.5px;">Нет данных по расходу за выбранный период</div>`;
+
+  /* Campaigns table */
+  document.getElementById('campaigns-hint').textContent = `${active.length} ${active.length===1?'активная кампания':active.length<5?'активные кампании':'активных кампаний'}`;
+  document.getElementById('campaigns-table').innerHTML = active
+    .slice().sort((a,b) => b.impr - a.impr)
+    .map(c => `
+    <tr>
+      <td class="name-cell">${c.name}<span class="type">${c.meta.type}</span></td>
+      <td class="num">${c.meta.budget!==null ? fmtMoney(c.meta.budget) : '—'}</td>
+      <td class="num">${fmt(c.impr)}</td>
+      <td class="num">${fmt(c.clicks)}</td>
+      <td class="num">${c.ctr.toFixed(2)}%</td>
+      <td class="num">${fmtMoney(c.cost)}</td>
+      <td class="num">${c.conv.toFixed(2)}</td>
+      <td class="num">${c.cpa!==null ? fmtMoney(c.cpa) : '—'}</td>
+    </tr>
+  `).join('') || `<tr><td colspan="8" style="color:var(--ink-muted); text-align:center; padding:20px;">Нет активных кампаний с расходом за этот период</td></tr>`;
+
+  /* Daily leads chart */
+  const dayMap = {};
+  rangeLeads.forEach(l => {
+    const d = new Date(l.iso);
+    const key = toISODate(d);
+    dayMap[key] = (dayMap[key]||0) + 1;
+  });
+  const dailyLeads = Object.keys(dayMap).sort().map(key => {
+    const d = parseISO(key);
+    return { key, label: `${d.getDate()} ${dM[d.getMonth()]}`, count: dayMap[key] };
+  });
+  renderDailyChart(dailyLeads);
+
+  /* Leads table */
+  document.getElementById('leads-hint').textContent = `${rangeLeads.length} ${rangeLeads.length===1?'лид':rangeLeads.length<5?'лида':'лидов'} · google`;
+  const dtFmt = iso => { const d = new Date(iso); return `${d.getDate()} ${dM[d.getMonth()]}, ${pad2(d.getHours())}:${pad2(d.getMinutes())}`; };
+  document.getElementById('leads-table').innerHTML = rangeLeads.slice().sort((a,b)=>new Date(b.iso)-new Date(a.iso)).map(l => `
+    <tr>
+      <td style="color:var(--ink-2); white-space:nowrap;">${dtFmt(l.iso)}</td>
+      <td class="name-cell">${l.name}</td>
+      <td style="color:var(--ink-2)">${l.program}</td>
+    </tr>
+  `).join('') || `<tr><td colspan="3" style="color:var(--ink-muted); text-align:center; padding:20px;">Нет лидов за этот период</td></tr>`;
+}
+
+function renderDailyChart(dailyLeads){
   const svg = document.getElementById('stack-chart');
   const tooltip = document.getElementById('stack-tooltip');
   const W = 900, H = 170, padL = 8, padR = 8, padT = 10, padB = 26;
   const plotW = W - padL - padR;
   const plotH = H - padT - padB;
+
+  if(dailyLeads.length === 0){
+    svg.innerHTML = `<text x="${W/2}" y="${H/2}" text-anchor="middle" fill="var(--ink-muted)" font-size="12">Нет лидов за выбранный период</text>`;
+    tooltip.style.opacity = '0';
+    return;
+  }
+
   const maxVal = Math.max(...dailyLeads.map(d => d.count));
   const n = dailyLeads.length;
-  const gap = 12;
+  const gap = Math.min(12, plotW / n * 0.3);
   const barW = (plotW - gap*(n-1)) / n;
   const scaleY = v => (v / maxVal) * (plotH - 8);
 
@@ -441,8 +646,8 @@ document.getElementById('campaign-bars').innerHTML = activeCampaigns.map(c => `
     const x = padL + i*(barW+gap);
     const h = Math.max(scaleY(d.count), 4);
     const y = padT + plotH - h;
-    svgHTML += `<rect class="seg" data-day="${d.day}" data-val="${d.count}" x="${x}" y="${y}" width="${barW}" height="${h}" rx="4" fill="var(--brand)"></rect>`;
-    svgHTML += `<text class="axis-label" x="${x+barW/2}" y="${H-8}" text-anchor="middle">${d.day}</text>`;
+    svgHTML += `<rect class="seg" data-day="${d.label}" data-val="${d.count}" x="${x}" y="${y}" width="${barW}" height="${h}" rx="4" fill="var(--brand)"></rect>`;
+    if(n <= 20) svgHTML += `<text class="axis-label" x="${x+barW/2}" y="${H-8}" text-anchor="middle">${d.label}</text>`;
   });
   svg.innerHTML = svgHTML;
 
@@ -463,32 +668,27 @@ document.getElementById('campaign-bars').innerHTML = activeCampaigns.map(c => `
     });
     rect.addEventListener('mouseleave', () => { tooltip.style.opacity = '0'; });
   });
-})();
+}
 
-/* ---------------- Campaigns table ---------------- */
-document.getElementById('campaigns-table').innerHTML = campaigns
-  .slice().sort((a,b) => b.impr - a.impr)
-  .map(c => `
-  <tr>
-    <td class="name-cell">${c.name}<span class="type">${c.type}</span></td>
-    <td class="num">${c.budget!==null ? fmtMoney(c.budget) : '—'}</td>
-    <td class="num">${fmt(c.impr)}</td>
-    <td class="num">${fmt(c.clicks)}</td>
-    <td class="num">${c.ctr.toFixed(2)}%</td>
-    <td class="num">${fmtMoney(c.cost)}</td>
-    <td class="num">${c.conv.toFixed(2)}</td>
-    <td class="num">${c.cpa!==null ? fmtMoney(c.cpa) : '—'}</td>
-  </tr>
-`).join('');
+/* ---------------- Wire up controls ---------------- */
+const startInput = document.getElementById('range-start');
+const endInput = document.getElementById('range-end');
+const applyBtn = document.getElementById('range-apply');
 
-/* ---------------- Leads table ---------------- */
-document.getElementById('leads-table').innerHTML = leads.map(l => `
-  <tr>
-    <td style="color:var(--ink-2); white-space:nowrap;">${l.date}</td>
-    <td class="name-cell">${l.name}</td>
-    <td style="color:var(--ink-2)">${l.program}</td>
-  </tr>
-`).join('');
+function applyFromInputs(){
+  const s = parseISO(startInput.value);
+  const e = parseISO(endInput.value);
+  if(s > e) return;
+  render(s, e);
+}
+applyBtn.addEventListener('click', applyFromInputs);
+
+/* По умолчанию — текущий месяц с 1 числа по сегодня */
+const today = new Date();
+const monthStart = new Date(today.getFullYear(), today.getMonth(), 1);
+startInput.value = toISODate(monthStart);
+endInput.value = toISODate(today);
+render(monthStart, today);
 </script>
 </body>
 </html>
