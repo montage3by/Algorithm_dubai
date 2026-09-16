@@ -372,6 +372,12 @@
 const fmt = n => n.toLocaleString('en-US');
 const fmtMoney = n => 'AED ' + n.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
 const pad2 = n => String(n).padStart(2,'0');
+const pluralRu = (n, one, few, many) => {
+  const n100 = n % 100, n10 = n % 10;
+  if (n10 === 1 && n100 !== 11) return one;
+  if (n10 >= 2 && n10 <= 4 && (n100 < 10 || n100 >= 20)) return few;
+  return many;
+};
 const toISODate = d => `${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}`;
 
 /* ---------------- Static reference data ---------------- */
@@ -395,20 +401,12 @@ const adPeriods = [
     { name:'Youtube', impr:121456, clicks:2885, cost:513.48, conv:5.00, opt:90.3 },
     { name:'PMax - день открытых дверей', impr:184002, clicks:5687, cost:3379.36, conv:8.00, opt:89.7 },
   ]},
-  { start:'2026-08-29', end:'2026-09-06', campaigns:[
-    { name:'Брендовая', impr:760, clicks:87, cost:1117.88, conv:4.00, opt:71.3 },
-    { name:'Основные программы', impr:1607, clicks:80, cost:884.12, conv:2.00, opt:73.5 },
-    { name:'Околостоящие запросы', impr:194, clicks:6, cost:142.93, conv:0.00, opt:74.9 },
-    { name:'Youtube', impr:27631, clicks:625, cost:330.15, conv:5.00, opt:86.0 },
-    { name:'PMax - день открытых дверей', impr:6156, clicks:320, cost:411.87, conv:0.00, opt:null },
-    { name:'КМС ретаргетинг', impr:9677, clicks:743, cost:204.58, conv:2.00, opt:97.7 },
-  ]},
-  { start:'2026-09-07', end:'2026-09-14', campaigns:[
-    { name:'Брендовая', impr:604, clicks:68, cost:653.90, conv:5.50, opt:64.7 },
-    { name:'Основные программы', impr:1015, clicks:61, cost:878.52, conv:2.50, opt:57.0 },
-    { name:'Околостоящие запросы', impr:122, clicks:7, cost:171.83, conv:0.00, opt:69.0 },
-    { name:'Youtube', impr:9940, clicks:215, cost:371.88, conv:4.00, opt:78.5 },
-    { name:'КМС ретаргетинг', impr:1603, clicks:392, cost:493.93, conv:7.00, opt:91.9 },
+  { start:'2026-09-01', end:'2026-09-16', campaigns:[
+    { name:'Брендовая', impr:1172, clicks:139, cost:1672.98, conv:10.50, opt:51.88 },
+    { name:'Youtube', impr:37437, clicks:828, cost:686.01, conv:8.00, opt:79.26 },
+    { name:'Основные программы', impr:2417, clicks:126, cost:1647.91, conv:4.50, opt:61.19 },
+    { name:'Околостоящие запросы', impr:258, clicks:14, cost:335.71, conv:0.00, opt:69.76 },
+    { name:'КМС ретаргетинг', impr:8204, clicks:996, cost:1094.70, conv:14.00, opt:91.90 },
   ]},
 ];
 
@@ -469,6 +467,8 @@ const leads = [
   { iso:'2026-09-14T12:38', name:'B I', program:'Главная: консультация и диа' },
   { iso:'2026-09-14T18:11', name:'Яна', program:'Шахматы: консультация' },
   { iso:'2026-09-14T23:55', name:'Makiya', program:'Главная: подбор программы' },
+  { iso:'2026-09-15T09:01', name:'Елена', program:'История искусств: консультация' },
+  { iso:'2026-09-16T08:23', name:'Nuraadin Hajjii', program:'Главная: консультация и диа' },
 ];
 
 /* ---------------- Date range helpers ---------------- */
@@ -569,7 +569,7 @@ function render(start, end){
   `).join('') : `<div style="color:var(--ink-muted); font-size:12.5px;">Нет данных по расходу за выбранный период</div>`;
 
   /* Campaigns table */
-  document.getElementById('campaigns-hint').textContent = `${active.length} ${active.length===1?'активная кампания':active.length<5?'активные кампании':'активных кампаний'}`;
+  document.getElementById('campaigns-hint').textContent = `${active.length} ${pluralRu(active.length,'активная кампания','активные кампании','активных кампаний')}`;
   document.getElementById('campaigns-table').innerHTML = active
     .slice().sort((a,b) => b.impr - a.impr)
     .map(c => `
@@ -599,7 +599,7 @@ function render(start, end){
   renderDailyChart(dailyLeads);
 
   /* Leads table */
-  document.getElementById('leads-hint').textContent = `${rangeLeads.length} ${rangeLeads.length===1?'лид':rangeLeads.length<5?'лида':'лидов'} · google`;
+  document.getElementById('leads-hint').textContent = `${rangeLeads.length} ${pluralRu(rangeLeads.length,'лид','лида','лидов')} · google`;
   const dtFmt = iso => { const d = new Date(iso); return `${d.getDate()} ${dM[d.getMonth()]}, ${pad2(d.getHours())}:${pad2(d.getMinutes())}`; };
   document.getElementById('leads-table').innerHTML = rangeLeads.slice().sort((a,b)=>new Date(b.iso)-new Date(a.iso)).map(l => `
     <tr>
@@ -651,7 +651,7 @@ function renderDailyChart(dailyLeads){
       const day = rect.getAttribute('data-day');
       const val = rect.getAttribute('data-val');
       const n = parseInt(val, 10);
-      const word = (n % 10 === 1 && n % 100 !== 11) ? 'лид' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) ? 'лида' : 'лидов';
+      const word = pluralRu(n, 'лид', 'лида', 'лидов');
       tooltip.innerHTML = `<b>${day}</b> · ${val} ${word}`;
       tooltip.style.opacity = '1';
     });
