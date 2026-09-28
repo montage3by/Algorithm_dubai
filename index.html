@@ -372,6 +372,7 @@
 const fmt = n => n.toLocaleString('en-US');
 const fmtMoney = n => 'AED ' + n.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
 const pad2 = n => String(n).padStart(2,'0');
+const dM = ['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
 const pluralRu = (n, one, few, many) => {
   const n100 = n % 100, n10 = n % 10;
   if (n10 === 1 && n100 !== 11) return one;
@@ -500,25 +501,6 @@ function formatRangeLabel(start, end){
   return `${start.getDate()} ${MONTHS[start.getMonth()]} – ${end.getDate()} ${MONTHS[end.getMonth()]} ${end.getFullYear()}`;
 }
 
-function findGaps(start, end){
-  const gaps = [];
-  let cursor = new Date(start);
-  const sorted = adPeriods.map(p => ({s:parseISO(p.start), e:parseISO(p.end)})).sort((a,b)=>a.s-b.s);
-  while(cursor <= end){
-    const covering = sorted.find(p => cursor >= p.s && cursor <= p.e);
-    if(covering){
-      cursor = addDays(covering.e, 1);
-    } else {
-      const gapStart = new Date(cursor);
-      const nextStart = sorted.map(p=>p.s).filter(s=>s>cursor).sort((a,b)=>a-b)[0];
-      const gapEnd = nextStart && nextStart <= end ? addDays(nextStart,-1) : new Date(end);
-      gaps.push([gapStart, gapEnd]);
-      cursor = addDays(gapEnd, 1);
-    }
-  }
-  return gaps;
-}
-
 /* ---------------- Aggregation ---------------- */
 function getAdData(start, end){
   const included = adPeriods.filter(p => parseISO(p.start) >= start && parseISO(p.end) <= end);
@@ -566,13 +548,6 @@ function render(start, end){
   const label = formatRangeLabel(start, end);
   document.getElementById('period-current').textContent = `Показано: ${label}`;
   document.getElementById('campaigns-chart-desc').textContent = `Активные кампании, ${label}`;
-
-  const gaps = findGaps(start, end);
-  const dM = ['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
-  const fmtGap = d => `${d.getDate()} ${dM[d.getMonth()]}`;
-  document.getElementById('kpi-hint').textContent = gaps.length
-    ? `Нет данных по расходу за: ${gaps.map(([a,b]) => a.getTime()===b.getTime() ? fmtGap(a) : `${fmtGap(a)}–${fmtGap(b)}`).join(', ')} · GMT+04:00`
-    : `Расход покрывает весь период · GMT+04:00`;
 
   /* Campaign bars */
   const active = campaigns.filter(c => c.cost > 0).sort((a,b)=>b.cost-a.cost);
