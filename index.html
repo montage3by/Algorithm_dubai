@@ -154,6 +154,7 @@
   .bar-fill{ position:absolute; top:0; left:0; height:100%; border-radius:5px; background:var(--brand); min-width:3px; }
   .bar-fill.pmax{ background:#6cc4cb; }
   .bar-fill.display{ background:var(--accent); }
+  .bar-fill.video{ background:#eda100; }
   .bar-row .val{ font-size:12px; text-align:right; color:var(--ink); white-space:nowrap; }
   .bar-row .val .conv{ color:var(--ink-muted); font-size:10.5px; display:block; }
 
@@ -301,6 +302,7 @@
         <div class="legend-item"><span class="swatch" style="background:var(--brand)"></span>Поиск</div>
         <div class="legend-item"><span class="swatch" style="background:#6cc4cb"></span>Performance Max</div>
         <div class="legend-item"><span class="swatch" style="background:var(--accent)"></span>Медийная</div>
+        <div class="legend-item"><span class="swatch" style="background:#eda100"></span>Видео</div>
       </div>
     </div>
   </section>
@@ -393,6 +395,7 @@ const campaignMeta = {
   'PMax - день открытых дверей': { type:'Performance Max', kind:'pmax',   budget:320 },
   'КМС ретаргетинг':                { type:'Медийная',        kind:'display', budget:null },
   'GDN - Алгоритм Дубай':       { type:'Медийная',        kind:'display', budget:30 },
+  'Youtube shorts':             { type:'Видео',           kind:'video',   budget:null },
 };
 
 const adPeriods = [
@@ -410,6 +413,13 @@ const adPeriods = [
     { name:'Youtube', impr:40054, clicks:910, cost:807.05, conv:10.00, opt:null },
     { name:'КМС ретаргетинг', impr:15940, clicks:1928, cost:1914.30, conv:34.00, opt:null },
     { name:'GDN - Алгоритм Дубай', impr:21576, clicks:2177, cost:2000.00, conv:10.00, opt:97.7 },
+  ]},
+  { start:'2026-10-01', end:'2026-10-05', campaigns:[
+    { name:'Брендовая', impr:303, clicks:30, cost:157.20, conv:3.00, opt:71.6 },
+    { name:'Основные программы', impr:169, clicks:16, cost:157.53, conv:0.00, opt:66.8 },
+    { name:'Околостоящие запросы', impr:220, clicks:8, cost:110.55, conv:0.00, opt:75.0 },
+    { name:'Youtube shorts', impr:1172, clicks:0, cost:14.75, conv:0.00, opt:100.0 },
+    { name:'GDN - Алгоритм Дубай', impr:3278, clicks:213, cost:0.00, conv:0.00, opt:97.7 },
   ]},
 ];
 
@@ -492,6 +502,9 @@ const leads = [
   { iso:'2026-09-28T14:14', name:'Nadine Winterfeldt', program:'Курсы рус. языка: Hartland (оплата)' },
   { iso:'2026-09-28T18:22', name:'Kseniia Shatalova', program:'Курсы рус. языка: Dwight School (оплата)' },
   { iso:'2026-09-30T07:30', name:'Ольга', program:'Открытые уроки: подростки' },
+  { iso:'2026-10-01T16:51', name:'Veronika Pavlenko', program:'Курсы рус. языка: Dubai British School (оплата)' },
+  { iso:'2026-10-03T22:34', name:'Elena', program:'Пятидневка: консультация' },
+  { iso:'2026-10-04T20:25', name:'Viktoria', program:'Главная: консультация и диа' },
 ];
 
 /* ---------------- Date range helpers ---------------- */
@@ -560,7 +573,7 @@ function render(start, end){
   document.getElementById('campaign-bars').innerHTML = active.length ? active.map(c => `
     <div class="bar-row">
       <div class="name" title="${c.name}">${c.name}</div>
-      <div class="bar-track"><div class="bar-fill ${c.meta.kind==='pmax'?'pmax':c.meta.kind==='display'?'display':''}" style="width:${(c.cost/maxCost*100).toFixed(1)}%"></div></div>
+      <div class="bar-track"><div class="bar-fill ${c.meta.kind==='pmax'?'pmax':c.meta.kind==='display'?'display':c.meta.kind==='video'?'video':''}" style="width:${(c.cost/maxCost*100).toFixed(1)}%"></div></div>
       <div class="val num">${fmtMoney(c.cost)}<span class="conv">${c.conv.toFixed(2)} конв.</span></div>
     </div>
   `).join('') : `<div style="color:var(--ink-muted); font-size:12.5px;">Нет данных по расходу за выбранный период</div>`;
