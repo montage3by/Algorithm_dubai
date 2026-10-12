@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SEO-аудит и стратегия</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%232a78d6%22/><text x=%2250%22 y=%2266%22 font-size=%2258%22 font-family=%22sans-serif%22 fill=%22white%22 text-anchor=%22middle%22>A</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    color-scheme: light;
+    --plane:        #f6f6f3;
+    --surface:      #ffffff;
+    --surface-2:    #fbfbf9;
+    --ink:          #101014;
+    --ink-2:        #55564f;
+    --ink-muted:    #8b8a83;
+    --hairline:     #e4e3db;
+    --brand:        #0e8f99;
+    --brand-soft:   #e0f2f3;
+    --accent:       #9c2c52;
+    --accent-soft:  #f7e6ec;
+    --good:         #0ca30c;
+    --good-soft:    #e3f7e3;
+    --warn:         #b8790a;
+    --warn-soft:    #fdf1dd;
+    --bad:          #d03b3b;
+    --bad-soft:     #fbe8e8;
+    --shadow: 0 1px 2px rgba(16,16,20,0.04), 0 8px 24px -12px rgba(16,16,20,0.10);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --plane:        #0c0c0d;
+      --surface:      #161617;
+      --surface-2:    #131314;
+      --ink:          #f5f5f2;
+      --ink-2:        #c3c2b7;
+      --ink-muted:    #8b8a83;
+      --hairline:     #2a2a29;
+      --brand:        #2bb8c4;
+      --brand-soft:   #103539;
+      --accent:       #d1638a;
+      --accent-soft:  #33141f;
+      --good:         #0ca30c;
+      --good-soft:    #122a16;
+      --warn:         #d99a1a;
+      --warn-soft:    #2e2410;
+      --bad:          #e66767;
+      --bad-soft:     #331413;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --plane:        #0c0c0d;
+    --surface:      #161617;
+    --surface-2:    #131314;
+    --ink:          #f5f5f2;
+    --ink-2:        #c3c2b7;
+    --ink-muted:    #8b8a83;
+    --hairline:     #2a2a29;
+    --brand:        #2bb8c4;
+    --brand-soft:   #103539;
+    --accent:       #d1638a;
+    --accent-soft:  #33141f;
+    --good:         #0ca30c;
+    --good-soft:    #122a16;
+    --warn:         #d99a1a;
+    --warn-soft:    #2e2410;
+    --bad:          #e66767;
+    --bad-soft:     #331413;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background:var(--plane); color:var(--ink);
+    font-family:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing:antialiased; line-height:1.55;
+  }
+  h1,h2,h3,.display{ font-family:"Manrope", system-ui, sans-serif; text-wrap:balance; margin:0; }
+  .num{ font-family:"IBM Plex Mono", ui-monospace, monospace; font-variant-numeric:tabular-nums; }
+  a{ color:var(--brand); }
+  ::selection{ background:var(--brand-soft); }
+  code{ font-family:"IBM Plex Mono", monospace; font-size:12.5px; background:var(--surface-2); padding:1px 5px; border-radius:4px; }
+
+  .wrap{ max-width:880px; margin:0 auto; padding:40px 20px 80px; }
+
+  header{ margin-bottom:32px; padding-bottom:24px; border-bottom:1px solid var(--hairline); }
+  .eyebrow{
+    font-family:"IBM Plex Mono", monospace; font-size:11px; font-weight:600; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--accent); margin-bottom:10px;
+  }
+  h1{ font-size:clamp(24px,4vw,32px); line-height:1.18; letter-spacing:-0.01em; margin:0 0 10px; }
+  .subtitle{ color:var(--ink-2); font-size:14.5px; max-width:66ch; }
+  .subtitle b{ color:var(--ink); font-weight:600; }
+
+  .kpis{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--hairline); border:1px solid var(--hairline); border-radius:14px; overflow:hidden; margin-top:24px; }
+  .kpi{ background:var(--surface); padding:16px 18px; }
+  .kpi-label{ font-size:11.5px; color:var(--ink-2); margin-bottom:6px; }
+  .kpi-value{ font-size:21px; font-weight:700; font-family:"Manrope"; letter-spacing:-0.01em; }
+  .kpi-value .frac{ font-size:13px; color:var(--ink-muted); font-weight:500; font-family:"IBM Plex Sans"; }
+  .kpi-sub{ font-size:11.5px; color:var(--ink-muted); margin-top:3px; }
+  @media(max-width:640px){ .kpis{ grid-template-columns:repeat(2,1fr); } }
+
+  section{ margin-top:48px; }
+  .section-head{ display:flex; align-items:baseline; gap:10px; margin-bottom:14px; }
+  .section-no{ font-family:"IBM Plex Mono", monospace; font-size:11.5px; color:var(--ink-muted); }
+  h2{ font-size:19px; font-weight:700; letter-spacing:-0.01em; }
+  .lede{ color:var(--ink-2); font-size:13.5px; max-width:70ch; margin:-4px 0 18px; }
+
+  .card{ background:var(--surface); border:1px solid var(--hairline); border-radius:14px; box-shadow:var(--shadow); }
+  .summary-card{ padding:22px 24px; }
+  .summary-card p{ margin:0 0 12px; font-size:14.5px; }
+  .summary-card p:last-child{ margin-bottom:0; }
+  .summary-card strong{ color:var(--brand); }
+
+  .table-wrap{ overflow-x:auto; }
+  table{ width:100%; border-collapse:collapse; font-size:13px; min-width:480px; }
+  th{ text-align:left; font-weight:600; font-size:10.5px; text-transform:uppercase; letter-spacing:0.04em; color:var(--ink-2); padding:10px 14px; border-bottom:1px solid var(--hairline); background:var(--surface-2); white-space:nowrap; }
+  td{ padding:10px 14px; border-bottom:1px solid var(--hairline); white-space:nowrap; }
+  tr:last-child td{ border-bottom:none; }
+  td.num, th.num{ text-align:right; font-family:"IBM Plex Mono", monospace; font-variant-numeric:tabular-nums; }
+  td.name{ font-weight:500; }
+  td.wrap-cell{ white-space:normal; }
+
+  .pill{ display:inline-flex; align-items:center; gap:5px; padding:2px 9px; border-radius:99px; font-size:11.5px; font-weight:600; }
+  .pill-good{ background:var(--good-soft); color:var(--good); }
+  .pill-warn{ background:var(--warn-soft); color:var(--warn); }
+  .pill-bad{ background:var(--bad-soft); color:var(--bad); }
+  .pill-brand{ background:var(--brand-soft); color:var(--brand); }
+  .pill-muted{ background:var(--surface-2); color:var(--ink-muted); }
+
+  .sourcebar{ display:flex; height:32px; border-radius:8px; overflow:hidden; margin:16px 0 10px; border:1px solid var(--hairline); }
+  .sourcebar > div{ display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600; color:#fff; min-width:0; }
+  .legend{ display:flex; flex-wrap:wrap; gap:14px; font-size:12px; color:var(--ink-2); }
+  .legend span{ display:inline-flex; align-items:center; gap:6px; }
+  .dot{ width:9px; height:9px; border-radius:2.5px; display:inline-block; flex:none; }
+
+  .month-compare{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--hairline); border:1px solid var(--hairline); border-radius:14px; overflow:hidden; }
+  .month-col{ background:var(--surface); padding:16px 18px; }
+  .month-col h3{ font-family:"Manrope"; font-size:12.5px; text-transform:uppercase; letter-spacing:0.04em; color:var(--ink-2); margin:0 0 10px; font-weight:700; }
+  .month-stat{ display:flex; justify-content:space-between; font-size:12.5px; padding:5px 0; border-bottom:1px dashed var(--hairline); gap:8px; }
+  .month-stat:last-child{ border-bottom:none; }
+  .month-stat span:first-child{ color:var(--ink-2); }
+  .month-stat span:last-child{ font-family:"IBM Plex Mono", monospace; font-weight:600; flex:none; }
+  @media(max-width:700px){ .month-compare{ grid-template-columns:1fr; } }
+
+  .finding{ border:1px solid var(--hairline); border-left:4px solid var(--brand); border-radius:10px; background:var(--surface); padding:15px 17px; margin-bottom:12px; }
+  .finding.warn{ border-left-color:var(--warn); }
+  .finding.bad{ border-left-color:var(--bad); }
+  .finding.good{ border-left-color:var(--good); }
+  .finding h4{ margin:0 0 6px; font-size:14px; font-family:"Manrope"; font-weight:700; }
+  .finding p{ margin:0; font-size:13px; color:var(--ink-2); }
+  .finding p + p{ margin-top:6px; }
+  .finding ul{ margin:8px 0 0; padding-left:18px; font-size:13px; color:var(--ink-2); }
+  .finding li{ margin-bottom:3px; }
+
+  .verdict{ background:var(--brand-soft); border:1px solid var(--hairline); border-radius:14px; padding:20px 22px; }
+  .verdict-label{ font-size:11px; text-transform:uppercase; letter-spacing:0.06em; font-weight:700; color:var(--brand); margin-bottom:8px; }
+  .verdict p{ margin:0 0 10px; font-size:13.5px; }
+  .verdict p:last-child{ margin:0; }
+
+  .checklist{ display:flex; flex-direction:column; gap:10px; }
+  .check-item{ display:flex; gap:12px; background:var(--surface); border:1px solid var(--hairline); border-radius:12px; padding:13px 15px; }
+  .check-priority{ flex-shrink:0; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.03em; padding:3px 8px; border-radius:6px; height:fit-content; white-space:nowrap; }
+  .p-high{ background:var(--bad-soft); color:var(--bad); }
+  .p-med{ background:var(--warn-soft); color:var(--warn); }
+  .p-low{ background:var(--surface-2); color:var(--ink-2); }
+  .check-body h4{ margin:0 0 3px; font-size:13.5px; font-family:"Manrope"; font-weight:700; }
+  .check-body p{ margin:0; font-size:12.5px; color:var(--ink-2); }
+
+  .cluster{ display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--hairline); border:1px solid var(--hairline); border-radius:14px; overflow:hidden; margin-top:4px; }
+  .cluster-col{ background:var(--surface); padding:16px 18px; }
+  .cluster-col h4{ margin:0 0 10px; font-family:"Manrope"; font-size:13px; font-weight:700; }
+  .cluster-col ul{ margin:0; padding-left:0; list-style:none; font-size:12.5px; color:var(--ink-2); }
+  .cluster-col li{ padding:7px 0; border-bottom:1px dashed var(--hairline); }
+  .cluster-col li:last-child{ border-bottom:none; }
+  @media(max-width:700px){ .cluster{ grid-template-columns:1fr; } }
+
+  .note{ font-size:12px; color:var(--ink-muted); margin-top:10px; }
+  footer{ text-align:center; font-size:11.5px; color:var(--ink-muted); margin-top:56px; padding-top:20px; border-top:1px solid var(--hairline); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">SEO-аудит и стратегия · Algorithm Training Center</div>
+    <h1>SEO algorithmdubai.com: аудит и план на блог</h1>
+    <p class="subtitle">Полный обход сайта по <code>sitemap.xml</code> (46 страниц на Tilda), проверка технических сигналов (title, description, H1, canonical, hreflang, schema.org, <code>html lang</code>) и план контент-стратегии с блогом, которого на сайте сейчас нет вообще. Срез на <b>12 октября 2026</b>.</p>
+
+    <div class="kpis">
+      <div class="kpi">
+        <div class="kpi-label">Страниц в индексе</div>
+        <div class="kpi-value num">46</div>
+        <div class="kpi-sub">все отдают 200 OK</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Без H1</div>
+        <div class="kpi-value num">15 <span class="frac">(33%)</span></div>
+        <div class="kpi-sub">нет ни одного заголовка h1</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Без meta description</div>
+        <div class="kpi-value num">9 <span class="frac">(20%)</span></div>
+        <div class="kpi-sub">пустой сниппет в выдаче</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Блог</div>
+        <div class="kpi-value num">0</div>
+        <div class="kpi-sub">раздела не существует</div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-head"><span class="section-no">01</span><h2>Короткий ответ</h2></div>
+    <div class="card summary-card">
+      <p>Сайт технически в приличном состоянии там, где Tilda делает это сама: canonical-теги на месте и верно ведут на себя, robots.txt опрятный и реально дисаллоуит ~100 старых/дублирующих страниц, sitemap.xml отдаётся корректно. Но там, где нужна ручная работа редактора, — <strong>системные дыры</strong>: треть страниц без H1, пятая часть без description, шесть явных групп задублированных title на 13 разных URL.</p>
+      <p>Главный структурный пробел — <strong>на сайте нет блога и, шире, нет вообще никакого раздела с регулярным текстовым контентом</strong>. 46 страниц — это посадочные страницы под конкретные программы/лагеря/интенсивы, написанные продающим языком, а не страницы, отвечающие на вопросы, которые родители реально вбивают в Google до того, как решат, куда записать ребёнка. Это самый большой upside: категория «школы/развивающие центры для детей-экспатов в Дубае» на русском языке почти не покрыта качественным контентом.</p>
+      <p>Нет ни одного сигнала <code>hreflang</code>, <code>schema.org</code> или <code>html lang</code> ни на одной проверенной странице — сайт фактически русскоязычный, но не заявляет это машине. Это не критично для позиций здесь и сейчас, но закрывает дорогу к rich snippets (рейтинги курсов, FAQ, breadcrumbs в выдаче) и к корректной работе мультиязычных версий, если они появятся.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="section-no">02</span><h2>Технический срез: 46 страниц</h2></div>
+    <p class="lede">Полный обход sitemap.xml, извлечение title / meta description / canonical / H1 по каждому URL.</p>
+
+    <div class="finding bad">
+      <h4>15 из 46 страниц (33%) — без единого H1</h4>
+      <p>Google использует H1 как один из сильных сигналов темы страницы; его отсутствие не ломает индексацию, но ослабляет релевантность по целевым запросам. Среди пострадавших — не только служебные страницы (<code>thanks</code>, <code>quests</code>), но и страницы с реальным поисковым спросом: <code>summer_intensive</code>, <code>teen_camp</code>, <code>online_dubai</code>, <code>russian_online</code>.</p>
+      <ul>
+        <li><code>/dod</code>, <code>/events</code>, <code>/olympiad_ru</code>, <code>/online_dubai</code>, <code>/quests</code>, <code>/rus_in_dubai</code>, <code>/russian_online</code>, <code>/selfgovernment_day</code>, <code>/summer_intensive</code>, <code>/teen_camp</code>, <code>/thanks</code>, <code>/ty_online</code>, <code>/why_rus</code> и две автогенерированные Tilda-страницы (<code>page148947466.html</code>, <code>page148947596.html</code>)</li>
+      </ul>
+    </div>
+
+    <div class="finding warn">
+      <h4>9 из 46 страниц (20%) — без meta description</h4>
+      <p>Google в этом случае сам генерирует сниппет из текста страницы — обычно это рандомный кусок, который почти никогда не продаёт переход так, как написанный вручную. Среди них есть страницы с реальным трафиком: <code>/intensive</code>, <code>/biology_intensive</code>, <code>/quiz</code>, <code>/russkiy-online</code>, <code>/teen_camp</code>, <code>/events</code> и три автогенерированные/тестовые (<code>page114244096.html</code>, <code>page153262256.html</code>, <code>test_utm</code> — последние две можно просто закрыть от индексации, а не чинить).</p>
+    </div>
+
+    <div class="finding bad">
+      <h4>6 групп задублированного title — 13 страниц</h4>
+      <p>Когда несколько страниц делят один <code>&lt;title&gt;</code>, Google сам решает, какую показывать в выдаче, — и часто выбирает не ту, что нужна. Самый серьёзный случай — 4 страницы под одним заголовком «Летние онлайн-интенсивы в центре «Алгоритм»»: это явно черновики/копии одной и той же акции, индексируемые параллельно.</p>
+      <div class="cluster">
+        <div class="cluster-col">
+          <h4>Летние онлайн-интенсивы (4 страницы, 1 title)</h4>
+          <ul>
+            <li><code>/intensive1</code></li>
+            <li><code>/intensive_august</code></li>
+            <li><code>/intensives</code></li>
+            <li><code>/summer_intensive</code></li>
+          </ul>
+        </div>
+        <div class="cluster-col">
+          <h4>Парные дубли (по 2 страницы — старая акция «август» + текущая)</h4>
+          <ul>
+            <li><code>/camp_pay</code> = <code>/holidays</code> («Детский лагерь в Дубае»)</li>
+            <li><code>/courses</code> = <code>/russian_courses</code> («Курсы для детей в Дубае»)</li>
+            <li><code>/intensive_chinese</code> = <code>/intensive_august_chinese</code></li>
+            <li><code>/intensive_english</code> = <code>/intensive_august_english</code></li>
+            <li><code>/intensive_russian</code> = <code>/intensive_august_russian</code></li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:12px;">Во всех трёх парных случаях шаблон один и тот же: страница для конкретного заезда/месяца не закрывается после его окончания, а копируется под новую акцию, и обе версии остаются в sitemap. Решение простое и одноразовое: оставить действующую, у прошлой — редирект 301 на неё и убрать из sitemap.</p>
+    </div>
+
+    <div class="finding good">
+      <h4>Что уже сделано правильно</h4>
+      <p>Canonical-теги стоят на всех проверенных страницах и верно самоссылаются. robots.txt — не формальность: в нём реально дисаллоунуты около сотни legacy/черновых URL (видимо, прошлые итерации тех же акций), и он корректно указывает на sitemap.xml. Все 46 страниц из sitemap отдают 200 OK — мёртвых ссылок в индексе нет.</p>
+    </div>
+
+    <div class="finding warn">
+      <h4>Отсутствуют hreflang, schema.org и html lang</h4>
+      <p>Проверено на главной, <code>/ru</code>, <code>/courses</code>, <code>/5days</code> — ни на одной нет атрибута <code>&lt;html lang&gt;</code>, ни одной разметки <code>schema.org</code> (Organization, Course, FAQPage, BreadcrumbList) и ни одного <code>hreflang</code>. При этом og:title и адаптивный viewport на месте. Без schema.org сайт не может претендовать на расширенные сниппеты (рейтинг курса, FAQ, хлебные крошки) в выдаче — а именно они повышают CTR при равной позиции.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="section-no">03</span><h2>Главный пробел: блога нет</h2></div>
+    <div class="card summary-card">
+      <p>Все 46 страниц сайта — это посадочные страницы конкретных продуктов: лагерь, интенсив, курс, программа. Это правильные страницы для человека, который <strong>уже решил</strong> записать ребёнка в Algorithm и выбирает конкретный продукт. Но они не покрывают запросы человека, который <strong>ещё решает</strong> — «какую школу выбрать в Дубае для русскоязычного ребёнка», «нужна ли ребёнку аттестация по ФГОС за границей», «как подготовить ребёнка к переезду в Дубай» — а это и есть тот трафик, который можно получить бесплатно и привести на верхнюю часть воронки раньше конкурентов.</p>
+      <p>Это особенно заметно на фоне того, насколько аккуратно устроены сами продуктовые страницы: подробные description, работающие canonical. Технический фундамент сайта способен нести блог — просто раздела для него пока нет ни в структуре, ни в sitemap.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="section-no">04</span><h2>Стратегия блога</h2></div>
+    <p class="lede">Структура «пилларная страница + кластер статей» под аудиторию — русскоязычных родителей-экспатов в Дубае и шире по ОАЭ.</p>
+
+    <div class="cluster" style="grid-template-columns:1fr;">
+      <div class="cluster-col">
+        <h4>Платформа и адрес</h4>
+        <ul>
+          <li>Публиковать на <code>algorithmdubai.com/blog/...</code> через встроенный модуль блога Tilda (Zero Block / Feed) — чтобы домен и накопленный вес сайта работали на статьи, а не уходили на сторонний Medium/vc.ru.</li>
+          <li>Каждая статья — отдельный canonical URL в sitemap, с собственным title/description, ссылками на 1–2 релевантные продуктовые страницы (например, статья про аттестацию по ФГОС → ссылка на <code>/5days</code>).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cluster" style="margin-top:16px;">
+      <div class="cluster-col">
+        <h4>Пиллар 1 — «Переезд и школа в Дубае»</h4>
+        <ul>
+          <li>Как выбрать школу для ребёнка-экспата в Дубае: гайд для родителей</li>
+          <li>Аттестация по ФГОС за границей — что это и зачем нужна</li>
+          <li>Адаптация ребёнка к переезду в Дубай: что помогает, а что мешает</li>
+          <li>Русскоязычное образование в ОАЭ: что есть на рынке и чем отличается «Алгоритм»</li>
+        </ul>
+      </div>
+      <div class="cluster-col">
+        <h4>Пиллар 2 — «Каникулы и лагеря»</h4>
+        <ul>
+          <li>Детский лагерь в Дубае летом: на что смотреть при выборе</li>
+          <li>Чем занять ребёнка на летних каникулах в Дубае — разбор форматов</li>
+          <li>Онлайн-интенсив или очный лагерь: что выбрать и когда</li>
+          <li>Подготовка к международной школе за одно лето — разбор программы</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cluster" style="margin-top:1px;">
+      <div class="cluster-col">
+        <h4>Пиллар 3 — «Soft skills и развитие»</h4>
+        <ul>
+          <li>Soft skills у детей: что это и почему это обсуждают в школах Дубая</li>
+          <li>Как понять, что ребёнку скучно в школе, и что с этим делать</li>
+          <li>Детская самостоятельность: программы и форматы, которые реально работают</li>
+        </ul>
+      </div>
+      <div class="cluster-col">
+        <h4>Пиллар 4 — «Языки и предметные олимпиады»</h4>
+        <ul>
+          <li>Изучение английского языка в Дубае: сравнение подходов для русскоязычных детей</li>
+          <li>Олимпиады для школьников за границей: как готовиться и зачем участвовать</li>
+          <li>Китайский язык для детей: с какого возраста начинать и почему это выгодно в Дубае</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="finding" style="margin-top:16px;">
+      <h4>Темп и приоритеты</h4>
+      <p>2 статьи в месяц на старте (не больше — качество и внутренняя перелинковка важнее частоты для сайта без исторического блога). Первые 3 статьи — по одной из каждого пиллара, кроме «Языки и олимпиады» (наименьший объём спроса из четырёх, можно начать позже). Дальше — по отклику: смотреть, какие темы приводят трафик из поиска за первые 2–3 месяца, и усиливать кластер вокруг них.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="section-no">05</span><h2>Вердикт</h2></div>
+    <div class="verdict">
+      <p><strong>Технический долг небольшой и чинится без разработчика</strong> — это правки title/description/H1 в редакторе Tilda и настройка редиректов для дублей, пара дней работы. Он даёт прирост, но потолок у него низкий: это не те изменения, которые приводят новый трафик, только убирают потери на существующем.</p>
+      <p>Настоящий рычаг роста — блог. Сайт сейчас работает только с аудиторией, которая уже знает про «Алгоритм» или целенаправленно ищет конкретную программу. Блог открывает доступ к гораздо большей аудитории на этапе выбора — и именно там решается, попадёт ли семья в воронку «Алгоритма» вообще или осядет у конкурента, у которого такой контент уже есть.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="section-no">06</span><h2>Что сделать дальше</h2></div>
+    <div class="checklist">
+      <div class="check-item">
+        <div class="check-priority p-high">Срочно</div>
+        <div class="check-body">
+          <h4>Разрулить 6 групп дублей title (13 страниц)</h4>
+          <p>Оставить действующую версию каждой пары/группы, на остальные — 301-редирект на неё и удаление из sitemap. Начать с кластера «Летние онлайн-интенсивы» (4 страницы сразу).</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-priority p-high">Срочно</div>
+        <div class="check-body">
+          <h4>Добавить H1 на 15 страниц без заголовка</h4>
+          <p>Приоритет — страницы с реальным спросом: <code>summer_intensive</code>, <code>teen_camp</code>, <code>online_dubai</code>, <code>russian_online</code>. Служебные/тестовые страницы (<code>thanks</code>, <code>quests</code>) можно не трогать.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-priority p-med">В течение месяца</div>
+        <div class="check-body">
+          <h4>Дописать meta description на 9 страницах</h4>
+          <p>Закрыть test_utm и две автогенерированные Tilda-страницы от индексации вместо того, чтобы писать им description.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-priority p-med">В течение месяца</div>
+        <div class="check-body">
+          <h4>Запустить раздел блога и опубликовать первые 3 статьи</h4>
+          <p>По одной статье из пилларов «Переезд и школа», «Каникулы и лагеря», «Soft skills» — проверить, заходит ли формат, прежде чем планировать весь календарь на квартал.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-priority p-low">Можно отложить</div>
+        <div class="check-body">
+          <h4>Добавить html lang и базовую schema.org (Organization, FAQPage)</h4>
+          <p>Не влияет на позиции напрямую, но открывает доступ к расширенным сниппетам в выдаче и готовит сайт к возможной мультиязычности.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
