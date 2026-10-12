@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Google Ads и эффект ареола</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%232a78d6%22/><text x=%2250%22 y=%2266%22 font-size=%2258%22 font-family=%22sans-serif%22 fill=%22white%22 text-anchor=%22middle%22>A</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    color-scheme: light;
+    --plane:        #f6f6f3;
+    --surface:      #ffffff;
+    --surface-2:    #fbfbf9;
+    --ink:          #101014;
+    --ink-2:        #55564f;
+    --ink-muted:    #8b8a83;
+    --hairline:     #e4e3db;
+    --brand:        #0e8f99;
+    --brand-soft:   #e0f2f3;
+    --accent:       #9c2c52;
+    --accent-soft:  #f7e6ec;
+    --good:         #0ca30c;
+    --good-soft:    #e3f7e3;
+    --warn:         #b8790a;
+    --warn-soft:    #fdf1dd;
+    --bad:          #d03b3b;
+    --bad-soft:     #fbe8e8;
+    --shadow: 0 1px 2px rgba(16,16,20,0.04), 0 8px 24px -12px rgba(16,16,20,0.10);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --plane:        #0c0c0d;
+      --surface:      #161617;
+      --surface-2:    #131314;
+      --ink:          #f5f5f2;
+      --ink-2:        #c3c2b7;
+      --ink-muted:    #8b8a83;
+      --hairline:     #2a2a29;
+      --brand:        #2bb8c4;
+      --brand-soft:   #103539;
+      --accent:       #d1638a;
+      --accent-soft:  #33141f;
+      --good:         #0ca30c;
+      --good-soft:    #122a16;
+      --warn:         #d99a1a;
+      --warn-soft:    #2e2410;
+      --bad:          #e66767;
+      --bad-soft:     #331413;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --plane:        #0c0c0d;
+    --surface:      #161617;
+    --surface-2:    #131314;
+    --ink:          #f5f5f2;
+    --ink-2:        #c3c2b7;
+    --ink-muted:    #8b8a83;
+    --hairline:     #2a2a29;
+    --brand:        #2bb8c4;
+    --brand-soft:   #103539;
+    --accent:       #d1638a;
+    --accent-soft:  #33141f;
+    --good:         #0ca30c;
+    --good-soft:    #122a16;
+    --warn:         #d99a1a;
+    --warn-soft:    #2e2410;
+    --bad:          #e66767;
+    --bad-soft:     #331413;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background:var(--plane); color:var(--ink);
+    font-family:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing:antialiased; line-height:1.55;
+  }
+  h1,h2,h3,.display{ font-family:"Manrope", system-ui, sans-serif; text-wrap:balance; margin:0; }
+  .num{ font-family:"IBM Plex Mono", ui-monospace, monospace; font-variant-numeric:tabular-nums; }
+  a{ color:var(--brand); }
+  ::selection{ background:var(--brand-soft); }
+
+  .wrap{ max-width:880px; margin:0 auto; padding:40px 20px 80px; }
+
+  header{ margin-bottom:32px; padding-bottom:24px; border-bottom:1px solid var(--hairline); }
+  .eyebrow{
+    font-family:"IBM Plex Mono", monospace; font-size:11px; font-weight:600; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--accent); margin-bottom:10px;
+  }
+  h1{ font-size:clamp(24px,4vw,32px); line-height:1.18; letter-spacing:-0.01em; margin:0 0 10px; }
+  .subtitle{ color:var(--ink-2); font-size:14.5px; max-width:64ch; }
+  .subtitle b{ color:var(--ink); font-weight:600; }
+
+  .kpis{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--hairline); border:1px solid var(--hairline); border-radius:14px; overflow:hidden; margin-top:24px; }
+  .kpi{ background:var(--surface); padding:16px 18px; }
+  .kpi-label{ font-size:11.5px; color:var(--ink-2); margin-bottom:6px; }
+  .kpi-value{ font-size:21px; font-weight:700; font-family:"Manrope"; letter-spacing:-0.01em; }
+  .kpi-value .frac{ font-size:13px; color:var(--ink-muted); font-weight:500; font-family:"IBM Plex Sans"; }
+  .kpi-sub{ font-size:11.5px; color:var(--ink-muted); margin-top:3px; }
+  @media(max-width:640px){ .kpis{ grid-template-columns:repeat(2,1fr); } }
+
+  section{ margin-top:48px; }
+  .section-head{ display:flex; align-items:baseline; gap:10px; margin-bottom:14px; }
+  .section-no{ font-family:"IBM Plex Mono", monospace; font-size:11.5px; color:var(--ink-muted); }
+  h2{ font-size:19px; font-weight:700; letter-spacing:-0.01em; }
+  .lede{ color:var(--ink-2); font-size:13.5px; max-width:70ch; margin:-4px 0 18px; }
+
+  .card{ background:var(--surface); border:1px solid var(--hairline); border-radius:14px; box-shadow:var(--shadow); }
+  .summary-card{ padding:22px 24px; }
+  .summary-card p{ margin:0 0 12px; font-size:14.5px; }
+  .summary-card p:last-child{ margin-bottom:0; }
+  .summary-card strong{ color:var(--brand); }
+
+  .table-wrap{ overflow-x:auto; }
+  table{ width:100%; border-collapse:collapse; font-size:13px; min-width:480px; }
+  th{ text-align:left; font-weight:600; font-size:10.5px; text-transform:uppercase; letter-spacing:0.04em; color:var(--ink-2); padding:10px 14px; border-bottom:1px solid var(--hairline); background:var(--surface-2); white-space:nowrap; }
+  td{ padding:10px 14px; border-bottom:1px solid var(--hairline); white-space:nowrap; }
+  tr:last-child td{ border-bottom:none; }
+  td.num, th.num{ text-align:right; font-family:"IBM Plex Mono", monospace; font-variant-numeric:tabular-nums; }
+  td.name{ font-weight:500; }
+
+  .pill{ display:inline-flex; align-items:center; gap:5px; padding:2px 9px; border-radius:99px; font-size:11.5px; font-weight:600; }
+  .pill-good{ background:var(--good-soft); color:var(--good); }
+  .pill-warn{ background:var(--warn-soft); color:var(--warn); }
+  .pill-bad{ background:var(--bad-soft); color:var(--bad); }
+  .pill-brand{ background:var(--brand-soft); color:var(--brand); }
+  .pill-muted{ background:var(--surface-2); color:var(--ink-muted); }
+
+  .sourcebar{ display:flex; height:32px; border-radius:8px; overflow:hidden; margin:16px 0 10px; border:1px solid var(--hairline); }
+  .sourcebar > div{ display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600; color:#fff; min-width:0; }
+  .legend{ display:flex; flex-wrap:wrap; gap:14px; font-size:12px; color:var(--ink-2); }
+  .legend span{ display:inline-flex; align-items:center; gap:6px; }
+  .dot{ width:9px; height:9px; border-radius:2.5px; display:inline-block; flex:none; }
+
+  .month-compare{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--hairline); border:1px solid var(--hairline); border-radius:14px; overflow:hidden; }
+  .month-col{ background:var(--surface); padding:16px 18px; }
+  .month-col h3{ font-family:"Manrope"; font-size:12.5px; text-transform:uppercase; letter-spacing:0.04em; color:var(--ink-2); margin:0 0 10px; font-weight:700; }
+  .month-stat{ display:flex; justify-content:space-between; font-size:12.5px; padding:5px 0; border-bottom:1px dashed var(--hairline); gap:8px; }
+  .month-stat:last-child{ border-bottom:none; }
+  .month-stat span:first-child{ color:var(--ink-2); }
+  .month-stat span:last-child{ font-family:"IBM Plex Mono", monospace; font-weight:600; flex:none; }
+  @media(max-width:700px){ .month-compare{ grid-template-columns:1fr; } }
+
+  .finding{ border:1px solid var(--hairline); border-left:4px solid var(--brand); border-radius:10px; background:var(--surface); padding:15px 17px; margin-bottom:12px; }
+  .finding.warn{ border-left-color:var(--warn); }
+  .finding.bad{ border-left-color:var(--bad); }
+  .finding.good{ border-left-color:var(--good); }
+  .finding h4{ margin:0 0 6px; font-size:14px; font-family:"Manrope"; font-weight:700; }
+  .finding p{ margin:0; font-size:13px; color:var(--ink-2); }
+  .finding p + p{ margin-top:6px; }
+  .finding code{ font-family:"IBM Plex Mono", monospace; font-size:12px; background:var(--surface-2); padding:1px 5px; border-radius:4px; }
+
+  .verdict{ background:var(--brand-soft); border:1px solid var(--hairline); border-radius:14px; padding:20px 22px; }
+  .verdict-label{ font-size:11px; text-transform:uppercase; letter-spacing:0.06em; font-weight:700; color:var(--brand); margin-bottom:8px; }
+  .verdict p{ margin:0 0 10px; font-size:13.5px; }
+  .verdict p:last-child{ margin:0; }
+
+  .checklist{ display:flex; flex-direction:column; gap:10px; }
+  .check-item{ display:flex; gap:12px; background:var(--surface); border:1px solid var(--hairline); border-radius:12px; padding:13px 15px; }
+  .check-priority{ flex-shrink:0; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.03em; padding:3px 8px; border-radius:6px; height:fit-content; white-space:nowrap; }
+  .p-high{ background:var(--bad-soft); color:var(--bad); }
+  .p-med{ background:var(--warn-soft); color:var(--warn); }
+  .p-low{ background:var(--surface-2); color:var(--ink-2); }
+  .check-body h4{ margin:0 0 3px; font-size:13.5px; font-family:"Manrope"; font-weight:700; }
+  .check-body p{ margin:0; font-size:12.5px; color:var(--ink-2); }
+
+  .note{ font-size:12px; color:var(--ink-muted); margin-top:10px; }
+  footer{ text-align:center; font-size:11.5px; color:var(--ink-muted); margin-top:56px; padding-top:20px; border-top:1px solid var(--hairline); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Маркетинговый анализ · Algorithm Training Center</div>
+    <h1>Google Ads и «эффект ареола»: откуда лиды на самом деле</h1>
+    <p class="subtitle">Тот же выверенный набор, что лежит в основе дашборда Google Ads: заявки из форм сайта, сверенные с расходом рекламного кабинета по отчётным окнам. Период — <b>1 августа – 4 октября 2026</b> (65 дней). Расход по рекламе закрыт данными по 5 октября, лиды — по 4 октября; в этом разборе новый файл с лидами не прикладывался, использован набор, уже выверенный в дашборде — если пришлёшь свежую выгрузку, пересчитаю.</p>
+
+    <div class="kpis">
+      <div class="kpi">
+        <div class="kpi-label">Расход на рекламу</div>
+        <div class="kpi-value num">16 573 AED</div>
+        <div class="kpi-sub">14 500 кликов</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Лидов всего</div>
+        <div class="kpi-value num">79</div>
+        <div class="kpi-sub">за 65 дней</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">С меткой Google Ads</div>
+        <div class="kpi-value num">42 <span class="frac">(53%)</span></div>
+        <div class="kpi-sub">CPL по ним — ≈395 AED</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Без метки (органика)</div>
+        <div class="kpi-value num">37 <span class="frac">(47%)</span></div>
+        <div class="kpi-sub">сейчас тоже считаются как google</div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-head"><span class="section-no">01</span><h2>Короткий ответ</h2></div>
+    <div class="card summary-card">
+      <p>Да, Google Ads даёт измеримый, стабильный вклад — <strong>53% лидов (42 из 79) несут явную метку</strong> (<code style="font-family:'IBM Plex Mono',monospace; font-size:12.5px; background:var(--surface-2); padding:1px 5px; border-radius:4px;">utm_source=google/googleads</code> или <code style="font-family:'IBM Plex Mono',monospace; font-size:12.5px; background:var(--surface-2); padding:1px 5px; border-radius:4px;">gclid</code>). Доля держится на одном уровне два месяца подряд (54% в августе, 54% в сентябре) — Google Ads не «подъедает» другие каналы и не растворяется в них.</p>
+      <p>Текущая методология дашборда причисляет оставшиеся 37 лидов (47%) к Google тоже — потому что у них нет вообще никакой метки источника (ни соцсети, ни email, ни sms), а значит других конкурирующих версий у них тоже нет. Это рабочее допущение, а не доказанный факт: часть из них действительно может быть отложенным эффектом рекламы («увидел объявление → пришёл напрямую, без клика»), а часть — обычным прямым/сарафанным трафиком, который был бы и без рекламы.</p>
+      <p>Главная находка в разметке — не ареол, а техническая: <strong>57% размеченных лидов (24 из 42) вообще не несут названия кампании</strong> в <code style="font-family:'IBM Plex Mono',monospace; font-size:12.5px; background:var(--surface-2); padding:1px 5px; border-radius:4px;">utm_campaign</code> — только факт клика по рекламе. Это значит, что почти для 2/3 размеченных лидов нельзя напрямую сказать, какая именно кампания (Брендовая, Основные программы и т.д.) их принесла — только то, что это точно был клик по Google Ads.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="section-no">02</span><h2>Откуда лиды на самом деле</h2></div>
+    <p class="lede">79 лидов за 65 дней, по признаку метки источника в заявке на сайте.</p>
+
+    <div class="sourcebar">
+      <div style="width:53.2%; background:var(--brand);">Google Ads — 42</div>
+      <div style="width:46.8%; background:var(--accent);">Без метки — 37</div>
+    </div>
+    <div class="legend">
+      <span><span class="dot" style="background:var(--brand);"></span>Google Ads (utm_source=google/googleads или gclid) — 42 (53%)</span>
+      <span><span class="dot" style="background:var(--accent);"></span>Без метки — 37 (47%)</span>
+    </div>
+    <p class="note">Это уже очищенный срез: заявки с другими явными источниками (соцсети, sms, email-рассылки, чат-боты), тестовые/дублирующие и похожие на спам-записи в дашборд изначально не включены — видна только та часть, где выбор на самом деле стоит между «Google Ads» и «не определено».</p>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="section-no">03</span><h2>Август → Сентябрь → Октябрь</h2></div>
+    <p class="lede">Расход вырос почти вдвое от августа к сентябрю при том, что кликов стало меньше — цена клика выросла. Доля Google Ads среди лидов при этом не шелохнулась.</p>
+
+    <div class="month-compare">
+      <div class="month-col">
+        <h3>Август (1–26)</h3>
+        <div class="month-stat"><span>Расход</span><span>5 843 AED</span></div>
+        <div class="month-stat"><span>Клики</span><span>8 759</span></div>
+        <div class="month-stat"><span>Лиды всего</span><span>24</span></div>
+        <div class="month-stat"><span>— с меткой</span><span>13 (54%)</span></div>
+        <div class="month-stat"><span>— без метки</span><span>11 (46%)</span></div>
+        <div class="month-stat"><span>Блендед CPL</span><span>243 AED</span></div>
+        <div class="month-stat"><span>CPL по меткам</span><span>449 AED</span></div>
+      </div>
+      <div class="month-col">
+        <h3>Сентябрь (1–30)</h3>
+        <div class="month-stat"><span>Расход</span><span>10 291 AED</span></div>
+        <div class="month-stat"><span>Клики</span><span>5 474</span></div>
+        <div class="month-stat"><span>Лиды всего</span><span>52</span></div>
+        <div class="month-stat"><span>— с меткой</span><span>28 (54%)</span></div>
+        <div class="month-stat"><span>— без метки</span><span>24 (46%)</span></div>
+        <div class="month-stat"><span>Блендед CPL</span><span>198 AED</span></div>
+        <div class="month-stat"><span>CPL по меткам</span><span>368 AED</span></div>
+      </div>
+      <div class="month-col">
+        <h3>Октябрь (1–4/5)</h3>
+        <div class="month-stat"><span>Расход</span><span>440 AED</span></div>
+        <div class="month-stat"><span>Клики</span><span>267</span></div>
+        <div class="month-stat"><span>Лиды всего</span><span>3</span></div>
+        <div class="month-stat"><span>— с меткой</span><span>1 (33%)</span></div>
+        <div class="month-stat"><span>— без метки</span><span>2 (67%)</span></div>
+        <div class="month-stat"><span>Блендед CPL</span><span>147 AED</span></div>
+        <div class="month-stat"><span>CPL по меткам</span><span>440 AED</span></div>
+      </div>
+    </div>
+
+    <div class="finding" style="margin-top:16px;">
+      <h4>Что здесь видно, а что — нет</h4>
+      <p>Доля Google Ads держится 53–54% в обоих полных месяцах — стабильный паттерн, не случайный выброс. Блендед CPL упал почти в 1,5 раза (243 → 198 AED) при удвоении расхода — масштабирование пока идёт без потери эффективности в среднем по счёту.</p>
+      <p>Октябрь считать рано: 5 дней рекламы и 3 лида — выборка слишком мала, чтобы делать по ней выводы, цифры приведены только для полноты.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="section-no">04</span><h2>Что можно узнать про кампании из разметки лидов</h2></div>
+    <p class="lede">Среди 42 лидов с меткой Google Ads — по какому <code style="font-family:'IBM Plex Mono',monospace; font-size:12px; background:var(--surface-2); padding:1px 5px; border-radius:4px;">utm_campaign</code> они пришли. Это не то же самое, что расход кампаний в дашборде — там расход считается по кабинету, а здесь показано, что реально долетает до CRM.</p>
+    <div class="card table-wrap">
+      <table>
+        <thead>
+          <tr><th>utm_campaign</th><th class="num">Лидов</th><th class="num">Доля от размеченных</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="name">Без названия кампании (только клик/gclid)</td><td class="num">24</td><td class="num"><span class="pill pill-bad">57%</span></td></tr>
+          <tr><td class="name">brand_campaign</td><td class="num">7</td><td class="num"><span class="pill pill-good">17%</span></td></tr>
+          <tr><td class="name">online</td><td class="num">5</td><td class="num"><span class="pill pill-muted">12%</span></td></tr>
+          <tr><td class="name">programs</td><td class="num">3</td><td class="num"><span class="pill pill-muted">7%</span></td></tr>
+          <tr><td class="name">kms-dubai-ru</td><td class="num">3</td><td class="num"><span class="pill pill-muted">7%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="finding bad" style="margin-top:16px;">
+      <h4>24 из 42 размеченных лидов — без названия кампании</h4>
+      <p>У этих заявок есть <code>gclid</code> или <code>utm_source=google/googleads</code> — точно клик по рекламе — но <code>utm_campaign</code> пустой. Часть форм на сайте (особенно «Home page» формы) не передаёт этот параметр дальше в CRM. В дашборде такие лиды засчитываются в общий итог Google Ads, но какая конкретно кампания их привела — узнать нельзя.</p>
+      <p>Это тот же класс проблемы, что и «эффект ареола» — только не отложенный по времени, а потерянный по дороге в CRM. Чинится так же: добавить <code>utm_campaign</code> в передачу данных формы, а не только <code>utm_source</code>/<code>gclid</code>.</p>
+    </div>
+    <div class="finding good">
+      <h4>brand_campaign — самая узнаваемая кампания в разметке</h4>
+      <p>7 из 42 размеченных лидов (17%) явно пришли по брендовому запросу — люди целенаправленно искали «Algorithm Dubai» / «школа алгоритм дубай» и кликнули на рекламу. Это сигнал растущей узнаваемости бренда, который стоит поддерживать: не снижать ставки на брендовых кампаниях, расширять транслит и опечатки.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="section-no">05</span><h2>«Эффект ареола»: что нашли, а что нет</h2></div>
+
+    <div class="finding bad">
+      <h4>Находка 1 — почти 2 из 3 лидов Google Ads теряют привязку к кампании ещё до CRM</h4>
+      <p>57% размеченных лидов не несут <code>utm_campaign</code>. Это не ареол (источник точно известен — Google Ads), но это значит, что реальная эффективность отдельных кампаний (Брендовая vs Основные программы vs GDN-ретаргетинг) видна в дашборде только со стороны расхода, а не со стороны лидов — свести их напрямую по кампаниям сейчас нельзя.</p>
+    </div>
+    <div class="finding warn">
+      <h4>Находка 2 — доля «без метки» стабильна, а не растёт вместе с расходом</h4>
+      <p>Расход на рекламу в сентябре почти вдвое больше августовского (10 291 против 5 843 AED), а доля лидов «без метки» осталась той же (46% оба месяца). Если бы отложенный эффект рекламы усиливался вместе с масштабом, логично было бы ждать роста именно этой доли — а она не изменилась. Слабый аргумент против растущего ареола, но не опровержение: выборка — 2 полных месяца, для строгого вывода мало.</p>
+    </div>
+    <div class="finding">
+      <h4>Находка 3 — «без метки» не равно «эффект ареола»</h4>
+      <p>В эту группу попадают оплаты курсов через Cart (Dwight School, Hartland, литературные квесты), заявки с прямых заходов на сайт и повторные обращения той же семьи. Часть из них — наверняка существующие или тёплые контакты школы (сарафан, визитки, рекомендации), которые были бы и без рекламы вообще. Без отдельного вопроса в форме («как вы о нас узнали») отделить реальный ареол от этого фона нельзя.</p>
+    </div>
+
+    <div class="verdict" style="margin-top:18px;">
+      <div class="verdict-label">Вердикт</div>
+      <p><strong>Текущая политика «без метки = считаем как Google» — разумное упрощение для дашборда, но не доказанный факт.</strong> У 47% лидов правда нет метки ни одного источника — значит, нет и доказательства, что это именно органика конкурентов или сарафан, а не реклама. Но нет и доказательства обратного.</p>
+      <p>Рабочая гипотеза: часть «без метки» — реальный отложенный эффект рекламы, часть — устойчивый органический/сарафанный фон школы, который был и до роста бюджета. Разделить эти две части без self-reported вопроса в форме или полноценной аналитики (GA4 + атрибуция) сейчас невозможно.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="section-no">06</span><h2>Что сделать дальше</h2></div>
+    <div class="checklist">
+      <div class="check-item">
+        <div class="check-priority p-high">Срочно</div>
+        <div class="check-body">
+          <h4>Добавить utm_campaign в передачу данных «Home page» форм</h4>
+          <p>57% лидов с явным Google Ads кликом теряют привязку к конкретной кампании. Без этого нельзя посчитать реальный CPL по кампаниям — только по рекламному кабинету в среднем.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-priority p-med">В течение месяца</div>
+        <div class="check-body">
+          <h4>Добавить вопрос «Как вы о нас узнали?» в формы заявки</h4>
+          <p>Свободный текст или короткий список (Google / Instagram / рекомендация / знаю школу давно / другое). Единственный способ увидеть реальный ареол и отделить его от сарафанного фона — сейчас оба невидимы для UTM одинаково.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-priority p-med">В течение месяца</div>
+        <div class="check-body">
+          <h4>Расширить brand_campaign</h4>
+          <p>Лучшая узнаваемость в разметке (17% размеченных лидов) и исторически самый дешёвый клик в аккаунте. Транслит на русском/арабском, опечатки, «algorithm dubai school» и похожие варианты.</p>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-priority p-low">Когда будет время</div>
+        <div class="check-body">
+          <h4>Пересобрать этот отчёт через месяц-два на большей выборке</h4>
+          <p>Сейчас всего 2 полных месяца данных — для уверенного вывода о динамике ареола мало. С октябрём-ноябрём картина станет надёжнее.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>Данные CRM (формы сайта) и Google Ads Manager, 1 августа – 4/5 октября 2026 · тот же набор, что в живом дашборде</footer>
+</div>
+</body>
+</html>
