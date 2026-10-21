@@ -636,8 +636,8 @@ function render(start, end){
   document.getElementById('campaigns-chart-desc').textContent = `Активные кампании, ${label}`;
 
   /* Campaign bars */
-  const active = campaigns.filter(c => c.cost > 0).sort((a,b)=>b.cost-a.cost);
-  const maxCost = active.length ? Math.max(...active.map(c=>c.cost)) : 1;
+  const active = campaigns.filter(c => c.cost > 0 || c.impr > 0 || c.clicks > 0).sort((a,b)=>b.cost-a.cost);
+  const maxCost = active.length ? (Math.max(...active.map(c=>c.cost)) || 1) : 1;
   document.getElementById('campaign-bars').innerHTML = active.length ? active.map(c => `
     <div class="bar-row">
       <div class="name" title="${c.name}">${c.name}</div>
