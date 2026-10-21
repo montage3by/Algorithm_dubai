@@ -424,6 +424,7 @@ const campaignMeta = {
   'КМС ретаргетинг':                { type:'Медийная',        kind:'display', budget:null },
   'GDN - Алгоритм Дубай':       { type:'Медийная',        kind:'display', budget:30 },
   'Youtube shorts':             { type:'Видео',           kind:'video',   budget:null },
+  'KMC - Halloween Workshop':   { type:'Медийная',        kind:'display', budget:60 },
 };
 
 const adPeriods = [
@@ -442,21 +443,21 @@ const adPeriods = [
     { name:'КМС ретаргетинг', impr:15940, clicks:1928, cost:1914.30, conv:34.00, opt:null },
     { name:'GDN - Алгоритм Дубай', impr:21576, clicks:2177, cost:2000.00, conv:10.00, opt:97.7 },
   ]},
-  { start:'2026-10-01', end:'2026-10-05', campaigns:[
-    { name:'Брендовая', impr:303, clicks:30, cost:157.20, conv:3.00, opt:71.6 },
-    { name:'Основные программы', impr:169, clicks:16, cost:157.53, conv:0.00, opt:66.8 },
-    { name:'Околостоящие запросы', impr:220, clicks:8, cost:110.55, conv:0.00, opt:75.0 },
-    { name:'Youtube shorts', impr:1172, clicks:0, cost:14.75, conv:0.00, opt:100.0 },
-    { name:'GDN - Алгоритм Дубай', impr:3278, clicks:213, cost:0.00, conv:0.00, opt:97.7 },
-  ]},
-  { start:'2026-10-11', end:'2026-10-18', campaigns:[
-    { name:'Брендовая', impr:234, clicks:35, cost:233.77, conv:0.00, opt:66.8 },
-    { name:'Основные программы', impr:490, clicks:27, cost:281.96, conv:0.00, opt:63.4 },
+  { start:'2026-10-01', end:'2026-10-19', campaigns:[
+    { name:'Брендовая', impr:684, clicks:85, cost:577.59, conv:3.00, opt:66.8 },
+    { name:'Основные программы', impr:881, clicks:66, cost:587.83, conv:0.00, opt:64.0 },
+    { name:'Околостоящие запросы', impr:697, clicks:27, cost:382.51, conv:0.00, opt:72.0 },
+    { name:'KMC - Halloween Workshop', impr:63113, clicks:4992, cost:0.00, conv:0.00, opt:97.4 },
+    { name:'GDN - Алгоритм Дубай', impr:5259, clicks:413, cost:0.00, conv:0.00, opt:97.4 },
   ]},
 ];
-/* Период 11-18 окт неполный: расход по Display/PMax-кампаниям (в т.ч. новой
-   Halloween-кампании) не попал в скрины аккаунта (страница 2 таблицы кампаний,
-   ~150 AED Search + весь Display-трафик) — доставим при следующем обновлении. */
+/* Период 1-19 окт сверен с итогом по аккаунту (Search: 178 кликов / AED1 547.93 —
+   сходится день в день с Total: Search campaigns). Расхождение по Total: Account
+   (AED1 568.83) — на ~21 AED (1.3%) больше суммы кампаний; остаток, видимо, с ранних
+   дней одной из уже остановленных PMax-кампаний, в разбивке сейчас не виден.
+   У KMC - Halloween Workshop и GDN - Алгоритм Дубай расход AED0.00 при реальных
+   показах/кликах — похоже на задержку биллинга Google Ads (как было с GDN в сентябре),
+   не на баг дашборда; при следующем обновлении проверить, появился ли расход. */
 
 /* Лиды с формы сайта: источники google/googleads/gclid + вся органика (без меток)
    причислены к Google Ads; тестовые/дублирующие/соц.сети — исключены (см. историю правок). */
