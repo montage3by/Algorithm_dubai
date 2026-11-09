@@ -415,18 +415,19 @@ const toISODate = d => `${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getD
 /* Данные Google Ads приходят периодами (скриншоты аккаунта), не посуточно —
    поэтому произвольный период считается суммой ЦЕЛИКОМ входящих в него periods.
    Дни вне periods показываются как "нет данных" в подсказке. */
+/* Бюджеты — текущие дневные по скрину аккаунта на 8 ноя 2026. */
 const campaignMeta = {
-  'Брендовая':                 { type:'Поиск',            kind:'search',  budget:27 },
-  'Основные программы':        { type:'Поиск',            kind:'search',  budget:30 },
+  'Брендовая':                 { type:'Поиск',            kind:'search',  budget:20 },
+  'Основные программы':        { type:'Поиск',            kind:'search',  budget:20 },
   'Околостоящие запросы':      { type:'Поиск',            kind:'search',  budget:20 },
   'Youtube':  { type:'Performance Max',  kind:'pmax',    budget:100 },
   'PMax - день открытых дверей': { type:'Performance Max', kind:'pmax',   budget:320 },
   'КМС ретаргетинг':                { type:'Медийная',        kind:'display', budget:null },
-  'GDN - Алгоритм Дубай':       { type:'Медийная',        kind:'display', budget:30 },
+  'GDN - Алгоритм Дубай':       { type:'Медийная',        kind:'display', budget:20 },
   'Youtube shorts':             { type:'Видео',           kind:'video',   budget:null },
-  'KMC - Halloween Workshop':   { type:'Медийная',        kind:'display', budget:60 },
+  'KMC - Halloween Workshop':   { type:'Медийная',        kind:'display', budget:20 },
   'Search - Нулевка':           { type:'Поиск',           kind:'search',  budget:50 },
-  'Search - Гибрид':            { type:'Поиск',           kind:'search',  budget:50 },
+  'Search - Гибрид':            { type:'Поиск',           kind:'search',  budget:100 },
 };
 
 const adPeriods = [
@@ -460,13 +461,21 @@ const adPeriods = [
     { name:'Search - Нулевка', impr:945, clicks:26, cost:571.15, conv:1.00, opt:85.2 },
     { name:'Search - Гибрид', impr:1064, clicks:5, cost:75.01, conv:0.00, opt:97.4 },
   ]},
-  { start:'2026-10-25', end:'2026-11-02', campaigns:[
+  { start:'2026-10-25', end:'2026-10-31', campaigns:[
     { name:'Брендовая', impr:261, clicks:26, cost:283.07, conv:2.00, opt:82.0 },
     { name:'Основные программы', impr:381, clicks:31, cost:245.05, conv:2.00, opt:74.0 },
     { name:'GDN - Алгоритм Дубай', impr:62, clicks:15, cost:0.00, conv:0.00, opt:97.4 },
     { name:'KMC - Halloween Workshop', impr:0, clicks:0, cost:0.00, conv:0.00, opt:97.4 },
     { name:'Search - Нулевка', impr:1973, clicks:61, cost:843.35, conv:0.00, opt:86.3 },
     { name:'Search - Гибрид', impr:6142, clicks:53, cost:470.18, conv:0.00, opt:94.2 },
+  ]},
+  { start:'2026-11-01', end:'2026-11-08', campaigns:[
+    { name:'Брендовая', impr:275, clicks:24, cost:211.78, conv:2.00, opt:82.0 },
+    { name:'Основные программы', impr:452, clicks:27, cost:164.66, conv:0.00, opt:82.0 },
+    { name:'GDN - Алгоритм Дубай', impr:267, clicks:43, cost:400.00, conv:2.00, opt:97.4 },
+    { name:'KMC - Halloween Workshop', impr:10394, clicks:1193, cost:0.00, conv:0.00, opt:null },
+    { name:'Search - Нулевка', impr:232, clicks:14, cost:156.46, conv:0.00, opt:null },
+    { name:'Search - Гибрид', impr:11193, clicks:110, cost:746.60, conv:1.00, opt:92.4 },
   ]},
 ];
 /* Период 1-18 окт (был 1-19, сдвинут на день раньше, чтобы не пересекаться со
@@ -482,7 +491,15 @@ const adPeriods = [
    Период 25 окт - 2 ноя сверен полностью: сумма по 6 видимым кампаниям день в
    день совпадает с Total: Account (impr 8 819, клики 186, расход AED1 841.65,
    конв. 4.00) — показы по кампаниям, где явно не было в таблице, досчитаны из
-   CTR и перепроверены обратным суммированием. */
+   CTR и перепроверены обратным суммированием.
+   Период 25 окт - 2 ноя сдвинут на 25-31 окт (был до 2 ноя), чтобы не пересекаться
+   со следующим периодом 1-8 ноя (оба скрина захватывают 1-2 ноя) — тот же приём
+   сдвига границы, что и выше.
+   Период 1-8 ноя сверен полностью: сумма по 6 кампаниям с активностью совпадает с
+   Total: Account (impr 22 813, клики 1 411, расход AED1 679.50, конв. 5.00), а
+   также с Total: Search (12 152 / 175 / AED1 279.50 / 3) и Total: Display
+   (10 661 / 1 236 / AED400.00 / 2). KMC - Halloween Workshop и Search - Нулевка
+   на момент скрина на паузе. */
 
 /* Лиды с формы сайта: источники google/googleads/gclid + вся органика (без меток)
    причислены к Google Ads; тестовые/дублирующие/соц.сети — исключены (см. историю правок). */
@@ -619,7 +636,20 @@ const leads = [
   { iso:'2026-10-29T13:04', name:'Maria Anokina', program:'Курсы: подбор программы' },
   { iso:'2026-10-29T17:18', name:'Veronika Pavlenko', program:'Курсы рус. языка: Dubai British School (оплата)' },
   { iso:'2026-11-02T10:39', name:'Kristina', program:'Курсы рус. языка: Hartland International School (оплата)' },
+  { iso:'2026-11-04T13:24', name:'Мари', program:'Гибрид: консультация' },
+  { iso:'2026-11-05T10:45', name:'Egor Hutornii', program:'Halloween Python (оплата)' },
+  { iso:'2026-11-05T10:47', name:'Irina', program:'Подготовка к школе: консультация' },
+  { iso:'2026-11-05T13:48', name:'Veronika Pavlenko', program:'Курсы рус. языка: Dubai British School (оплата)' },
+  { iso:'2026-11-06T12:19', name:'Ekaterina Chernova', program:'Halloween Python (оплата)' },
+  { iso:'2026-11-07T09:14', name:'Любовь', program:'Гибрид: подбор программы' },
+  { iso:'2026-11-08T14:20', name:'Shamsuddin', program:'Главная: пробный урок' },
 ];
+/* Выгрузка 2-8 ноя: не добавлены — Оксана 04.11 (переход из Яндекса, ysclid),
+   Adeel 05.11 (utm_source=fb) и 32 заказа Halloween Python 06.11 13:47-23:35 и
+   07.11 23:02-23:11 — бот/клик-фрод с КМС-кампании (мусорные площадки и
+   приложения, телефоны Индии/Нигерии/Эфиопии и др., ни одной оплаты Stripe,
+   повторы одних и тех же людей). Исключены по решению пользователя, в отличие
+   от октябрьской пачки, которая была включена как есть. */
 
 /* ---------------- Date range helpers ---------------- */
 function parseISO(s){ const [y,m,d] = s.split('-').map(Number); return new Date(y, m-1, d); }
