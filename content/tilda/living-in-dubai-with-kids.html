@@ -27,7 +27,7 @@
 .alg-promo{background:var(--brand);color:#fff;border-radius:20px;padding:26px 28px;margin:30px 0}
 .alg-promo p{margin:0 0 14px}
 .alg-promo a{color:#fff}
-.alg-promo .alg-btn{background:#fff;color:var(--brand)}
+.alg-promo .alg-btn{background:#fff;color:var(--brand)!important}
 .alg-btn{display:inline-block;background:var(--brand);color:#fff!important;text-decoration:none!important;font-family:var(--t-headline-font,'Montserrat'),Arial,sans-serif;font-weight:600;font-size:16px;border-radius:12px;padding:13px 26px;transition:opacity .2s}
 .alg-btn:hover{opacity:.88}
 .alg-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:18px 0 22px}
@@ -51,6 +51,23 @@
 .alg-sources{font-size:15px;color:var(--grey)}
 .alg-final{text-align:center;background:#fff7f6;border-radius:20px;padding:34px 24px;margin-top:48px}
 .alg-final p{font-size:19px;margin-bottom:18px}
+.alg-fig{margin:26px 0 30px}
+.alg-fig img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:20px}
+.alg-fig figcaption{font-size:14px;color:var(--grey);margin-top:10px;text-align:center}
+.alg-tl{display:flex;gap:0;margin:26px 0 30px;position:relative}
+.alg-tl-item{flex:1;position:relative;padding:44px 10px 0;text-align:center;font-size:15px;line-height:1.45}
+.alg-tl-item::before{content:"";position:absolute;top:15px;left:0;right:0;height:3px;background:var(--pink)}
+.alg-tl-item:first-child::before{left:50%}.alg-tl-item:last-child::before{right:50%}
+.alg-tl-item::after{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:21px;height:21px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 5px #fff}
+.alg-tl-item b{display:block;font-family:var(--t-headline-font,'Montserrat'),Arial,sans-serif;color:var(--brand);font-size:16px;margin-bottom:4px}
+.alg-ages{display:flex;align-items:flex-end;gap:12px;margin:24px 0 30px;height:260px}
+.alg-age{flex:1;border-radius:16px 16px 6px 6px;background:var(--pink);padding:14px 12px;display:flex;flex-direction:column;justify-content:flex-start;font-size:14px;line-height:1.4}
+.alg-age b{font-family:var(--t-headline-font,'Montserrat'),Arial,sans-serif;font-size:17px;color:var(--brand);margin-bottom:4px}
+.alg-age:nth-child(1){height:38%}.alg-age:nth-child(2){height:58%}.alg-age:nth-child(3){height:78%}
+.alg-age:nth-child(4){height:100%;background:var(--brand);color:#fff}.alg-age:nth-child(4) b{color:#fff}
+.alg-khda{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:20px 0 8px}
+.alg-khda div{border-radius:10px;padding:14px 6px;text-align:center;color:#fff;font-family:var(--t-headline-font,'Montserrat'),Arial,sans-serif;font-weight:600;font-size:14px;line-height:1.25}
+.alg-khda-cap{display:flex;justify-content:space-between;font-size:13px;color:var(--grey);margin-bottom:26px}
 @media (max-width:640px){
  .alg-art{font-size:16px;padding:0 16px 56px}
  .alg-lead{font-size:18px}
@@ -61,6 +78,15 @@
  .alg-cards{grid-template-columns:1fr}
  .alg-table{font-size:14px}
  .alg-table th,.alg-table td{padding:10px}
+ .alg-tl{flex-direction:column;gap:0}
+ .alg-tl-item{text-align:left;padding:0 0 18px 40px}
+ .alg-tl-item::before{top:0;bottom:0;left:10px;right:auto;width:3px;height:auto}
+ .alg-tl-item:first-child::before{left:10px;top:12px}.alg-tl-item:last-child::before{right:auto;bottom:auto;height:12px}
+ .alg-tl-item::after{top:2px;left:0;transform:none}
+ .alg-ages{height:auto;flex-direction:column;align-items:stretch}
+ .alg-age{height:auto!important;border-radius:14px}
+ .alg-khda{grid-template-columns:repeat(3,1fr)}
+ .alg-fig img{border-radius:14px}
 }
 </style>
 
@@ -73,6 +99,7 @@
 
 <p>At Algorithm we talk to newly arrived parents every day. This guide collects the questions they ask us most often when living in Dubai with kids is just beginning: step-by-step instructions, document checklists, a breakdown of school curricula and places that families at our center have tried themselves. It's useful whether you're expecting a baby or already have school-age children.</p>
 
+<figure class="alg-fig"><img src="https://algorithmdubai-production.up.railway.app/blog-images/dubai-marina-skyline.webp" alt="Dubai Marina skyline seen from the water" width="960" height="540"><figcaption>Dubai Marina: many families with kids start their life in Dubai here</figcaption></figure>
 <nav class="alg-toc" aria-label="Contents">
 <b>Contents</b>
 <ol>
@@ -89,6 +116,7 @@
 </nav>
 
 <h2 id="pregnancy">Pregnancy and giving birth in Dubai</h2>
+<figure class="alg-fig"><img src="https://algorithmdubai-production.up.railway.app/blog-images/mother-with-toddler.webp" alt="Smiling mother holding her toddler at home" width="960" height="540" loading="lazy"><figcaption>From the first prenatal visit to the birth certificate: what to prepare</figcaption></figure>
 
 <h3>When to register your pregnancy</h3>
 <p>Most women register with a clinic at around 6 weeks. That leaves enough time for all the screenings and tests.</p>
@@ -138,6 +166,14 @@
 <p>When you leave, the hospital gives you a birth notification. <b>You must register the birth within 30 days</b>, or you'll be fined. You have 120 days for the baby's other documents: passport, residence visa and Emirates ID.</p>
 </div>
 
+<div class="alg-tl" role="list" aria-label="Key deadlines from pregnancy to newborn documents">
+<div class="alg-tl-item" role="listitem"><b>Before pregnancy</b>Buy maternity insurance: waiting period 6-12 months</div>
+<div class="alg-tl-item" role="listitem"><b>~6 weeks</b>Register with a clinic</div>
+<div class="alg-tl-item" role="listitem"><b>Birth</b>Hospital birth notification</div>
+<div class="alg-tl-item" role="listitem"><b>Within 30 days</b>Register the birth with DHA</div>
+<div class="alg-tl-item" role="listitem"><b>Within 120 days</b>Passport, visa and Emirates ID</div>
+</div>
+
 <h3>Birth certificate in Dubai</h3>
 <p>You'll need:</p>
 <ul>
@@ -151,6 +187,7 @@
 <p>A child gets UAE citizenship only if the father is a UAE national.</p>
 
 <h2 id="nursery">Nursery in Dubai</h2>
+<figure class="alg-fig"><img src="https://algorithmdubai-production.up.railway.app/blog-images/child-playing-nursery.webp" alt="Child doing a bead craft activity on the floor" width="960" height="540" loading="lazy"><figcaption>Most nurseries in Dubai teach through play</figcaption></figure>
 <p>Nurseries in Dubai accept babies from 45 days old. Parents decide how many hours a day the child spends there.</p>
 <p>Groups are usually split by age:</p>
 <ol>
@@ -158,6 +195,13 @@
 <li><b>FS1 or KG1:</b> up to about 4.5 years. First steps in independence and early learning activities.</li>
 <li><b>FS2 or KG2:</b> the pre-school year. These groups are often attached to a school the child will later join. Children start learning letters, numbers and writing.</li>
 </ol>
+
+<div class="alg-ages" role="list" aria-label="Age groups from nursery to school in Dubai">
+<div class="alg-age" role="listitem"><b>Nursery</b>45 days to 3 years</div>
+<div class="alg-age" role="listitem"><b>FS1 / KG1</b>up to about 4.5 years</div>
+<div class="alg-age" role="listitem"><b>FS2 / KG2</b>the pre-school year</div>
+<div class="alg-age" role="listitem"><b>School</b>compulsory from age 6</div>
+</div>
 
 <h3>Early years curricula</h3>
 <p>Approaches vary a lot between nurseries, so it's worth understanding them before you choose.</p>
@@ -180,6 +224,7 @@
 </div>
 
 <h2 id="schools">Schools in Dubai</h2>
+<figure class="alg-fig"><img src="https://algorithmdubai-production.up.railway.app/blog-images/girl-drawing-at-desk.webp" alt="Schoolgirl drawing at a desk with coloured pencils" width="960" height="540" loading="lazy"><figcaption>Choosing the curriculum comes first: it shapes the route to university</figcaption></figure>
 <p>Choosing a school deserves time. The quality of education here is good, but the systems differ a lot from what families from Russia and the CIS are used to. School is also a child's first real community, and the friends they make there often stay for years.</p>
 
 <h3>Key facts</h3>
@@ -204,6 +249,10 @@
 <h3>Public or private school</h3>
 <p>Public schools are run by the UAE Ministry of Education and are free for UAE nationals. Expat children can enrol too, but the conditions are tough: AED 6,000 a year, foreign students make up no more than 20% of places, admission is merit-based and all subjects are taught in Arabic. That's why most expat families choose private schools.</p>
 <p>Private schools in Dubai are inspected by KHDA (Knowledge and Human Development Authority). Each school receives one of six ratings: Outstanding, Very Good, Good, Acceptable, Weak or Very Weak. Inspectors look at student progress, teaching, facilities, Arabic and more. You can read the inspection report for any private school on the KHDA website.</p>
+<div class="alg-khda" role="list" aria-label="KHDA school rating scale">
+<div role="listitem" style="background:#1f7a4d">Outstanding</div><div role="listitem" style="background:#4c9a5a">Very Good</div><div role="listitem" style="background:#8bb54a">Good</div><div role="listitem" style="background:#e0a930">Acceptable</div><div role="listitem" style="background:#e1625c">Weak</div><div role="listitem" style="background:#9e2744">Very Weak</div>
+</div>
+<div class="alg-khda-cap"><span>Highest rating</span><span>Lowest rating</span></div>
 <p>Before deciding, visit a few schools on your shortlist, talk to the teachers and look around the campus. And think about the commute. Dubai is big, and an hour in traffic twice a day will wear out both you and your child.</p>
 
 <h3>Moving from a school in another country</h3>
@@ -228,6 +277,7 @@
 </div>
 
 <h2 id="russian">Russian language for kids in Dubai</h2>
+<figure class="alg-fig"><img src="https://algorithmdubai-production.up.railway.app/blog-images/mother-reading-with-child.webp" alt="Mother reading a picture book with her daughter in bed" width="960" height="540" loading="lazy"><figcaption>Reading together at home helps, but regular lessons keep the language growing</figcaption></figure>
 <p>When a child studies in English, Russian quickly takes a back seat. Within a year or two, many children understand Russian but answer in English, and almost stop reading and writing.</p>
 <p>At Algorithm, children study Russian systematically so the language grows with them. They keep up with familiar subjects, don't fall behind because of a language barrier and make friends with other kids who have recently moved. Classes are playful and never overloaded. Beyond the main programmes, we run <a href="/quests">literature quests</a>, chess tournaments, the <a href="/olympiad_ru_registration">Russian language olympiad</a> and <a href="/holidays">holiday camps</a>. Upcoming events are on our <a href="/events">events page</a>.</p>
 <p>Find out your child's level of Russian at a <a href="/dia">free assessment</a>. If you live far from the center or outside Dubai, there are <a href="/russkiy-online">online courses</a>. All programmes are on our <a href="/courses">courses page</a>.</p>
@@ -249,6 +299,7 @@
 </div>
 
 <h2 id="nanny">Hiring a nanny in Dubai</h2>
+<figure class="alg-fig"><img src="https://algorithmdubai-production.up.railway.app/blog-images/woman-reading-to-toddler.webp" alt="Woman reading a book to a toddler on the sofa" width="960" height="540" loading="lazy"><figcaption>Decide what you want to hand over before you start looking for a nanny</figcaption></figure>
 <p>A good nanny takes care of your child and often some of the housework too: cooking, cleaning, shopping.</p>
 <h3>What kind of nanny you need</h3>
 <p>First decide what you want to hand over. Nannies differ:</p>
@@ -281,6 +332,7 @@
 <!-- Algorithm partner block: clinics with Russian-speaking doctors. Добавить карточки .alg-card, когда центр пришлёт список -->
 
 <h2 id="things-to-do">Things to do with kids in Dubai</h2>
+<figure class="alg-fig"><img src="https://algorithmdubai-production.up.railway.app/blog-images/family-walking-on-beach.webp" alt="Parents and child walking hand in hand into the sea" width="960" height="540" loading="lazy"><figcaption>Weekends in Dubai: beaches, play centres, kid-friendly cafés and museums</figcaption></figure>
 <p>A good weekend in Dubai is one that both kids and adults enjoy. Have breakfast at a café with a play area, then spend the afternoon at a museum where everything can be touched.</p>
 <!-- Algorithm partner block -->
 
@@ -371,7 +423,7 @@
  "description":"How to give birth in Dubai, choose a nursery and school, hire a nanny and find activities for kids. Documents, deadlines and tips for families moving to the UAE.",
  "inLanguage":"en","datePublished":"2026-11-11","dateModified":"2026-11-11",
  "mainEntityOfPage":"https://algorithmdubai.com/living-in-dubai-with-kids",
- "author":{"@type":"Organization","name":"Algorithm Training Center","url":"https://algorithmdubai.com/"},
+ "image":"https://algorithmdubai-production.up.railway.app/blog-images/dubai-marina-skyline.webp","author":{"@type":"Organization","name":"Algorithm Training Center","url":"https://algorithmdubai.com/"},
  "publisher":{"@type":"Organization","name":"Algorithm Training Center","url":"https://algorithmdubai.com/"}},
 {"@type":"BreadcrumbList","itemListElement":[
  {"@type":"ListItem","position":1,"name":"Home","item":"https://algorithmdubai.com/"},
