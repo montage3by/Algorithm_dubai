@@ -1,0 +1,389 @@
+<!-- Algorithm Dubai · Living in Dubai with Kids · вставить в блок T123 «HTML-код» между Zero-блоком с заголовком и красной формой -->
+<style>
+.alg-art{--brand:#9e2744;--coral:#e1625c;--pink:#fee5e4;--ink:#1f1818;--grey:#494949;--line:#ecdfe2;
+ font-family:var(--t-text-font,'Open Sans'),Arial,sans-serif;color:var(--ink);font-size:18px;line-height:1.65;
+ max-width:820px;margin:0 auto;padding:8px 20px 72px;box-sizing:border-box}
+.alg-art *{box-sizing:border-box}
+.alg-art h2,.alg-art h3{font-family:var(--t-headline-font,'Montserrat'),Arial,sans-serif;color:var(--ink);line-height:1.25}
+.alg-art h2{font-size:32px;font-weight:700;margin:64px 0 18px;padding-top:24px;border-top:2px solid var(--pink);scroll-margin-top:90px}
+.alg-art h3{font-size:22px;font-weight:700;margin:36px 0 10px}
+.alg-art p{margin:0 0 16px}
+.alg-art a{color:var(--brand);text-decoration:underline;text-underline-offset:3px}
+.alg-art a:hover{color:var(--coral)}
+.alg-art ul,.alg-art ol{margin:0 0 18px;padding-left:24px}
+.alg-art li{margin-bottom:6px}
+.alg-art ul li::marker{color:var(--brand)}
+.alg-art ol li::marker{color:var(--brand);font-weight:700}
+.alg-byline{font-size:15px;color:var(--grey);margin:0 0 24px;line-height:2}
+.alg-byline span{background:var(--pink);color:var(--brand);border-radius:999px;padding:3px 12px;font-weight:600;margin-right:10px}
+.alg-lead{font-size:20px;color:var(--ink)}
+.alg-toc{background:#fff7f6;border:1px solid var(--line);border-radius:20px;padding:24px 28px;margin:28px 0 8px}
+.alg-toc b{display:block;font-family:var(--t-headline-font,'Montserrat'),Arial,sans-serif;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--brand);margin-bottom:12px}
+.alg-toc ol{columns:2;column-gap:32px;margin:0;padding-left:22px}
+.alg-toc a{text-decoration:none;color:var(--ink)}
+.alg-toc a:hover{color:var(--brand)}
+.alg-note{background:var(--pink);border-left:5px solid var(--brand);border-radius:14px;padding:18px 22px;margin:22px 0}
+.alg-note p:last-child{margin:0}
+.alg-promo{background:var(--brand);color:#fff;border-radius:20px;padding:26px 28px;margin:30px 0}
+.alg-promo p{margin:0 0 14px}
+.alg-promo a{color:#fff}
+.alg-promo .alg-btn{background:#fff;color:var(--brand)}
+.alg-btn{display:inline-block;background:var(--brand);color:#fff!important;text-decoration:none!important;font-family:var(--t-headline-font,'Montserrat'),Arial,sans-serif;font-weight:600;font-size:16px;border-radius:12px;padding:13px 26px;transition:opacity .2s}
+.alg-btn:hover{opacity:.88}
+.alg-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:18px 0 22px}
+.alg-card{border:1px solid var(--line);border-radius:16px;padding:18px 20px;background:#fff;font-size:16px;line-height:1.55}
+.alg-card a{display:block;font-family:var(--t-headline-font,'Montserrat'),Arial,sans-serif;font-weight:700;font-size:17px;text-decoration:none;margin-bottom:6px;color:var(--ink)}
+.alg-card a:hover{color:var(--brand)}
+.alg-card a::after{content:" ↗";color:var(--brand);font-weight:400}
+.alg-art .alg-steps{list-style:none;padding:0;counter-reset:s}
+.alg-steps li{counter-increment:s;position:relative;padding:4px 0 10px 52px;margin:0}
+.alg-steps li::before{content:counter(s);position:absolute;left:0;top:0;width:36px;height:36px;border-radius:50%;background:var(--brand);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:var(--t-headline-font,'Montserrat'),Arial,sans-serif}
+.alg-table{width:100%;border-collapse:separate;border-spacing:0;margin:18px 0 24px;font-size:16px;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.alg-table th{background:var(--brand);color:#fff;text-align:left;padding:12px 14px;font-family:var(--t-headline-font,'Montserrat'),Arial,sans-serif;font-weight:600}
+.alg-table td{padding:12px 14px;border-top:1px solid var(--line);vertical-align:top}
+.alg-table tr:nth-child(even) td{background:#fff7f6}
+.alg-faq details{border:1px solid var(--line);border-radius:14px;margin:0 0 10px;background:#fff}
+.alg-faq summary{cursor:pointer;list-style:none;padding:16px 52px 16px 20px;font-family:var(--t-headline-font,'Montserrat'),Arial,sans-serif;font-weight:600;font-size:17px;position:relative}
+.alg-faq summary::-webkit-details-marker{display:none}
+.alg-faq summary::after{content:"+";position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:26px;color:var(--brand);font-weight:400}
+.alg-faq details[open] summary::after{content:"–"}
+.alg-faq details p{padding:0 20px 16px;margin:0}
+.alg-sources{font-size:15px;color:var(--grey)}
+.alg-final{text-align:center;background:#fff7f6;border-radius:20px;padding:34px 24px;margin-top:48px}
+.alg-final p{font-size:19px;margin-bottom:18px}
+@media (max-width:640px){
+ .alg-art{font-size:16px;padding:0 16px 56px}
+ .alg-lead{font-size:18px}
+ .alg-art h2{font-size:25px;margin-top:48px}
+ .alg-art h3{font-size:19px}
+ .alg-toc{padding:20px}
+ .alg-toc ol{columns:1}
+ .alg-cards{grid-template-columns:1fr}
+ .alg-table{font-size:14px}
+ .alg-table th,.alg-table td{padding:10px}
+}
+</style>
+
+<article class="alg-art" itemscope itemtype="https://schema.org/Article">
+<meta itemprop="headline" content="Living in Dubai with Kids: A Parent's Guide from Birth to School">
+
+<p class="alg-byline"><span>Parent's guide</span> By the Algorithm Training Center team · Updated <time datetime="2026-11-11">11 November 2026</time></p>
+
+<p class="alg-lead">When a family moves to Dubai with kids, all the questions arrive at once. Where to go for prenatal care and which insurance to buy. How to register a newborn. Which nursery to choose, how local schools work and what to do at the weekend when it's 40°C outside.</p>
+
+<p>At Algorithm we talk to newly arrived parents every day. This guide collects the questions they ask us most often when living in Dubai with kids is just beginning: step-by-step instructions, document checklists, a breakdown of school curricula and places that families at our center have tried themselves. It's useful whether you're expecting a baby or already have school-age children.</p>
+
+<nav class="alg-toc" aria-label="Contents">
+<b>Contents</b>
+<ol>
+<li><a href="#pregnancy">Pregnancy and giving birth in Dubai</a></li>
+<li><a href="#nursery">Nursery in Dubai</a></li>
+<li><a href="#schools">Schools in Dubai</a></li>
+<li><a href="#russian">Russian language for kids</a></li>
+<li><a href="#music">Music and drama for kids</a></li>
+<li><a href="#nanny">Hiring a nanny in Dubai</a></li>
+<li><a href="#doctors">Paediatricians</a></li>
+<li><a href="#things-to-do">Things to do with kids in Dubai</a></li>
+<li><a href="#faq">FAQ</a></li>
+</ol>
+</nav>
+
+<h2 id="pregnancy">Pregnancy and giving birth in Dubai</h2>
+
+<h3>When to register your pregnancy</h3>
+<p>Most women register with a clinic at around 6 weeks. That leaves enough time for all the screenings and tests.</p>
+
+<h3>Documents to bring</h3>
+<p>The clinic will ask for your passport, residence visa and Emirates ID (originals and copies), plus your insurance card. If you have medical records or reports from previous gynaecologist visits, bring those too.</p>
+<p>Health insurance is mandatory for all UAE residents, but not every policy covers pregnancy and delivery. Check this before your first appointment.</p>
+
+<h3>Maternity insurance in the UAE</h3>
+<p>You can get a policy through one parent's employer or buy one directly from an insurer.</p>
+<p>If you already have insurance, check exactly what it covers. Some policies pay for check-ups and tests but not the delivery itself. In that case, upgrade to a wider plan.</p>
+<p>If you're already pregnant and don't have insurance yet, the insurer will ask for a doctor's letter confirming the pregnancy.</p>
+<p>We recommend the widest policy your budget allows. Apart from tests and scans, it usually includes:</p>
+<ul>
+<li>a list of hospitals where you can give birth;</li>
+<li>natural delivery and C-section;</li>
+<li>epidural anaesthesia;</li>
+<li>some medication;</li>
+<li>cover for the baby in the first months of life.</li>
+</ul>
+<div class="alg-note">
+<p><b>Mind the waiting period.</b> Maternity cover doesn't start the day you buy the policy: most insurers set a waiting period of 6 to 12 months. There's no single DHA rule on this, each company sets its own, and some waive it for an extra premium. That's why it makes sense to buy maternity insurance while you're still planning a pregnancy.</p>
+</div>
+<p>Newborns are a different story: in Dubai, insurers are not allowed to apply a waiting period to babies, so you can insure your child right after birth.</p>
+
+<h3>Where to give birth in Dubai</h3>
+<p>Once your documents and insurance are sorted, choose the hospital where you'll have your check-ups and deliver. These are the hospitals that families at our center choose.</p>
+<div class="alg-cards">
+<div class="alg-card"><a href="https://www.ahdubai.com/?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">American Hospital Dubai</a>A large private hospital that has been running for about 30 years. Interpreter services are available.</div>
+<div class="alg-card"><a href="https://www.mediclinic.ae/en/city-hospital/?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Mediclinic City Hospital</a>A multi-specialty hospital in Dubai Healthcare City with a dedicated maternity unit and 24/7 anaesthesia and neonatal care. One of the first private hospitals in Dubai with Baby Friendly accreditation.</div>
+<div class="alg-card"><a href="https://dubailondonclinic.com/?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Dubai London Clinic</a>Has gynaecology and paediatrics departments and a 24-hour emergency service.</div>
+<div class="alg-card"><a href="https://saudigermanhealth.com/en?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Saudi German Hospital</a>A hospital network known for attentive care. You can book appointments and get test results through the mobile app.</div>
+<div class="alg-card"><a href="https://www.dha.gov.ae/?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Latifa Hospital</a>A government hospital for women and children, the oldest and largest maternity hospital in the emirate. Prices are lower than in private hospitals, and many insurers accept it.</div>
+</div>
+<p>Whichever hospital you choose, you'll get a private room and modern equipment. When signing the contract, ask for a care coordinator: they'll help plan your appointments and deal with insurance.</p>
+
+<h3>What to pack for the hospital</h3>
+<p>The hospital provides everything you need for the birth and the baby's first days, including baby clothes and toiletries. You only need your personal things: phone, chargers, toiletries and going-home outfits for you and the baby. Don't forget your passport, Emirates ID, insurance card and medical records.</p>
+
+<h3>Giving birth</h3>
+<p>Go to the hospital when your waters break or contractions come about every 10 minutes. Don't wait much longer, especially as home births are not permitted in the UAE. If labour is fast and you can't get there in time, call an ambulance: the crew will take care of you and the baby.</p>
+<p>You can have your husband or a doula with you. A doula gives emotional and physical support but doesn't give medical advice.</p>
+
+<h3>Going home</h3>
+<p>If everything is fine, mothers are usually discharged 1-2 days after a natural birth and 3-4 days after a C-section. The doctor decides the exact timing. During your stay the baby is examined, you get advice on newborn care and a schedule of check-ups.</p>
+<div class="alg-note">
+<p>When you leave, the hospital gives you a birth notification. <b>You must register the birth within 30 days</b>, or you'll be fined. You have 120 days for the baby's other documents: passport, residence visa and Emirates ID.</p>
+</div>
+
+<h3>Birth certificate in Dubai</h3>
+<p>You'll need:</p>
+<ul>
+<li>both parents' passports with valid residence visas;</li>
+<li>both parents' Emirates IDs;</li>
+<li>the hospital birth notification;</li>
+<li>your marriage certificate. If you married outside the UAE, it must be attested by the UAE embassy and the UAE Ministry of Foreign Affairs and translated into Arabic.</li>
+</ul>
+<p>In Dubai, birth certificates are issued by the Dubai Health Authority (DHA). You apply online and sign in with UAE Pass. In other emirates, the Ministry of Health handles it.</p>
+<p>Your home country's birth certificate is issued by its consulate in Dubai. Russian citizens, for example, apply to the Russian consulate with the same set of documents and an application form.</p>
+<p>A child gets UAE citizenship only if the father is a UAE national.</p>
+
+<h2 id="nursery">Nursery in Dubai</h2>
+<p>Nurseries in Dubai accept babies from 45 days old. Parents decide how many hours a day the child spends there.</p>
+<p>Groups are usually split by age:</p>
+<ol>
+<li><b>Nursery:</b> from 45 days to 3 years.</li>
+<li><b>FS1 or KG1:</b> up to about 4.5 years. First steps in independence and early learning activities.</li>
+<li><b>FS2 or KG2:</b> the pre-school year. These groups are often attached to a school the child will later join. Children start learning letters, numbers and writing.</li>
+</ol>
+
+<h3>Early years curricula</h3>
+<p>Approaches vary a lot between nurseries, so it's worth understanding them before you choose.</p>
+<p>The most common in Dubai is the British EYFS (Early Years Foundation Stage). Children learn through play: speaking, reading, numbers, creativity, physical and emotional development. It's built on respect for each child as they are.</p>
+<p>NAEYC is often taken for a teaching method, but it's an American association that sets quality standards for early education: development, safety and health. A NAEYC-accredited nursery has been checked against those standards.</p>
+<p>In Montessori nurseries, children choose their own activities in a specially prepared environment where they can do everything without adult help. The teacher observes and guides rather than leads.</p>
+<p>Reggio Emilia is built around what interests the children: exploration, projects and a lot of creative work.</p>
+
+<h3>Nursery documents</h3>
+<p><b>For the child:</b> birth certificate, passport, Emirates ID, photo, health insurance and vaccination record.</p>
+<p><b>For the mother:</b> passport, Emirates ID, residence visa and photo. The same set is required from the sponsor, the person paying the fees.</p>
+
+<h3>Good to know</h3>
+<p>Many nurseries don't provide meals, so you'll pack a lunchbox. Ask about this right away.</p>
+<p>Most nurseries are open from 7 am to 6 pm, and many close for the summer holidays.</p>
+<p>Late pick-ups are taken seriously. If you don't collect your child on time, you may be fined.</p>
+<div class="alg-promo">
+<p>If your child goes to an English-speaking nursery and you want to keep up their Russian at home, take a look at our school preparation programme for children from 5.5. Classes run on Saturdays or five days a week: reading, writing, maths and speech development in Russian.</p>
+<a class="alg-btn" href="/preparatory">School preparation from 5.5</a>
+</div>
+
+<h2 id="schools">Schools in Dubai</h2>
+<p>Choosing a school deserves time. The quality of education here is good, but the systems differ a lot from what families from Russia and the CIS are used to. School is also a child's first real community, and the friends they make there often stay for years.</p>
+
+<h3>Key facts</h3>
+<p>Education in the UAE is compulsory from age 6. Start looking early: popular schools have limited places and entrance assessments. Getting in is easier if your child already attends the school's nursery.</p>
+<p>The school year usually starts at the end of August and ends in June or July, depending on the curriculum. Most schools offer meals, but children can bring food from home.</p>
+
+<h3>British, American or IB curriculum</h3>
+<p>Start with the curriculum: it determines which universities your child can apply to later.</p>
+<p>The British curriculum is the most common in Dubai. Students take IGCSEs at 16 and A-Levels at 18, which open the door to British and many other universities.</p>
+<p>The American curriculum prepares students for US universities. It has core subjects, plenty of electives and several levels of difficulty.</p>
+<p>The IB (International Baccalaureate) diploma is recognised by universities worldwide.</p>
+<p>Dubai also has schools following Indian, French, German and other curricula.</p>
+<table class="alg-table">
+<thead><tr><th>Curriculum</th><th>Final exams</th><th>Easiest university route</th></tr></thead>
+<tbody>
+<tr><td><b>British</b></td><td>IGCSE at 16, A-Level at 18</td><td>UK and many universities worldwide</td></tr>
+<tr><td><b>American</b></td><td>High School Diploma, plus SAT or ACT</td><td>USA and Canada</td></tr>
+<tr><td><b>IB</b></td><td>IB Diploma at 18</td><td>Universities worldwide</td></tr>
+</tbody>
+</table>
+
+<h3>Public or private school</h3>
+<p>Public schools are run by the UAE Ministry of Education and are free for UAE nationals. Expat children can enrol too, but the conditions are tough: AED 6,000 a year, foreign students make up no more than 20% of places, admission is merit-based and all subjects are taught in Arabic. That's why most expat families choose private schools.</p>
+<p>Private schools in Dubai are inspected by KHDA (Knowledge and Human Development Authority). Each school receives one of six ratings: Outstanding, Very Good, Good, Acceptable, Weak or Very Weak. Inspectors look at student progress, teaching, facilities, Arabic and more. You can read the inspection report for any private school on the KHDA website.</p>
+<p>Before deciding, visit a few schools on your shortlist, talk to the teachers and look around the campus. And think about the commute. Dubai is big, and an hour in traffic twice a day will wear out both you and your child.</p>
+
+<h3>Moving from a school in another country</h3>
+<p>For children arriving from Russian-speaking countries, studying in English is usually the hardest part. Assess your child's English level early. If it's still weak, look for a school with English language support (EAL). Your child can catch up without overload and later move to a school with higher entry requirements.</p>
+<p>Before the first day, read through the curriculum, the grading system and the list of after-school activities. It'll be easier to support your child when they start telling you about school.</p>
+
+<h3>School admission in Dubai</h3>
+<p>Many schools accept students throughout the year if there are places in the class. The process usually looks like this:</p>
+<ol class="alg-steps">
+<li>Shortlist schools, check availability and book a tour.</li>
+<li>Submit an application and gather documents.</li>
+<li>Pay the registration fee; your child takes an entrance assessment.</li>
+<li>If all goes well, the school sends an offer. To secure the place, you pay a registration deposit, capped by KHDA at 10% of the annual fee. It's later deducted from tuition.</li>
+<li>Submit the remaining documents.</li>
+</ol>
+<div class="alg-note">
+<p>Without an attested transfer certificate from the previous school, your child won't be allowed to start classes. A residence visa and Emirates ID are needed before the first day, although you can apply without them.</p>
+</div>
+<div class="alg-promo">
+<p>Many families combine an international school with the Russian curriculum to keep the language and the option of returning to the Russian system. At Algorithm we offer a <a href="/weekends">hybrid programme for international school students</a> in grades 1-8 (in person on Fridays or Saturdays plus online) and a <a href="/5days">full-time five-day Russian curriculum</a> for grades 1-4. Assessments take place in Dubai, with no need to travel to Russia.</p>
+<a class="alg-btn" href="/weekends">See the hybrid programme</a>
+</div>
+
+<h2 id="russian">Russian language for kids in Dubai</h2>
+<p>When a child studies in English, Russian quickly takes a back seat. Within a year or two, many children understand Russian but answer in English, and almost stop reading and writing.</p>
+<p>At Algorithm, children study Russian systematically so the language grows with them. They keep up with familiar subjects, don't fall behind because of a language barrier and make friends with other kids who have recently moved. Classes are playful and never overloaded. Beyond the main programmes, we run <a href="/quests">literature quests</a>, chess tournaments, the <a href="/olympiad_ru_registration">Russian language olympiad</a> and <a href="/holidays">holiday camps</a>. Upcoming events are on our <a href="/events">events page</a>.</p>
+<p>Find out your child's level of Russian at a <a href="/dia">free assessment</a>. If you live far from the center or outside Dubai, there are <a href="/russkiy-online">online courses</a>. All programmes are on our <a href="/courses">courses page</a>.</p>
+
+<h2 id="music">Music and drama for kids</h2>
+<h3>Music schools in Dubai</h3>
+<p>Children can start music at 4-5: instruments, singing and music theory. Lessons develop hearing, rhythm and imagination.</p>
+<div class="alg-cards">
+<div class="alg-card"><a href="https://dubaimusicschool.com?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Dubai Music School</a>Singing, piano, guitar and drums for children from 4. Private lessons are available, and students perform in concerts.</div>
+<div class="alg-card"><a href="https://melodica.ae?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Melodica Music and Dance Academy</a>Singing and instruments for children from 5, with an introduction to different music styles.</div>
+<div class="alg-card"><a href="https://rmcuae.ae/ru?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Russian Music Centre</a>Music education following the standards of Russian music schools. After a year, children can take exams and receive an official state-standard report.</div>
+</div>
+<h3>Drama classes in Dubai</h3>
+<p>Drama studios usually accept children from 5. Classes help children grow in confidence and get used to performing in front of people.</p>
+<div class="alg-cards">
+<div class="alg-card"><a href="https://dramascene.com?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Drama Scene</a>Acting, stage speech and improvisation for children over 6. Students perform in real productions.</div>
+<div class="alg-card"><a href="https://liveathive.ae?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">The Hive</a>Acting classes for children from 5, based on drama games and building up to performances.</div>
+<div class="alg-card"><a href="https://shiningstarspaacademy.com?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Shining Stars Performing Arts Academy Dubai</a>Drama courses for children from 7, with regular stage performances.</div>
+</div>
+
+<h2 id="nanny">Hiring a nanny in Dubai</h2>
+<p>A good nanny takes care of your child and often some of the housework too: cooking, cleaning, shopping.</p>
+<h3>What kind of nanny you need</h3>
+<p>First decide what you want to hand over. Nannies differ:</p>
+<ul>
+<li>a newborn nanny knows everything about caring for a baby in the first year;</li>
+<li>a nanny for 1-3 year olds manages routine, meals and hygiene and picks age-appropriate games;</li>
+<li>a governess for children aged 3-12 organises activities, helps with homework and builds independence;</li>
+<li>a nanny-housekeeper combines childcare with cleaning and cooking.</li>
+</ul>
+<p>Also decide on the schedule, live-in or live-out, and what matters to you, such as speaking Russian or English.</p>
+<h3>Documents</h3>
+<p><b>From the nanny:</b></p>
+<ol>
+<li>Passport and work visa if she isn't a UAE national. The visa is issued under the employer's sponsorship.</li>
+<li>Police clearance certificate from her country of citizenship or residence.</li>
+<li>Health insurance and a medical certificate, including an HIV test.</li>
+<li>A teaching or medical qualification, if she has one: it makes a candidate easier to trust.</li>
+</ol>
+<p><b>From you as the employer:</b></p>
+<ol>
+<li>Copies of your passport and residence visa.</li>
+<li>Proof of income: a salary certificate or bank statement.</li>
+<li>An employment contract setting out duties, hours, salary and other terms.</li>
+</ol>
+<h3>Bringing a nanny from abroad</h3>
+<p>If you want to bring your own nanny to Dubai, you become her sponsor. Domestic worker visas are processed through the Ministry of Human Resources and Emiratisation (MOHRE), directly or via Tadbeer centres. To sponsor a worker, you need a proven income, usually from AED 6,000 a month, but check the current threshold on the MOHRE website. The nanny's documents must be translated and attested. With a complete file, processing usually takes one to several weeks, depending largely on the medical check.</p>
+
+<h2 id="doctors">Paediatricians in Dubai</h2>
+<p>Find a trusted clinic before you need one. When a child gets sick in a new country, you worry twice as much, and a doctor who speaks your language helps a lot.</p>
+<!-- Algorithm partner block: clinics with Russian-speaking doctors. Добавить карточки .alg-card, когда центр пришлёт список -->
+
+<h2 id="things-to-do">Things to do with kids in Dubai</h2>
+<p>A good weekend in Dubai is one that both kids and adults enjoy. Have breakfast at a café with a play area, then spend the afternoon at a museum where everything can be touched.</p>
+<!-- Algorithm partner block -->
+
+<h3>Play centres</h3>
+<p>Kids burn off energy and try new things here, while parents get a breather.</p>
+<div class="alg-cards">
+<div class="alg-card"><a href="https://instagram.com/littleexplorersme?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Little Explorers</a>An early learning centre for children from 3 months to 5 years: games and creative and science workshops.</div>
+<div class="alg-card"><a href="https://bowlingdubai.com?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Dubai Bowling Centre</a>Bowling, arcade games, bumper cars, trampolines and a kids' room. A popular choice for birthday parties.</div>
+<div class="alg-card"><a href="https://olioli.ae?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">OliOli</a>Eight themed galleries plus a separate area for toddlers.</div>
+<div class="alg-card"><a href="https://leoandloona.com?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Leo &amp; Loona</a>A family park chain created by parents. Play areas were designed together with safety inspectors, and the cafés hold Dubai Municipality's top food safety rating.</div>
+</div>
+
+<h3>Kid-friendly restaurants with play areas</h3>
+<p>Dinner out with a toddler is rarely relaxing: you're either feeding them or keeping them busy. At a café with a play area, parents at least get to finish their coffee.</p>
+<div class="alg-cards">
+<div class="alg-card"><a href="https://instagram.com/cafe.confetti.dubai?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Cafe Confetti</a>Desserts, ice cream, drinks and a play area with Montessori games. You can host a children's party here.</div>
+<div class="alg-card"><a href="https://thefarmdubai.ae?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">The Farm</a>A spacious family café surrounded by greenery, with outdoor trampolines and slides.</div>
+<div class="alg-card"><a href="https://huqqabaz.com?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Huqqabaz Jumeirah</a>Burgers, Arabic and European food. For kids, a play area with a toy kitchen and a mini zoo with parrots.</div>
+<div class="alg-card"><a href="https://angelcakes.world?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Angel Cakes (Dubai Hills)</a>A large terrace for a quiet dinner, with a play area for little ones next to it.</div>
+<div class="alg-card"><a href="https://instagram.com/fiafiakidsplay?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">FIAFIA</a>A café with a full play centre. While kids play with entertainers, parents can relax or work.</div>
+<div class="alg-card"><a href="https://instagram.com/kasibeyazdubai?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Kaşıbeyaz (Dubai Hills Mall)</a>Turkish sweets, milkshakes and a separate kids' room for drawing and playing with other children.</div>
+<div class="alg-card"><a href="https://sayacafe.ae?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Saya</a>A calm interior, good food and its own playroom.</div>
+<div class="alg-card"><a href="https://societyuae.com?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Society</a>Beautiful breakfasts, fresh pastries and a corner with a toy kitchen and toys.</div>
+<div class="alg-card"><a href="https://thecheesecakefactoryme.com/uae/en/home?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">The Cheesecake Factory</a>A big menu with kids' dishes; many branches have board games and colouring pages.</div>
+<div class="alg-card"><a href="https://ribambelle.ae?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Ribambelle</a>European food and an indoor playground. You can celebrate a birthday and order a custom cake.</div>
+</div>
+
+<h3>Restaurants with kids' cooking classes</h3>
+<p>Here children can make dumplings or build their own pizza while adults have lunch.</p>
+<div class="alg-cards">
+<div class="alg-card"><a href="https://instagram.com/rollandboil?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Roll&amp;Boil</a>Handmade pelmeni, and at the workshop kids make them themselves. Branches in Dubai Mall and Dubai Marina.</div>
+<div class="alg-card"><a href="https://instagram.com/osteriamario_dxb?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Osteria Mario</a>Italian food and an eco-friendly kids' area without a single plastic toy. Free creative workshops for children from 3.</div>
+<div class="alg-card"><a href="https://mondoux.ae?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Mondoux</a>Breakfasts, hot drinks and desserts while kids enjoy the play area. The Dubai Creek Harbour branch runs kids' cooking classes.</div>
+<div class="alg-card"><a href="https://pizzaexpress.ae?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Pizza Express</a>Kids' menu discounts on certain days, plus pizza-making classes for children.</div>
+<div class="alg-card"><a href="https://dodopizza.ae?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Dodo Pizza</a>A kids' menu and a combo with a toy. At the workshop children choose toppings and make their own pizza, then get a drink, stickers, a colouring page and a certificate.</div>
+</div>
+
+<h3>Restaurant deals for kids</h3>
+<p><i>Offers change, so check the terms with the restaurant before you go.</i></p>
+<div class="alg-cards">
+<div class="alg-card"><a href="https://poloclubdubai.com/dine/sella?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Sella</a>A restaurant at the Polo Club with a buffet, à la carte menu and a My Little Pony themed breakfast. Kids under 4 eat free, and there are pony rides.</div>
+<div class="alg-card"><a href="https://instagram.com/unicorncafe.ae?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Unicorn</a>A family café with a play area and a nanny on site. Order a coffee and your child gets a free babyccino. Upstairs there's a kids' centre with music, drama, languages and sports.</div>
+<div class="alg-card"><a href="https://gordonramsayrestaurants.com?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Bread Street Kitchen</a>Gordon Ramsay's restaurant with a kids' menu, events and cooking classes. Young guests get free aquarium tickets.</div>
+<div class="alg-card"><a href="https://atlantis.com/dubai/dining/gastronomy?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Gastronomy</a>Breakfast and dinner buffets at Atlantis The Royal. Children aged 4-12 get 50% off, and under-3s eat free.</div>
+</div>
+
+<h3>Museums for kids in Dubai</h3>
+<p>Dubai's children's museums have hardly any glass cases: kids play, experiment and complete challenges.</p>
+<div class="alg-cards">
+<div class="alg-card"><a href="https://museumofthefuture.ae?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Museum of the Future</a>A city landmark. Its screen-free Future Heroes zone gives kids missions to solve as a team, with prizes for success.</div>
+<div class="alg-card"><a href="https://woo-hoo.ae?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">woo-hoo!</a>A children's museum with 11 interactive galleries. Kids can dig for fossils, make art and try rock climbing. There's a separate zone for under-3s.</div>
+<div class="alg-card"><a href="https://themuseumofcandy.com/?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Museum of Candy</a>The sweetest museum in town: candy installations, a gummy bear pool, candyfloss clouds and a lab where kids make their own sweets.</div>
+<div class="alg-card"><a href="https://legendarium.ae/?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Legendarium Dubai</a>A museum of mythical creatures and fairy-tale characters from around the world, in Dubai Festival City Mall. Kids travel through magical worlds and solve riddles.</div>
+<div class="alg-card"><a href="https://thegreenplanetdubai.com?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">The Green Planet</a>An indoor rainforest in the city centre, home to exotic birds, reptiles, insects and hundreds of plant species.</div>
+</div>
+
+<h2 id="faq">FAQ</h2>
+<div class="alg-faq">
+<details><summary>Can I give birth in Dubai without insurance?</summary><p>Yes, but you'll pay for everything yourself. Most insurers only cover delivery 6-12 months after you buy the policy, so arrange it in advance.</p></details>
+<details><summary>How long do I have to get a birth certificate in Dubai?</summary><p>You must register the birth within 30 days. You have 120 days for the baby's passport, visa and Emirates ID.</p></details>
+<details><summary>At what age do nurseries in Dubai accept children?</summary><p>Nurseries accept babies from 45 days old.</p></details>
+<details><summary>At what age do children start school in Dubai?</summary><p>Education in the UAE is compulsory from age 6. Foundation stages (FS1 and FS2, or KG1 and KG2) start earlier.</p></details>
+<details><summary>How do I choose a school in Dubai?</summary><p>Decide on the curriculum (British, American or IB), read the KHDA inspection report, visit the school and consider the commute and your child's level of English.</p></details>
+<details><summary>Can expat children attend public schools in the UAE?</summary><p>Yes, but it costs AED 6,000 a year, foreign students are limited to 20% of places and all lessons are in Arabic. That's why most families choose private schools.</p></details>
+<details><summary>How can my child keep up their Russian at an international school?</summary><p>Speaking at home is usually not enough; regular lessons with a teacher make the difference. Start with a <a href="/dia">free assessment</a>, and we'll suggest the right programme.</p></details>
+</div>
+
+<h2 id="sources">Sources</h2>
+<div class="alg-sources">
+<p>Rules in the UAE change, so check official websites before submitting documents:</p>
+<ul>
+<li><a href="https://web.khda.gov.ae/?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">KHDA</a>: private school ratings in Dubai and rules on admission deposits;</li>
+<li><a href="https://www.dha.gov.ae/?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">Dubai Health Authority</a>: birth certificates, health insurance and government hospitals;</li>
+<li><a href="https://u.ae/en/information-and-services/education/school-education-k-12/admission-to-uae-government-schools?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">UAE government portal u.ae</a>: admission of expat students to public schools;</li>
+<li><a href="https://www.mohre.gov.ae/?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en" target="_blank" rel="noopener">MOHRE</a>: visas and employment contracts for domestic workers.</li>
+</ul>
+</div>
+
+<div class="alg-final">
+<p>Algorithm Training Center in Dubai: school preparation, the Russian curriculum for international school students, Russian language courses and kids' camps.</p>
+<a class="alg-btn" href="#reg">Book a consultation</a>
+</div>
+</article>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Article","headline":"Living in Dubai with Kids: A Parent's Guide from Birth to School",
+ "description":"How to give birth in Dubai, choose a nursery and school, hire a nanny and find activities for kids. Documents, deadlines and tips for families moving to the UAE.",
+ "inLanguage":"en","datePublished":"2026-11-11","dateModified":"2026-11-11",
+ "mainEntityOfPage":"https://algorithmdubai.com/living-in-dubai-with-kids",
+ "author":{"@type":"Organization","name":"Algorithm Training Center","url":"https://algorithmdubai.com/"},
+ "publisher":{"@type":"Organization","name":"Algorithm Training Center","url":"https://algorithmdubai.com/"}},
+{"@type":"BreadcrumbList","itemListElement":[
+ {"@type":"ListItem","position":1,"name":"Home","item":"https://algorithmdubai.com/"},
+ {"@type":"ListItem","position":2,"name":"Blog","item":"https://algorithmdubai.com/blog"},
+ {"@type":"ListItem","position":3,"name":"Living in Dubai with Kids","item":"https://algorithmdubai.com/living-in-dubai-with-kids"}]},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Can I give birth in Dubai without insurance?","acceptedAnswer":{"@type":"Answer","text":"Yes, but you'll pay for everything yourself. Most insurers only cover delivery 6-12 months after you buy the policy, so arrange it in advance."}},
+ {"@type":"Question","name":"How long do I have to get a birth certificate in Dubai?","acceptedAnswer":{"@type":"Answer","text":"You must register the birth within 30 days. You have 120 days for the baby's passport, visa and Emirates ID."}},
+ {"@type":"Question","name":"At what age do nurseries in Dubai accept children?","acceptedAnswer":{"@type":"Answer","text":"Nurseries accept babies from 45 days old."}},
+ {"@type":"Question","name":"At what age do children start school in Dubai?","acceptedAnswer":{"@type":"Answer","text":"Education in the UAE is compulsory from age 6. Foundation stages (FS1 and FS2, or KG1 and KG2) start earlier."}},
+ {"@type":"Question","name":"How do I choose a school in Dubai?","acceptedAnswer":{"@type":"Answer","text":"Decide on the curriculum (British, American or IB), read the KHDA inspection report, visit the school and consider the commute and your child's level of English."}},
+ {"@type":"Question","name":"Can expat children attend public schools in the UAE?","acceptedAnswer":{"@type":"Answer","text":"Yes, but it costs AED 6,000 a year, foreign students are limited to 20% of places and all lessons are in Arabic. That's why most families choose private schools."}},
+ {"@type":"Question","name":"How can my child keep up their Russian at an international school?","acceptedAnswer":{"@type":"Answer","text":"Speaking at home is usually not enough; regular lessons with a teacher make the difference. Start with a free assessment, and we'll suggest the right programme."}}]}
+]}
+</script>
