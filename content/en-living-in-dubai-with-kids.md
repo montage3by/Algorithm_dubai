@@ -16,7 +16,7 @@
 
 *By the Algorithm Training Center team · Updated 11 November 2026*
 
-When a family moves to Dubai with kids, all the questions arrive at once. Where to go for prenatal care and which insurance to buy. How to register a newborn. Which nursery to choose, how local schools work and what to do at the weekend when it's 40°C outside.
+Moving to Dubai with children means sorting out a lot of practical questions. How do you choose a clinic for prenatal care and the right health insurance? What documents do you need after the baby is born? What should you look for in a nursery or school? And how do you plan family time during the hot summer months? Almost every family that is planning a move or already settling into life in the UAE runs into these questions.
 
 At Algorithm we talk to newly arrived parents every day. This guide collects the questions they ask us most often when living in Dubai with kids is just beginning: step-by-step instructions, document checklists, a breakdown of school curricula and places that families at our centre have tried themselves. It's useful whether you're expecting a baby or already have school-age children.
 
@@ -37,7 +37,7 @@ At Algorithm we talk to newly arrived parents every day. This guide collects the
 
 ## Pregnancy and giving birth in Dubai
 
-![Smiling mother holding her toddler at home](https://algorithmdubai-production.up.railway.app/blog-images/mother-with-toddler.webp)
+![Toddler playing with magnetic tiles at a play table](https://algorithmdubai-production.up.railway.app/blog-images/paddington-toddler-magnetic-tiles.webp)
 *From the first prenatal visit to the birth certificate: what to prepare*
 
 ### When to register your pregnancy
@@ -131,7 +131,7 @@ A child gets UAE citizenship only if the father is a UAE national.
 
 ## Nursery in Dubai
 
-![Child doing a bead craft activity on the floor](https://algorithmdubai-production.up.railway.app/blog-images/child-playing-nursery.webp)
+![Boy in glasses building a block tower in a nursery classroom](https://algorithmdubai-production.up.railway.app/blog-images/paddington-boy-building-blocks.webp)
 *Most nurseries in Dubai teach through play*
 
 Nurseries in Dubai accept babies from 45 days old. Parents decide how many hours a day the child spends there.
@@ -174,7 +174,7 @@ If your child goes to an English-speaking nursery and you want to keep up their 
 
 ## Schools in Dubai
 
-![Schoolgirl drawing at a desk with coloured pencils](https://algorithmdubai-production.up.railway.app/blog-images/girl-drawing-at-desk.webp)
+![Schoolgirl in glasses sitting at a desk in a bright classroom](https://algorithmdubai-production.up.railway.app/blog-images/algorithm-classroom-girl.webp)
 *Choosing the curriculum comes first: it shapes the route to university*
 
 Choosing a school deserves time. The quality of education here is good, but the systems differ a lot from what families from Russia and the CIS are used to. School is also a child's first real community, and the friends they make there often stay for years.
@@ -237,7 +237,7 @@ Many families combine an international school with the Russian curriculum to kee
 
 ## Russian language for kids in Dubai
 
-![Mother reading a picture book with her daughter in bed](https://algorithmdubai-production.up.railway.app/blog-images/mother-reading-with-child.webp)
+![Russian language workbooks on a classroom shelf](https://algorithmdubai-production.up.railway.app/blog-images/russian-language-workbooks.webp)
 *Reading together at home helps, but regular lessons keep the language growing*
 
 When a child studies in English, Russian quickly takes a back seat. Within a year or two, many children understand Russian but answer in English, and almost stop reading and writing.
@@ -276,7 +276,7 @@ Drama courses for children from 7, with regular stage performances.
 
 ## Hiring a nanny in Dubai
 
-![Woman reading a book to a toddler on the sofa](https://algorithmdubai-production.up.railway.app/blog-images/woman-reading-to-toddler.webp)
+![Young woman playing ball with two children in a shaded courtyard](https://algorithmdubai-production.up.railway.app/blog-images/nanny-playing-ball-with-kids.webp)
 *Decide what you want to hand over before you start looking for a nanny*
 
 A good nanny takes care of your child and often some of the housework too: cooking, cleaning, shopping.
@@ -317,7 +317,7 @@ Find a trusted clinic before you need one. When a child gets sick in a new count
 
 ## Things to do with kids in Dubai
 
-![Parents and child walking hand in hand into the sea](https://algorithmdubai-production.up.railway.app/blog-images/family-walking-on-beach.webp)
+![Girl in a chef hat at a kids' cooking class](https://algorithmdubai-production.up.railway.app/blog-images/roll-and-boil-cooking-class.webp)
 *Weekends in Dubai: beaches, play centres, kid-friendly cafés and museums*
 
 A good weekend in Dubai is one that both kids and adults enjoy. Have breakfast at a café with a play area, then spend the afternoon at a museum where everything can be touched.
