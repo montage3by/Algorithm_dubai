@@ -453,3 +453,28 @@
  {"@type":"Question","name":"How can my child keep up their Russian at an international school?","acceptedAnswer":{"@type":"Answer","text":"Speaking at home is usually not enough; regular lessons with a teacher make the difference. Start with a free assessment, and we'll suggest the right programme."}}]}
 ]}
 </script>
+
+<!-- Правки страницы: переключатель языка, ссылки меню, названия форм для CRM -->
+<script>
+(function(){
+  var LANG={label:'RU',href:'https://algorithmdubai.com/dubai_family_info_ru'};
+  var LINKS={};
+  var FORMS={"Blog eng: program selection": ["Living in Dubai with kids: program selection", ""], "Blog eng: lesson": ["Living in Dubai with kids: lesson", ""], "Blog eng: consultation and dia": ["Living in Dubai with kids: consultation and dia", ""]};
+  function fix(){
+    document.querySelectorAll('a').forEach(function(a){
+      var h=a.getAttribute('href')||'';
+      if(a.textContent.trim().toLowerCase()===LANG.label.toLowerCase()){a.setAttribute('href',LANG.href);}
+      if(LINKS[h]){a.setAttribute('href',LINKS[h]);}
+    });
+    document.querySelectorAll('input[name="formname"],input[name="tildaspec-formname"],input[name="programs"]').forEach(function(i){
+      var f=i.form; if(!f) return;
+      var cur=f.querySelector('input[name="formname"]'); if(!cur) return;
+      var key=cur.getAttribute('data-alg-orig')||cur.value; var m=FORMS[key]; if(!m) return;
+      f.querySelectorAll('input[name="formname"],input[name="tildaspec-formname"]').forEach(function(x){x.setAttribute('data-alg-orig',key);x.value=m[0];});
+      var p=f.querySelector('input[name="programs"]'); if(p&&m[1]) p.value=m[1];
+    });
+  }
+  if(document.readyState!=='loading'){fix();}else{document.addEventListener('DOMContentLoaded',fix);}
+  window.addEventListener('load',fix);
+})();
+</script>

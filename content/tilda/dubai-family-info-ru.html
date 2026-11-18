@@ -454,3 +454,28 @@
  {"@type":"Question","name":"Как сохранить русский язык, если ребёнок учится в международной школе?","acceptedAnswer":{"@type":"Answer","text":"Одних разговоров дома обычно мало, нужна регулярная практика с педагогом. Начните с бесплатной диагностики: по её итогам мы подберём программу."}}]}
 ]}
 </script>
+
+<!-- Правки страницы: переключатель языка, ссылки меню, названия форм для CRM -->
+<script>
+(function(){
+  var LANG={label:'En',href:'https://algorithmdubai.com/living-in-dubai-with-kids'};
+  var LINKS={"#rec1732152581": "https://algorithmdubai.com/ru#rec1732152581", "#rec1732897411": "#FAQ", "#cons": "https://algorithmdubai.com/ru#cons"};
+  var FORMS={"Home page: lesson": ["Блог ру: пробный урок", "Блог ру: пробный урок"]};
+  function fix(){
+    document.querySelectorAll('a').forEach(function(a){
+      var h=a.getAttribute('href')||'';
+      if(a.textContent.trim().toLowerCase()===LANG.label.toLowerCase()){a.setAttribute('href',LANG.href);}
+      if(LINKS[h]){a.setAttribute('href',LINKS[h]);}
+    });
+    document.querySelectorAll('input[name="formname"],input[name="tildaspec-formname"],input[name="programs"]').forEach(function(i){
+      var f=i.form; if(!f) return;
+      var cur=f.querySelector('input[name="formname"]'); if(!cur) return;
+      var key=cur.getAttribute('data-alg-orig')||cur.value; var m=FORMS[key]; if(!m) return;
+      f.querySelectorAll('input[name="formname"],input[name="tildaspec-formname"]').forEach(function(x){x.setAttribute('data-alg-orig',key);x.value=m[0];});
+      var p=f.querySelector('input[name="programs"]'); if(p&&m[1]) p.value=m[1];
+    });
+  }
+  if(document.readyState!=='loading'){fix();}else{document.addEventListener('DOMContentLoaded',fix);}
+  window.addEventListener('load',fix);
+})();
+</script>
