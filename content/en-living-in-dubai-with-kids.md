@@ -160,11 +160,11 @@ Reggio Emilia is built around what interests the children: exploration, projects
 
 **For the mother:** passport, Emirates ID, residence visa and photo. The same set is required from the sponsor, the person paying the fees.
 
-### Our partner nursery: Paddington Park
+### Paddington Park nursery
 
-Paddington Park is a British nursery in Arjan, Al Barsha South, and a partner project of Algorithm. It follows the EYFS and takes children from 45 days old up to FS2. The campus has a theatre, an indoor gym, a music room and about 30,000 sq ft of outdoor play space, and there is a nurse on site.
+If you're looking for a British nursery in Arjan or Al Barsha South, Paddington Park is worth a visit. It follows the EYFS and takes children from 45 days old up to FS2. There's a theatre, an indoor gym, a music room, about 30,000 sq ft of outdoor play space and a nurse on site.
 
-The nursery is open daily from 8 am to 7 pm, and families are welcome to visit. You can find out more and book a tour on the [Paddington Park website](https://paddingtonparkdubai.com/?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en).
+The nursery is open daily from 8 am to 7 pm, and you can book a tour on the [Paddington Park website](https://paddingtonparkdubai.com/?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=parents_guide_en).
 
 ### Good to know
 
