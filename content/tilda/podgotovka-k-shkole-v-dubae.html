@@ -1,0 +1,311 @@
+<!-- Алгоритм Дубай · Подготовка к школе в Дубае (RU) · вставить в блок T123 «HTML-код» на странице /podgotovka-k-shkole-v-dubae -->
+<style>
+.alg-art{--brand:#9e2744;--coral:#e1625c;--pink:#fee5e4;--ink:#1f1818;--grey:#494949;--line:#ecdfe2;
+ font-family:var(--t-text-font,'Open Sans'),Arial,sans-serif;color:var(--ink);font-size:18px;line-height:1.65;
+ max-width:820px;margin:0 auto;padding:8px 20px 72px;box-sizing:border-box}
+.alg-art *{box-sizing:border-box}
+.alg-art h2,.alg-art h3{font-family:var(--t-headline-font,'Montserrat'),Arial,sans-serif;color:var(--ink);line-height:1.25}
+.alg-art h2{font-size:32px;font-weight:700;margin:64px 0 18px;padding-top:24px;border-top:2px solid var(--pink);scroll-margin-top:90px}
+.alg-art h3{font-size:22px;font-weight:700;margin:36px 0 10px}
+.alg-art p{margin:0 0 16px}
+.alg-art a{color:var(--brand);text-decoration:underline;text-underline-offset:3px}
+.alg-art a:hover{color:var(--coral)}
+.alg-art ul,.alg-art ol{margin:0 0 18px;padding-left:24px}
+.alg-art li{margin-bottom:6px}
+.alg-art ul li::marker{color:var(--brand)}
+.alg-art ol li::marker{color:var(--brand);font-weight:700}
+.alg-byline{font-size:15px;color:var(--grey);margin:0 0 24px;line-height:2}
+.alg-byline span{background:var(--pink);color:var(--brand);border-radius:999px;padding:3px 12px;font-weight:600;margin-right:10px}
+.alg-lead{font-size:20px;color:var(--ink)}
+.alg-toc{background:#fff7f6;border:1px solid var(--line);border-radius:20px;padding:24px 28px;margin:28px 0 8px}
+.alg-toc b{display:block;font-family:var(--t-headline-font,'Montserrat'),Arial,sans-serif;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--brand);margin-bottom:12px}
+.alg-toc ol{columns:2;column-gap:32px;margin:0;padding-left:22px}
+.alg-toc a{text-decoration:none;color:var(--ink)}
+.alg-toc a:hover{color:var(--brand)}
+.alg-note{background:var(--pink);border-left:5px solid var(--brand);border-radius:14px;padding:18px 22px;margin:22px 0}
+.alg-note p:last-child{margin:0}
+.alg-promo{background:var(--brand);color:#fff;border-radius:20px;padding:26px 28px;margin:30px 0}
+.alg-promo p{margin:0 0 14px}
+.alg-promo a{color:#fff}
+.alg-promo .alg-btn{background:#fff;color:var(--brand)!important}
+.alg-btn{display:inline-block;background:var(--brand);color:#fff!important;text-decoration:none!important;font-family:var(--t-headline-font,'Montserrat'),Arial,sans-serif;font-weight:600;font-size:16px;border-radius:12px;padding:13px 26px;transition:opacity .2s}
+.alg-btn:hover{opacity:.88}
+.alg-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:18px 0 22px}
+.alg-card{border:1px solid var(--line);border-radius:16px;padding:18px 20px;background:#fff;font-size:16px;line-height:1.55}
+.alg-card a{display:block;font-family:var(--t-headline-font,'Montserrat'),Arial,sans-serif;font-weight:700;font-size:17px;text-decoration:none;margin-bottom:6px;color:var(--ink)}
+.alg-card a:hover{color:var(--brand)}
+.alg-card a::after{content:" ↗";color:var(--brand);font-weight:400}
+.alg-art .alg-steps{list-style:none;padding:0;counter-reset:s}
+.alg-steps li{counter-increment:s;position:relative;padding:4px 0 10px 52px;margin:0}
+.alg-steps li::before{content:counter(s);position:absolute;left:0;top:0;width:36px;height:36px;border-radius:50%;background:var(--brand);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:var(--t-headline-font,'Montserrat'),Arial,sans-serif}
+.alg-table{width:100%;border-collapse:separate;border-spacing:0;margin:18px 0 24px;font-size:16px;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.alg-table th{background:var(--brand);color:#fff;text-align:left;padding:12px 14px;font-family:var(--t-headline-font,'Montserrat'),Arial,sans-serif;font-weight:600}
+.alg-table td{padding:12px 14px;border-top:1px solid var(--line);vertical-align:top}
+.alg-table tr:nth-child(even) td{background:#fff7f6}
+.alg-faq details{border:1px solid var(--line);border-radius:14px;margin:0 0 10px;background:#fff}
+.alg-faq summary{cursor:pointer;list-style:none;padding:16px 52px 16px 20px;font-family:var(--t-headline-font,'Montserrat'),Arial,sans-serif;font-weight:600;font-size:17px;position:relative}
+.alg-faq summary::-webkit-details-marker{display:none}
+.alg-faq summary::after{content:"+";position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:26px;color:var(--brand);font-weight:400}
+.alg-faq details[open] summary::after{content:"–"}
+.alg-faq details p{padding:0 20px 16px;margin:0}
+.alg-sources{font-size:15px;color:var(--grey)}
+.alg-final{text-align:center;background:#fff7f6;border-radius:20px;padding:34px 24px;margin-top:48px}
+.alg-final p{font-size:19px;margin-bottom:18px}
+.alg-fig{margin:26px 0 30px}
+.alg-fig img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:20px}
+.alg-fig figcaption{font-size:14px;color:var(--grey);margin-top:10px;text-align:center}
+.alg-duo{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.alg-duo img{aspect-ratio:4/3}
+.alg-duo figcaption{grid-column:1/-1;margin-top:0}
+.alg-tl{display:flex;gap:0;margin:26px 0 30px;position:relative}
+.alg-tl-item{flex:1;position:relative;padding:44px 10px 0;text-align:center;font-size:15px;line-height:1.45}
+.alg-tl-item::before{content:"";position:absolute;top:15px;left:0;right:0;height:3px;background:var(--pink)}
+.alg-tl-item:first-child::before{left:50%}.alg-tl-item:last-child::before{right:50%}
+.alg-tl-item::after{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:21px;height:21px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 5px #fff}
+.alg-tl-item b{display:block;font-family:var(--t-headline-font,'Montserrat'),Arial,sans-serif;color:var(--brand);font-size:16px;margin-bottom:4px}
+.alg-ages{display:flex;align-items:flex-end;gap:12px;margin:24px 0 30px;height:300px}
+.alg-age{flex:1;border-radius:16px 16px 6px 6px;background:var(--pink);padding:14px 12px;display:flex;flex-direction:column;justify-content:flex-start;font-size:14px;line-height:1.4}
+.alg-age b{font-family:var(--t-headline-font,'Montserrat'),Arial,sans-serif;font-size:17px;color:var(--brand);margin-bottom:4px}
+.alg-age:nth-child(1){height:52%}.alg-age:nth-child(2){height:68%}.alg-age:nth-child(3){height:84%}
+.alg-age:nth-child(4){height:100%;background:var(--brand);color:#fff}.alg-age:nth-child(4) b{color:#fff}
+.alg-khda{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:20px 0 8px}
+.alg-khda div{border-radius:10px;padding:14px 6px;text-align:center;color:#fff;font-family:var(--t-headline-font,'Montserrat'),Arial,sans-serif;font-weight:600;font-size:14px;line-height:1.25}
+.alg-khda-cap{display:flex;justify-content:space-between;font-size:13px;color:var(--grey);margin-bottom:26px}
+@media (max-width:640px){
+ .alg-art{font-size:16px;padding:0 16px 56px}
+ .alg-lead{font-size:18px}
+ .alg-art h2{font-size:25px;margin-top:48px}
+ .alg-art h3{font-size:19px}
+ .alg-toc{padding:20px}
+ .alg-toc ol{columns:1}
+ .alg-cards{grid-template-columns:1fr}
+ .alg-table{font-size:14px}
+ .alg-table th,.alg-table td{padding:10px}
+ .alg-tl{flex-direction:column;gap:0}
+ .alg-tl-item{text-align:left;padding:0 0 18px 40px}
+ .alg-tl-item::before{top:0;bottom:0;left:10px;right:auto;width:3px;height:auto}
+ .alg-tl-item:first-child::before{left:10px;top:12px}.alg-tl-item:last-child::before{right:auto;bottom:auto;height:12px}
+ .alg-tl-item::after{top:2px;left:0;transform:none}
+ .alg-ages{height:auto;flex-direction:column;align-items:stretch}
+ .alg-age{height:auto!important;border-radius:14px}
+ .alg-khda{grid-template-columns:repeat(3,1fr)}
+ .alg-fig img{border-radius:14px}
+ .alg-duo{gap:8px}
+}
+.alg-card b{display:block;font-family:var(--t-headline-font,'Montserrat'),Arial,sans-serif;font-weight:700;font-size:17px;color:var(--brand);margin-bottom:8px}
+.alg-card ul{margin:0;padding-left:20px}
+.alg-card li{margin-bottom:4px}
+</style>
+
+<article class="alg-art" lang="ru" itemscope itemtype="https://schema.org/Article">
+<meta itemprop="headline" content="Подготовка к школе в Дубае: что должен уметь ребёнок в 5-6 лет">
+
+<p class="alg-byline"><span>Гид для родителей</span> Команда образовательного центра «Алгоритм» · Обновлено <time datetime="2026-11-26">26 ноября 2026</time></p>
+
+<p class="alg-lead">В Дубае вопрос «готов ли ребёнок к школе» сложнее, чем дома. Важно не только, умеет ли он читать и считать, но и на каком языке. Одни семьи готовятся к российскому первому классу, другие к Year 1 в британской школе, третьи хотят оставить открытыми оба варианта.</p>
+
+<p>Разбираем, какие навыки действительно нужны к 6 годам и как их развивать, не превращая детство в бесконечные занятия.</p>
+
+<figure class="alg-fig"><img src="https://algorithmdubai-production.up.railway.app/blog-images/kids-shapes-activity-with-parents.webp" alt="Дети раскладывают цветные фигуры на открытом занятии, родители наблюдают" width="960" height="540"><figcaption>Готовность к школе это не только чтение и счёт, но и умение работать в группе</figcaption></figure>
+
+<nav class="alg-toc" aria-label="Содержание">
+<b>Содержание</b>
+<ol>
+<li><a href="#when">Когда начинать</a></li>
+<li><a href="#checklist">Чек-лист готовности</a></li>
+<li><a href="#international">Если впереди международная школа</a></li>
+<li><a href="#russian-school">Если впереди российская программа</a></li>
+<li><a href="#home">7 привычек для дома</a></li>
+<li><a href="#specialist">Когда нужен специалист</a></li>
+<li><a href="#algorithm">Подготовка в «Алгоритме»</a></li>
+<li><a href="#faq">Частые вопросы</a></li>
+</ol>
+</nav>
+
+<h2 id="when">Когда начинать подготовку</h2>
+<p>Лучше всего за год до школы, в 5-5,5 лет. Этого хватает, чтобы спокойно освоить грамоту и счёт, не торопя ребёнка.</p>
+<p>Если ребёнок ходит в англоязычный детский сад, с русским стоит начать ещё раньше. К 5 годам у многих детей в Дубае английский становится основным языком игры и общения, а русский остаётся «домашним».</p>
+
+<h2 id="checklist">Чек-лист: что должен уметь ребёнок к школе</h2>
+<p>Это ориентир, а не экзамен. Если какого-то навыка пока нет, это повод уделить ему внимание, а не ставить диагноз.</p>
+
+<div class="alg-cards">
+<div class="alg-card"><b>Речь</b><ul><li>Пересказывает короткую сказку своими словами.</li><li>Составляет рассказ по картинке из 4-5 предложений.</li><li>Правильно произносит звуки родного языка.</li><li>Задаёт вопросы и объясняет, чего хочет.</li></ul></div>
+<div class="alg-card"><b>Грамота и чтение</b><ul><li>Знает буквы, различает гласные и согласные, твёрдые и мягкие звуки.</li><li>Читает по слогам простые слова.</li><li>Пишет печатными буквами своё имя.</li></ul></div>
+<div class="alg-card"><b>Математика</b><ul><li>Считает до 20 и обратно, знает состав чисел до 10.</li><li>Решает простые задачи «больше, меньше», «прибавить, отнять».</li><li>Различает фигуры, ориентируется на листе: вверху справа, под линией.</li></ul></div>
+<div class="alg-card"><b>Мелкая моторика</b><ul><li>Правильно держит карандаш.</li><li>Обводит по контуру и штрихует, не выходя за линии.</li><li>Режет ножницами, лепит, собирает мелкий конструктор.</li></ul></div>
+<div class="alg-card"><b>Внимание и поведение</b><ul><li>15-20 минут занимается одним делом.</li><li>Выполняет инструкцию из 2-3 шагов.</li><li>Доводит начатое до конца.</li><li>Спокойно переносит проигрыш в игре.</li></ul></div>
+<div class="alg-card"><b>Самостоятельность</b><ul><li>Сам одевается, справляется с застёжками и обувью.</li><li>Собирает свой рюкзак, следит за вещами.</li><li>Может обратиться к взрослому за помощью.</li></ul></div>
+</div>
+
+<h2 id="international">Если ребёнок пойдёт в международную школу</h2>
+<p>С 2026-27 учебного года в британских школах Дубая, где учёба начинается в сентябре, класс для новых учеников определяют по возрасту на 31 декабря: FS1 с 3 лет, FS2 с 4 лет, Year 1 с 5 лет.</p>
+<p>На вступительном тестировании (assessment) обычно смотрят:</p>
+<ul>
+<li>понимает ли ребёнок английскую речь и простые инструкции;</li>
+<li>знает ли буквы и звуки английского, чаще всего по методике phonics;</li>
+<li>как считает и знает ли базовые математические понятия;</li>
+<li>умеет ли общаться и работать в группе.</li>
+</ul>
+<p>Самая частая сложность у русскоязычных детей связана с языком, а не со знаниями: ребёнок умеет решить задачу, но не понимает, что от него хотят. Поэтому подготовка к международной школе это прежде всего английский в учебных ситуациях: слушать учителя, отвечать на вопросы, работать с заданиями.</p>
+<p>О выборе школы и поступлении подробно рассказываем в статье <a href="/kak-vybrat-shkolu-v-dubae">«Как выбрать школу в Дубае»</a>.</p>
+
+<h2 id="russian-school">Если ребёнок пойдёт на российскую программу</h2>
+<p>В российском первом классе нужно читать и писать по-русски, а для ребёнка, который живёт в англоязычной среде, это отдельная задача. Дети, которые свободно говорят по-русски дома, часто удивляют родителей на диагностике: устная речь хорошая, а звуковой анализ слов, чтение и письмо отстают от сверстников в России.</p>
+<p>Здесь важна регулярность. Два-три занятия в неделю с педагогом дают больше, чем интенсивная подготовка за месяц до школы.</p>
+
+<figure class="alg-fig"><img src="https://algorithmdubai-production.up.railway.app/blog-images/shkola-rossii-workbooks.webp" alt="Рабочие тетради «Школа России» для 1 класса: русский язык, математика, окружающий мир" width="960" height="540" loading="lazy"><figcaption>Для российского первого класса ребёнку нужно читать и писать по-русски</figcaption></figure>
+
+<h2 id="home">Как готовить ребёнка дома: 7 простых привычек</h2>
+<ol class="alg-steps">
+<li><b>Читайте вслух каждый день</b> на том языке, который сложнее удерживать. Обсуждайте прочитанное: «Почему герой так поступил?»</li>
+<li><b>Играйте в слова:</b> «назови слово на звук М», «какой звук последний в слове кот».</li>
+<li><b>Считайте в быту:</b> тарелки на столе, ступеньки, монеты, машины на парковке.</li>
+<li><b>Давайте поручения из нескольких шагов:</b> «возьми книгу, положи на стол и позови папу».</li>
+<li><b>Рисуйте, лепите, вырезайте.</b> Это лучшая подготовка руки к письму.</li>
+<li><b>Учите доводить дело до конца:</b> собранный пазл, дорисованная картинка, убранные игрушки.</li>
+<li><b>Не сравнивайте</b> ребёнка с другими детьми. У билингвов один из языков почти всегда развивается быстрее, и это нормально.</li>
+</ol>
+
+<h2 id="specialist">Когда нужна помощь специалиста</h2>
+<p>Стоит показать ребёнка педагогу или логопеду, если:</p>
+<ul>
+<li>к 5 годам заметно нарушено звукопроизношение;</li>
+<li>ребёнку трудно удерживать внимание даже на интересном занятии;</li>
+<li>он избегает рисования и любых заданий с карандашом;</li>
+<li>путает языки так, что его не понимают ни на одном из них.</li>
+</ul>
+
+<div class="alg-promo">
+<p>Начните с бесплатной диагностики в «Алгоритме»: педагог оценит готовность к школе и уровень русского языка и подскажет, какой формат подготовки подойдёт.</p>
+<a class="alg-btn" href="/dia">Записаться на диагностику</a>
+</div>
+
+<h2 id="algorithm">Подготовка к школе в «Алгоритме»</h2>
+<p>В центре есть два формата <a href="/preparatory">подготовки к школе для детей от 5,5 лет</a>:</p>
+<table class="alg-table">
+<thead><tr><th>Формат</th><th>Когда</th><th>Что внутри</th></tr></thead>
+<tbody>
+<tr><td><b>По субботам</b></td><td>Суббота, 09:00-13:00</td><td>Грамота и письмо на русском, математика, окружающий мир, развитие речи. Подходит, если ребёнок ходит в англоязычный сад, а русский важно поддерживать без перегрузки в будни.</td></tr>
+<tr><td><b>Пять дней в неделю</b></td><td>Понедельник-пятница, 09:00-13:00</td><td>Комплексная подготовка, в том числе к международной школе: русский язык, математика, окружающий мир, развитие речи и чтения плюс усиленный английский (Jolly Phonics, First Math, Storytelling).</td></tr>
+</tbody>
+</table>
+<p>Программы составлены с учётом ФГОС.</p>
+
+<h2 id="faq">Частые вопросы</h2>
+<div class="alg-faq">
+<details><summary>Во сколько лет начинать подготовку к школе?</summary><p>Лучше всего за год до школы, в 5-5,5 лет. Если ребёнок ходит в англоязычный сад, русский стоит поддерживать раньше.</p></details>
+<details><summary>Нужно ли учить ребёнка читать до школы?</summary><p>Для российского первого класса желательно читать по слогам. В британской системе чтению учат в FS2 и Year 1 через phonics, но знание букв и звуков даст ребёнку уверенность на старте.</p></details>
+<details><summary>Как понять, готов ли ребёнок к школе?</summary><p>Ориентируйтесь на чек-лист: речь, грамота, счёт, моторика, внимание и самостоятельность. Объективную оценку даст диагностика у педагога.</p></details>
+<details><summary>Можно ли готовиться сразу к российской и международной школе?</summary><p>Да, если правильно распределить нагрузку: основные предметы на русском и регулярная практика английского. Так устроена пятидневная подготовка в «Алгоритме».</p></details>
+<details><summary>С какого возраста берут в Year 1 в Дубае?</summary><p>С 2026-27 учебного года в школах с началом учёбы в сентябре в Year 1 принимают детей, которым до 31 декабря исполняется 5 лет.</p></details>
+</div>
+
+<h2 id="sources">Источники</h2>
+<div class="alg-sources">
+<ul>
+<li><a href="https://www.khaleejtimes.com/uae/dubai-school-admissions-khda-new-guide-age-cut-off?utm_source=algorithmdubai&utm_medium=referral&utm_campaign=blog_preparatory" target="_blank" rel="noopener">Khaleej Times</a>: новые возрастные правила приёма в школы Дубая с 2026-27 учебного года.</li>
+</ul>
+</div>
+
+<div class="alg-final">
+<p>Узнайте, готов ли ребёнок к школе, на бесплатной диагностике, а все форматы подготовки смотрите на странице программы.</p>
+<a class="alg-btn" href="/preparatory">Подготовка к школе</a>
+</div>
+</article>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Article",
+   "headline": "Подготовка к школе в Дубае: что должен уметь ребёнок в 5-6 лет",
+   "description": "Чек-лист готовности к школе для детей 5-6 лет: речь, чтение, счёт, английский, внимание и самостоятельность. Как готовить ребёнка к российской и международной школе.",
+   "inLanguage": "ru",
+   "datePublished": "2026-11-26",
+   "dateModified": "2026-11-26",
+   "mainEntityOfPage": "https://algorithmdubai.com/podgotovka-k-shkole-v-dubae",
+   "image": "https://algorithmdubai-production.up.railway.app/blog-images/kids-shapes-activity-with-parents.webp",
+   "author": {
+    "@type": "Organization",
+    "name": "Образовательный центр «Алгоритм»",
+    "url": "https://algorithmdubai.com/ru"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Образовательный центр «Алгоритм»",
+    "url": "https://algorithmdubai.com/ru"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Главная",
+     "item": "https://algorithmdubai.com/ru"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Блог",
+     "item": "https://algorithmdubai.com/blog-ru"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Подготовка к школе в Дубае",
+     "item": "https://algorithmdubai.com/podgotovka-k-shkole-v-dubae"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Во сколько лет начинать подготовку к школе?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Лучше всего за год до школы, в 5-5,5 лет. Если ребёнок ходит в англоязычный сад, русский стоит поддерживать раньше."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Нужно ли учить ребёнка читать до школы?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Для российского первого класса желательно читать по слогам. В британской системе чтению учат в FS2 и Year 1 через phonics, но знание букв и звуков даст ребёнку уверенность на старте."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Как понять, готов ли ребёнок к школе?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Ориентируйтесь на чек-лист: речь, грамота, счёт, моторика, внимание и самостоятельность. Объективную оценку даст диагностика у педагога."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Можно ли готовиться сразу к российской и международной школе?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Да, если правильно распределить нагрузку: основные предметы на русском и регулярная практика английского. Так устроена пятидневная подготовка в «Алгоритме»."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "С какого возраста берут в Year 1 в Дубае?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "С 2026-27 учебного года в школах с началом учёбы в сентябре в Year 1 принимают детей, которым до 31 декабря исполняется 5 лет."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
